@@ -1,0 +1,74 @@
+---
+sidebar_position: 3
+---
+
+# Order Management
+
+Process, fulfill, and track customer orders.
+
+## Order lifecycle
+
+An order moves through these statuses:
+
+| Status | Meaning |
+|--------|---------|
+| Pending | Order placed, payment not yet captured |
+| Paid | Payment captured, ready to fulfill |
+| Fulfilled | Items shipped to customer |
+| Completed | Order delivered and finalized |
+| Cancelled | Order cancelled by store or customer |
+| Refunded | Payment returned to customer |
+
+## Viewing orders
+
+Go to **Orders** to see all orders. Use filters to narrow by:
+
+- Status (pending, paid, fulfilled, etc.)
+- Date range
+- Customer name
+- Order value
+- Payment method
+
+Click any order to see the full detail: customer info, items, shipping address, payment status, and order timeline.
+
+## Fulfilling orders
+
+When an order is paid, you can fulfill it:
+
+1. Open the order
+2. Click **Fulfill Items**
+3. Select the items to ship (for partial fulfillment)
+4. Enter the tracking number and carrier
+5. Click **Notify Customer** to send a shipping confirmation email
+
+### Bulk fulfillment
+
+For high-volume stores, upload a CSV file under **Orders > Bulk Fulfill** with columns: `order_id`, `tracking_number`, `carrier`.
+
+## Refunds and returns
+
+To refund an order:
+
+1. Open the order
+2. Click **Refund**
+3. Choose full or partial refund
+4. Select items and quantities to refund
+5. Optionally return items to inventory
+6. Click **Process Refund**
+
+The refund is sent back to the customer's original payment method within 5-10 business days.
+
+## Order editing
+
+Before an order is fulfilled, you can edit:
+
+- Shipping address
+- Items and quantities (adds or removes products)
+- Shipping rate
+- Apply a discount
+
+After editing, the order total is recalculated and the customer is charged or refunded the difference.
+
+## Exports
+
+Export orders as CSV under **Orders > Export**. Choose columns and date range. The export includes customer data, line items, totals, and fulfillment details for accounting and reporting.

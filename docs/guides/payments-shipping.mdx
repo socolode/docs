@@ -1,0 +1,75 @@
+---
+sidebar_position: 4
+---
+
+# Payments and Shipping
+
+Configure how customers pay and how orders are delivered.
+
+## Payment gateways
+
+Under **Settings > Payments**, connect one or more payment gateways. Socolode supports:
+
+| Gateway | Countries | Fees |
+|---------|-----------|------|
+| Stripe | Global | 2.9% + $0.30 per transaction |
+| PayPal | Global | 3.49% + fixed fee |
+| Alipay | China | 0.6% per transaction |
+| WeChat Pay | China | 0.6% per transaction |
+
+### Enabling a gateway
+
+1. Click **Connect** next to the gateway
+2. Authorize the connection (redirects to the gateway)
+3. Configure accepted currencies
+4. Set a fallback gateway for failed transactions
+
+### Capturing payments
+
+Two capture modes are available:
+
+- **Automatic**: Payment is captured immediately at checkout
+- **Manual**: Payment is authorized at checkout, you capture it manually before fulfillment
+
+Manual capture is useful for pre-orders or items that require verification before shipping.
+
+## Shipping configuration
+
+### Shipping zones
+
+Create zones under **Settings > Shipping > Zones**. Each zone groups countries with the same shipping rates.
+
+Example zones:
+- **Domestic**: Your country only
+- **Asia**: Japan, South Korea, Singapore, etc.
+- **International**: All other countries
+
+### Shipping rates
+
+Within each zone, add one or more rate types:
+
+- **Flat rate**: Fixed price regardless of order value (e.g., $5.00)
+- **Weight-based**: Price calculated by total weight (e.g., $2 per kg)
+- **Free shipping**: No charge when the order meets a minimum value (e.g., free over $50)
+- **Calculated**: Real-time rates from carriers (UPS, FedEx, DHL) via API integration
+
+### Shipping labels
+
+Purchase and print shipping labels directly from the order page:
+
+1. Open a paid order
+2. Click **Create Label**
+3. Select carrier and service level
+4. Confirm the package weight and dimensions
+5. Print the label (PDF format)
+
+Discounted rates are available for integrated carriers.
+
+## Tax settings
+
+Under **Settings > Taxes**, configure how tax is collected:
+
+- **Automatic**: Socolode calculates tax based on the customer's shipping address
+- **Manual override**: Set fixed tax rates for specific regions
+
+Tax-inclusive pricing can be enabled per product, which includes tax in the displayed price.
