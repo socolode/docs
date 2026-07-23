@@ -47,6 +47,31 @@ const config: Config = {
     ],
   ],
 
+  // 本地搜索插件配置
+  themes: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        // 索引文件使用哈希命名，避免缓存问题
+        hashed: true,
+        // 支持中英文搜索
+        language: ['en', 'zh'],
+        // 搜索结果页高亮关键词
+        highlightSearchTermsOnTargetPage: true,
+        // 搜索框位置：导航栏右侧
+        searchBarPosition: 'right',
+        // 文档路由基础路径
+        docsRouteBasePath: '/docs',
+        // 显式搜索结果路径
+        explicitSearchResultPath: true,
+        // 搜索结果显示摘要
+        searchResultLimits: 8,
+        // 索引页面正文内容
+        indexPages: true,
+      },
+    ],
+  ],
+
   themeConfig: {
     colorMode: {
       respectPrefersColorScheme: true,
