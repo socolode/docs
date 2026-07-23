@@ -7,6 +7,26 @@ Socolode 产品文档站，基于 [Docusaurus 3](https://docusaurus.io/) 构建�
 - **语言**：English + 简体中文（一套文档、双语同步）
 - **框架**：Docusaurus 3 + TypeScript
 
+## 账号信息与新电脑配置
+
+### 项目账号信息（防止遗忘）
+| 平台 | 用户名/账号 | 邮箱 |
+|------|------------|------|
+| GitHub | `socolode` | `k604050030@gmail.com` |
+| Cloudflare | 同上邮箱登录 | - |
+
+### 新电脑初始化步骤
+1. 安装 Node.js 22.x LTS 版本：https://nodejs.org/
+2. 安装 Git：https://git-scm.com/
+3. 配置 Git 全局信息：
+```bash
+git config --global user.name "socolode"
+git config --global user.email "k604050030@gmail.com"
+```
+4. 配置 GitHub 认证（推荐使用 `gh auth login` 命令行登录，或配置SSH密钥）
+5. 克隆项目：`git clone https://github.com/socolode/docs.git`
+6. 进入项目目录安装依赖：`npm install`
+
 ## 本地开发
 
 ```bash
