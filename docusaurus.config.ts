@@ -94,7 +94,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: '/admin/',
+          href: 'https://docs.socolode.com/admin/',
           label: '内容管理',
           position: 'right',
         },
