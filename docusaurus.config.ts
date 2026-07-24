@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Socolode',
-  tagline: 'Socolode Product Documentation',
+  tagline: 'Socolode 产品文档中心',
   favicon: 'img/favicon.ico',
 
   url: 'https://docs.socolode.com',
