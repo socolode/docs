@@ -3,7 +3,7 @@ sidebar_position: 1
 slug: /intro
 ---
 
-# Introduction
+# Introduction?
 
 Welcome to the **Socolode** documentation. This is the single source of truth for everything you need to build, customize, and operate your Socolode store.
 
