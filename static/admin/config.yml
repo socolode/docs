@@ -1,0 +1,72 @@
+# ======================================
+# Socolode 文档站 Decap CMS 配置
+# 请修改下面标注了【需要修改】的部分
+# ======================================
+
+# 后端配置：GitHub作为内容存储
+backend:
+  name: github
+  branch: main  # 你的仓库主分支，一般是main，旧仓库可能是master
+  repo: socolode/socolode-docs  # 你的GitHub仓库
+  squash_merges: true  # 发布时自动压缩提交记录，保持Git历史干净
+
+# 本地开发配置：开启后本地启动decap-server可以直接写本地文件，不会提交到远程
+local_backend: true
+
+# 媒体文件配置
+media_folder: "static/img/uploads"  # 上传的图片/文件存在仓库的这个路径
+public_folder: "/img/uploads"       # 站点访问媒体文件的路径前缀
+
+# 站点信息
+site_url: https://docs.socolode.com  # 你的站点正式域名
+display_url: https://docs.socolode.com # 后台顶部返回站点的链接
+locale: "zh_CN" # 后台界面语言，中文
+
+# 发布模式：个人使用直接注释掉下面这行，内容直接发布；团队协作开启审核流程
+# publish_mode: editorial_workflow
+
+# ======================================
+# 内容集合定义
+# ======================================
+collections:
+  # 1. 博客文章集合
+  - name: "blog"
+    label: "博客文章"
+    folder: "blog"
+    create: true # 允许创建新文章
+    extension: mdx # Docusaurus默认使用mdx格式
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 新文章文件名格式：年-月-日-标题
+    fields:
+      - {label: "文章标题", name: "title", widget: "string"}
+      - {label: "发布日期", name: "date", widget: "datetime", default: "{{now}}"}
+      - {label: "标签", name: "tags", widget: "list", required: false}
+      - label: "作者信息"
+        name: "authors"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "作者名", name: "name", widget: "string"}
+          - {label: "作者头衔", name: "title", widget: "string", required: false}
+          - {label: "作者链接", name: "url", widget: "string", required: false}
+          - {label: "作者头像", name: "image_url", widget: "image", required: false}
+      - {label: "文章摘要", name: "description", widget: "text", required: false}
+      - {label: "封面图", name: "image", widget: "image", required: false}
+      - {label: "文章正文", name: "body", widget: "markdown"}
+
+  # 2. 文档集合
+  - name: "docs"
+    label: "产品文档"
+    folder: "docs"
+    create: true
+    extension: mdx
+    format: frontmatter
+    slug: "{{slug}}"
+    fields:
+      - {label: "文档标题", name: "title", widget: "string"}
+      - {label: "侧边栏排序", name: "sidebar_position", widget: "number", default: 1, hint: "数字越小越靠前"}
+      - {label: "文档摘要", name: "description", widget: "text", required: false}
+      - {label: "关键词", name: "keywords", widget: "list", required: false}
+      - {label: "文档正文", name: "body", widget: "markdown"}
+
+
