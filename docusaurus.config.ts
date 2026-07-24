@@ -35,7 +35,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/socolode/docs/tree/main/',
+          editUrl: 'https://github.com/socolode/docs/edit/main/',
           editCurrentVersion: true,
           editLocalizedFiles: true,
         },
@@ -91,6 +91,11 @@ const config: Config = {
         },
         {
           type: 'localeDropdown',
+          position: 'right',
+        },
+        {
+          to: '/admin/',
+          label: '内容管理',
           position: 'right',
         },
         {
