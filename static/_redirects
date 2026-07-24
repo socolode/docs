@@ -1,0 +1,4 @@
+# Decap CMS 后台路由，不经过Docusaurus前端路由
+/admin        /admin/index.html  200
+/admin/       /admin/index.html  200
+/admin/*      /admin/:splat      200
