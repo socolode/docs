@@ -2,7 +2,7 @@
 sidebar_position: 1
 slug: /intro
 ---
-
+sad
 # Introduction?
 
 Welcome to the **Socolode** documentation. This is the single source of truth for everything you need to build, customize, and operate your Socolode store.
@@ -19,12 +19,12 @@ Socolode is an e-commerce platform that lets you create and manage an independen
 
 ## How to use this documentation
 
-| Section | What you will find |
-|---------|-------------------|
+| Section                                              | What you will find                                                |
+| ---------------------------------------------------- | ----------------------------------------------------------------- |
 | [Getting Started](/docs/getting-started/quick-start) | Create an account, set up your store, and list your first product |
-| [Guides](/docs/guides/product-management) | Step-by-step instructions for everyday store operations |
-| [Reference](/docs/reference/api) | Technical API reference and theme documentation |
-| [FAQ](/docs/faq) | Answers to commonly asked questions |
+| [Guides](/docs/guides/product-management)            | Step-by-step instructions for everyday store operations           |
+| [Reference](/docs/reference/api)                     | Technical API reference and theme documentation                   |
+| [FAQ](/docs/faq)                                     | Answers to commonly asked questionssasdasd                        |
 
 ## Language support
 

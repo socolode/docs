@@ -1,7 +1,9 @@
 ---
 sidebar_position: 5
 ---
+[123](docs/intro)
 
+[[getting-started/test222|test222]]
 # FAQ
 
 ## Getting started
