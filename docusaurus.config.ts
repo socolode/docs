@@ -94,7 +94,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          to: '/admin/',
+          href: '/admin/',
           label: '内容管理',
           position: 'right',
         },
