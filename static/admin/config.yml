@@ -3,11 +3,10 @@
 # 请修改下面标注了【需要修改】的部分
 # ======================================
 
-# 后端配置：GitHub作为内容存储
+# 后端配置：Netlify Git Gateway（部署在Netlify最稳定的方案，无需自建服务）
 backend:
-  name: github
-  branch: main  # 你的仓库主分支，一般是main，旧仓库可能是master
-  repo: socolode/docs  # 你的GitHub仓库
+  name: git-gateway
+  branch: main  # 你的仓库主分支
   squash_merges: true  # 发布时自动压缩提交记录，保持Git历史干净
 
 # 本地开发配置：开启后本地启动decap-server可以直接写本地文件，不会提交到远程
