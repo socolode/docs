@@ -22,3 +22,9 @@ title: 测试页面
 
 
 ![](../static/img/显示屏(lcd)%20·%20烁彩代码.pdf)
+
+![alt text](image.png)
+
+123
+
+123123![alt text](image-1.png)
