@@ -185,8 +185,10 @@
       "edit-mdx:New .mdx file": false
     }
   },
-  "active": "a6b1446a31138e38",
+  "active": "255239ff4db87901",
   "lastOpenFiles": [
+    "README.md",
+    "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
     "build/zh-CN/search-index.json",
     "build/zh-CN/sitemap.xml",
     "build/zh-CN/docs/tags/测试.html",
@@ -196,8 +198,6 @@
     "build/zh-CN/docs/test.html",
     "build/zh-CN/docs/guides/product-management.html",
     "build/zh-CN/docs/faq.html",
-    "build/zh-CN/docs/guides/store-design.html",
-    "build/zh-CN/docs/guides/payments-shipping.html",
     "build/zh-CN/assets/images/微信图片_20260708154034_630_2-51207befe45739814572ee81ca395213.jpg",
     "build/zh-CN/assets/images/图标-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
     "build/zh-CN/assets/images/Pasted image 20260727151658-fc1ded9b2c6b0ae428af6a4afee49d15.png",
@@ -215,7 +215,6 @@
     "docs/faq.md",
     "docs/reference/api.md",
     "docs/getting-started/quick-start.md",
-    "README.md",
     "node_modules/postcss-minify-font-values/README.md"
   ]
 }

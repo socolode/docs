@@ -7,5 +7,5 @@
     "build/"
   ],
   "useMarkdownLinks": true,
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": false
 }
