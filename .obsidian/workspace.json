@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/test.md",
+                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
                 "mode": "source",
                 "source": false
               },
@@ -113,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/test.md",
+                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -170,7 +170,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,29 +185,30 @@
       "edit-mdx:New .mdx file": false
     }
   },
-  "active": "255239ff4db87901",
+  "active": "a6b1446a31138e38",
   "lastOpenFiles": [
-    "static/files/12341124.jpg",
-    "static/files/213.pdf",
-    "static/files/yzyxaj2-240像素-素材包.zip",
-    "static/files/tyutyutyy.pdf",
     "build/zh-CN/search-index.json",
     "build/zh-CN/sitemap.xml",
-    "build/zh-CN/404.html",
-    "build/zh-CN/index.html",
-    "build/zh-CN/search.html",
-    "build/zh-CN/docs/guides/store-design.html",
+    "build/zh-CN/docs/tags/测试.html",
+    "build/zh-CN/docs/tags/示例.html",
+    "build/zh-CN/docs/tags/mdx.html",
+    "build/zh-CN/docs/tags",
+    "build/zh-CN/docs/test.html",
     "build/zh-CN/docs/guides/product-management.html",
-    "build/img/socolode的logo (1000 x 1000 像素) (15).png",
-    "build/img/logo.svg",
-    "build/zh-CN/img/socolode的logo (1000 x 1000 像素) (15).png",
+    "build/zh-CN/docs/faq.html",
+    "build/zh-CN/docs/guides/store-design.html",
+    "build/zh-CN/docs/guides/payments-shipping.html",
+    "build/zh-CN/assets/images/微信图片_20260708154034_630_2-51207befe45739814572ee81ca395213.jpg",
+    "build/zh-CN/assets/images/图标-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
+    "build/zh-CN/assets/images/Pasted image 20260727151658-fc1ded9b2c6b0ae428af6a4afee49d15.png",
+    "build/zh-CN/assets/images/12341124-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
+    "build/zh-CN/files/12341124.jpg",
     "build/zh-CN/img/logo.svg",
-    "build/zh-CN/assets/images/socolode的logo (1000 x 1000 像素) (15)-0f684c67947e06a2cf1d4c8cfba30505.png",
-    "build/zh-CN/assets/images/socolode的logo (1000 x 1000 像素) (15)-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
-    "build/zh-CN/assets/images/Pasted image 20260726180831-a23dbe9cfd333988a3ef11bde8badf9a.png",
-    "build/zh-CN/assets/images/image-3-4f979bbbf0daffe78ef0fc022c93ecd3.png",
-    "build/zh-CN/assets/images/image-1b0f8f3b50ec35d58e6df893ae0ab558.png",
-    "build/zh-CN/assets/images/image-2-8da31378f5537713774fecb6b258b66f.png",
+    "build/zh-CN/img/12341124.jpg",
+    "build/img/logo.svg",
+    "build/img/12341124.jpg",
+    "build/files/12341124.jpg",
+    "i18n/zh-CN/docusaurus-plugin-content-docs/current/test2.md",
     "docs/intro.md",
     "docs/test.md",
     "docs/getting-started/test222.md",

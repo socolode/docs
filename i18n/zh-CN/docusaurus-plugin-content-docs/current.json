@@ -4,27 +4,27 @@
     "description": "The label for version current"
   },
   "sidebar.docsSidebar.category.Getting Started": {
-    "message": "Getting Started",
+    "message": "快速入门",
     "description": "The label for category 'Getting Started' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Getting Started.link.generated-index.description": {
-    "message": "Set up your Socolode store from scratch in minutes.",
+    "message": "几分钟内从零搭建你的 Socolode 店铺。",
     "description": "The generated-index page description for category 'Getting Started' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Guides": {
-    "message": "Guides",
+    "message": "指南",
     "description": "The label for category 'Guides' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Guides.link.generated-index.description": {
-    "message": "Step-by-step guides for managing your Socolode store.",
+    "message": "管理你的 Socolode 店铺的分步指南。",
     "description": "The generated-index page description for category 'Guides' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Reference": {
-    "message": "Reference",
+    "message": "参考",
     "description": "The label for category 'Reference' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Reference.link.generated-index.description": {
-    "message": "Technical reference for the Socolode API and theme system.",
+    "message": "Socolode API 和主题系统的技术参考。",
     "description": "The generated-index page description for category 'Reference' in sidebar 'docsSidebar'"
   }
 }

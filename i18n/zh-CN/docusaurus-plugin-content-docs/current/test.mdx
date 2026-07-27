@@ -1,19 +1,131 @@
----
+﻿---
 sidebar_position: 100
 slug: /test
+title: MDX 功能测试 playground
+description: Docusaurus MDX 各种功能测试场
+tags: [测试, MDX, 示例]
 ---
 
-# 这是一篇测试文档
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-这是一篇中文测试文档。
-以下这是新增的内容：
-图片：
+# MDX 功能测试 Playground
 
-附件怎么做？
+本页面测试 Docusaurus MDX 的各种好玩功能。
+
+## 一、图片引用
 
 ![12341124](test.assets/12341124.jpg)
 
 ![图标](test.assets/%E5%9B%BE%E6%A0%87.jpg)
 
-![微信图片_20260708154034_630_2](test.assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260708154034_630_2.jpg)
+![微信图片](test.assets/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260708154034_630_2.jpg)
 
+![](assets/Pasted%20image%2020260727151658.png)
+
+## 二、附件下载
+
+[非图片](assets/2123.pdf)
+
+[2](assets/socolode%E7%9A%84logo%20(1000%20x%201000%20%E5%83%8F%E7%B4%A0)%20(1).zip)
+
+[logo](assets/logo.zip)
+
+## 三、标签页 Tabs
+
+<Tabs defaultValue='apple'>
+<TabItem value='apple' label='苹果'>
+苹果是一种常见的水果，富含维生素 C。
+</TabItem>
+<TabItem value='orange' label='橙子'>
+橙子酸甜可口，榨汁非常好喝。
+</TabItem>
+<TabItem value='banana' label='香蕉'>
+香蕉能量高，是运动前后的好选择。
+</TabItem>
+</Tabs>
+
+## 四、折叠面板
+
+<details>
+<summary>点击展开查看隐藏内容</summary>
+这里是折叠起来的内容，默认是收起的。
+</details>
+
+<details>
+<summary>小技巧：如何快速上手？</summary>
+三步走：先阅读快速入门，跟着教程动手实践，遇到问题查 FAQ。
+</details>
+
+## 五、提示框全家桶
+
+:::tip 小技巧
+这是 tip 提示，用于分享实用小技巧。
+:::
+
+:::info 说明信息
+这是 info 提示，用于补充说明。
+:::
+
+:::warning 注意事项
+这是 warning 提示，用于提醒需要注意的地方。
+:::
+
+:::danger 危险操作
+这是 danger 提示，用于警示危险操作。
+:::
+
+## 六、代码块
+
+~~~js title='hello.js'
+function hello(name) {
+  return 'Hello ' + name;
+}
+~~~
+
+~~~js showLineNumbers
+function calculate(items) {
+  let total = 0;
+  for (const item of items) {
+    total += item.price * item.quantity;
+  }
+  return total;
+}
+~~~
+
+## 七、JSX 交互
+
+<button onClick={() => alert('MDX 按钮测试成功！')}>点我试试</button>
+
+<br/>
+<br/>
+
+<div style={{padding:'20px',background:'linear-gradient(135deg,#667eea,#764ba2)',borderRadius:'12px',color:'white',textAlign:'center'}}>
+<h3 style={{margin:0}}>自定义样式卡片</h3>
+<p style={{margin:'10px 0 0',opacity:0.9}}>MDX 里可以直接写内联样式</p>
+</div>
+
+## 八、表格
+
+| 资源类型 | 推荐存放目录 | 引用方式 |
+|---------|-------------|---------|
+| 文档内图片 | test.assets/ | 相对路径 |
+| 通用附件 | assets/ | 相对路径 |
+| 全站静态资源 | static/ | 绝对路径 |
+
+## 九、列表
+
+### 无序列表
+- 第一项：明确目标
+- 第二项：快速行动
+- 第三项：持续优化
+
+### 任务列表
+- [x] 完成图片引用测试
+- [x] 完成标签页测试
+- [x] 完成折叠面板测试
+- [ ] 更多功能探索中
+
+---
+
+> 最后更新：2026年7月 – MDX 功能测试场
