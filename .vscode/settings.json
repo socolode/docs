@@ -1,0 +1,45 @@
+{
+  // === Paste Image 插件配置 ===
+  "pasteImage.path": "${projectRoot}/static/img",
+  "pasteImage.basePath": "${projectRoot}/static",
+  "pasteImage.forceUnixStyleSeparator": true,
+  "pasteImage.prefix": "/",
+  "pasteImage.defaultName": "image",
+  "pasteImage.encodePath": "urlEncode",
+  "pasteImage.insertPattern": "![${imageFileNameWithoutExt}](${imageFilePath})"
+
+  // === Markdown/MDX 配置 ===
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": true,
+      "strings": true,
+      "other": true
+    }
+  },
+  "[mdx]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": true,
+      "strings": true,
+      "other": true
+    }
+  },
+
+  // === 文件排除 ===
+  "files.exclude": {
+    "node_modules/": true,
+    ".git/": true
+  },
+
+  // === 代码格式化 ===
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // === 搜索配置 ===
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true
+  }
+}

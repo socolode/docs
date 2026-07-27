@@ -1,10 +1,11 @@
 {
   "newLinkFormat": "relative",
-  "attachmentFolderPath": "static/img",
+  "attachmentFolderPath": "static/files",
   "alwaysUpdateLinks": true,
   "userIgnoreFilters": [
     "node_modules/",
     "build/"
   ],
-  "useMarkdownLinks": true
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": false
 }
