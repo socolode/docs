@@ -21,13 +21,13 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/basic-info">
             <Translate>Get Started</Translate>
           </Link>
           <Link
             className="button button--outline button--secondary button--lg"
-            to="/docs/guides/product-management">
-            <Translate>Guides</Translate>
+            to="/docs/quick-start/users/what-is-light-painting">
+            <Translate>Learn Light Painting</Translate>
           </Link>
         </div>
       </div>

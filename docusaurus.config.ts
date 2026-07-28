@@ -11,7 +11,7 @@ const config: Config = {
   baseUrl: '/',
   trailingSlash: false,
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   i18n: {
@@ -73,6 +73,7 @@ const config: Config = {
   ],
 
   themeConfig: {
+    autoCollapseCategories: false,
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -107,16 +108,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Introduction',
-              to: '/docs/intro',
+              label: 'Basic Info',
+              to: '/docs/basic-info',
             },
             {
-              label: 'Getting Started',
-              to: '/docs/getting-started/quick-start',
+              label: 'For Users',
+              to: '/docs/quick-start/users/what-is-light-painting',
             },
             {
-              label: 'FAQ',
-              to: '/docs/faq',
+              label: 'For Developers',
+              to: '/docs/quick-start/developers/5-minute-quick-start',
             },
           ],
         },

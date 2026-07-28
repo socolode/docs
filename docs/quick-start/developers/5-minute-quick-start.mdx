@@ -1,0 +1,53 @@
+---
+sidebar_position: 1
+slug: /quick-start/developers/5-minute-quick-start
+---
+
+# 5-Minute Developer Quick Start
+
+:::note
+**Ready in 5 minutes:** Get up and running with Socolode development platform.
+:::
+
+## What you'll learn
+
+- How to set up your development environment
+- How to flash firmware to your controller
+- How to create your first light painting script
+
+## Prerequisites
+
+- ✅ A Socolode developer device (Firefly T1 or Unicorn S1)
+- ✅ USB cable for connecting to your computer
+- ✅ Basic understanding of Python
+
+## Quick start commands
+
+```bash
+# Flash firmware
+esptool.py --chip esp32 --port COM3 erase_flash
+esptool.py --chip esp32 --port COM3 --baud 460800 write_flash -z 0x1000 firmware.bin
+```
+
+## Your first script
+
+```python
+from machine import Pin
+import time
+
+led_pin = Pin(5, Pin.OUT)
+
+def hello_world():
+    for i in range(10):
+        led_pin.on()
+        time.sleep(0.1)
+        led_pin.off()
+        time.sleep(0.1)
+    print("Hello from Socolode!")
+
+hello_world()
+```
+
+## Next steps
+
+→ [Back to Basic Info](../../basic-info.mdx)

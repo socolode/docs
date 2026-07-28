@@ -4,35 +4,35 @@
     "description": "The label for version current"
   },
   "sidebar.docsSidebar.category.Quick Start": {
-    "message": "快速开始",
+    "message": "Quick Start",
     "description": "The label for category 'Quick Start' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "快速入门光绘 - 适合新手和开发者",
+    "message": "Get started with light painting - for both beginners and developers.",
     "description": "The generated-index page description for category 'Quick Start' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.For Developers": {
-    "message": "开发者",
+    "message": "For Developers",
     "description": "The label for category 'For Developers' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.For Developers.link.generated-index.description": {
-    "message": "二次开发和自定义快速入门",
+    "message": "Quick start for secondary development and customization.",
     "description": "The generated-index page description for category 'For Developers' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Light Painting Series": {
-    "message": "光绘系列",
+    "message": "Light Painting Series",
     "description": "The label for category 'Light Painting Series' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.Light Painting Series.link.generated-index.description": {
-    "message": "光绘产品系列文档",
+    "message": "Light painting product series documentation",
     "description": "The generated-index page description for category 'Light Painting Series' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.OpenStick T1 Kit": {
-    "message": "OpenStick T1套件",
+    "message": "OpenStick T1 Kit",
     "description": "The label for category 'OpenStick T1 Kit' in sidebar 'docsSidebar'"
   },
   "sidebar.docsSidebar.category.OpenStick T1 Kit.link.generated-index.description": {
-    "message": "OpenStick T1光绘棒套件使用指南",
+    "message": "OpenStick T1 light painting stick kit user guide",
     "description": "The generated-index page description for category 'OpenStick T1 Kit' in sidebar 'docsSidebar'"
   }
 }

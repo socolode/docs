@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
+                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/light-painting-series/openstick-t1-kit/installation-guide.mdx",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "test"
+              "title": "installation-guide"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 427.5
   },
   "right": {
     "id": "10d60e687c0f0e36",
@@ -94,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "test 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -113,12 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
+                "file": "i18n/zh-CN/docusaurus-plugin-content-docs/current/light-painting-series/openstick-t1-kit/installation-guide.mdx",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "test 的出链列表"
+              "title": "installation-guide 的出链列表"
             }
           },
           {
@@ -170,8 +169,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -187,27 +185,35 @@
   },
   "active": "255239ff4db87901",
   "lastOpenFiles": [
-    "README.md",
-    "i18n/zh-CN/docusaurus-plugin-content-docs/current/test.mdx",
     "build/zh-CN/search-index.json",
     "build/zh-CN/sitemap.xml",
-    "build/zh-CN/docs/tags/测试.html",
-    "build/zh-CN/docs/tags/示例.html",
-    "build/zh-CN/docs/tags/mdx.html",
-    "build/zh-CN/docs/tags",
-    "build/zh-CN/docs/test.html",
-    "build/zh-CN/docs/guides/product-management.html",
-    "build/zh-CN/docs/faq.html",
-    "build/zh-CN/assets/images/微信图片_20260708154034_630_2-51207befe45739814572ee81ca395213.jpg",
-    "build/zh-CN/assets/images/图标-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
-    "build/zh-CN/assets/images/Pasted image 20260727151658-fc1ded9b2c6b0ae428af6a4afee49d15.png",
-    "build/zh-CN/assets/images/12341124-c622204feb34d1fdd064f4ecf2c00b7a.jpg",
+    "build/zh-CN/search.html",
+    "build/zh-CN/index.html",
+    "build/zh-CN/404.html",
+    "build/zh-CN/docs/light-painting-series/openstick-t1-kit/installation-guide.html",
+    "build/zh-CN/docs/quick-start/developers/5-minute-quick-start.html",
+    "build/zh-CN/docs/light-painting-series/openstick-t1-kit",
+    "build/zh-CN/docs/quick-start/developers",
+    "build/zh-CN/docs/category/openstick-t1-kit.html",
+    "build/zh-CN/docs/category/quick-start.html",
+    "build/zh-CN/assets/images/Pasted image 20260728171500-10dd714f4912d97cdda0548078b1bad7.png",
+    "build/zh-CN/assets/images/Pasted image 20260728171432-1eb58b329843e89d7ad6abbe60aaaf76.png",
     "build/zh-CN/files/12341124.jpg",
     "build/zh-CN/img/logo.svg",
     "build/zh-CN/img/12341124.jpg",
+    "build/assets/images/Pasted image 20260728171500-10dd714f4912d97cdda0548078b1bad7.png",
+    "build/assets/images/Pasted image 20260728171432-1eb58b329843e89d7ad6abbe60aaaf76.png",
     "build/img/logo.svg",
     "build/img/12341124.jpg",
     "build/files/12341124.jpg",
+    "i18n/zh-CN/docusaurus-plugin-content-docs/current/quick-start/users/未命名.md",
+    "docs/quick-start/users/first-light-painting.md",
+    "docs/support/contact.md",
+    "docs/quick-start/users/phone-light-painting-tutorial.md",
+    "docs/quick-start/developers/api-quick-index.md",
+    "docs/quick-start/developers/first-app-script.md",
+    "docs/quick-start/developers/dev-env-setup.md",
+    "README.md",
     "i18n/zh-CN/docusaurus-plugin-content-docs/current/test2.md",
     "docs/intro.md",
     "docs/test.md",

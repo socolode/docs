@@ -1,0 +1,30 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.item.label.Basic Info": {
+    "message": "Basic Info",
+    "description": "The label of footer link with label=Basic Info linking to /docs/basic-info"
+  },
+  "link.item.label.For Users": {
+    "message": "For Users",
+    "description": "The label of footer link with label=For Users linking to /docs/quick-start/users/what-is-light-painting"
+  },
+  "link.item.label.For Developers": {
+    "message": "For Developers",
+    "description": "The label of footer link with label=For Developers linking to /docs/quick-start/developers/5-minute-quick-start"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/socolode/docs"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 Socolode. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}
