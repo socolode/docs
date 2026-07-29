@@ -366,5 +366,59 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "home.product.t1.desc": {
+    "message": "入门级光绘棒，60颗全彩LED，App一键控制"
+  },
+  "home.product.firefly.desc": {
+    "message": "DIY控制器，开源固件，支持 MicroPython 编程"
+  },
+  "home.product.lmcam.desc": {
+    "message": "动态光绘相机，实时预览，视频级光绘创作"
+  },
+  "home.quicklink.users.desc": {
+    "message": "光绘拍摄教程、参数设置、常见问题"
+  },
+  "home.quicklink.devs.desc": {
+    "message": "API 参考、固件开发、开源代码"
+  },
+  "home.hero.badge": {
+    "message": "AI Native · Open Source"
+  },
+  "home.hero.title": {
+    "message": "让光的创意，触手可及"
+  },
+  "home.hero.cta.start": {
+    "message": "🚀 开始探索"
+  },
+  "home.hero.cta.github": {
+    "message": "⭐ GitHub"
+  },
+  "home.features.title": {
+    "message": "为什么选择 Socolode"
+  },
+  "home.features.desc": {
+    "message": "我们相信好的硬件应该是开放的、可扩展的，结合 AI 能力让每个人都能轻松实现创意"
+  },
+  "home.products.title": {
+    "message": "产品系列"
+  },
+  "home.products.desc": {
+    "message": "覆盖不同用户群体，从新手到开发者，都能找到适合的光绘方案"
+  },
+  "home.product.learnMore": {
+    "message": "了解更多 →"
+  },
+  "home.community.title": {
+    "message": "加入我们的社区"
+  },
+  "home.community.desc": {
+    "message": "与全球光绘爱好者和开发者一起，探索光的无限可能"
+  },
+  "home.community.github": {
+    "message": "GitHub 开源仓库"
+  },
+  "home.community.contact": {
+    "message": "联系我们"
   }
 }

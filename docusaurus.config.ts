@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Socolode',
-  tagline: 'Socolode 产品文档中心',
+  tagline: 'AI 原生开源创意硬件 · 让每个人都能玩出光的创意',
   favicon: 'img/favicon.ico',
 
   url: 'https://docs.socolode.com',
@@ -108,16 +108,16 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Basic Info',
-              to: '/docs/basic-info',
+              label: 'Welcome',
+              to: '/docs/welcome',
             },
             {
               label: 'For Users',
-              to: '/docs/quick-start/users/what-is-light-painting',
+              to: '/docs/welcome',
             },
             {
               label: 'For Developers',
-              to: '/docs/quick-start/developers/5-minute-quick-start',
+              to: '/docs/quick-start/5-minute-quick-start',
             },
           ],
         },

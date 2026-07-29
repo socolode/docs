@@ -26,5 +26,21 @@
   "copyright": {
     "message": "Copyright © 2026 Socolode. 使用 Docusaurus 构建。",
     "description": "The footer copyright"
+  },
+  "link.item.label.Basic Info": {
+    "message": "欢迎",
+    "description": "The label of footer link with label=Basic Info linking to /docs/welcome"
+  },
+  "link.item.label.For Users": {
+    "message": "For Users",
+    "description": "The label of footer link with label=For Users linking to /docs/welcome"
+  },
+  "link.item.label.For Developers": {
+    "message": "For Developers",
+    "description": "The label of footer link with label=For Developers linking to /docs/quick-start/5-minute-quick-start"
+  },
+  "link.item.label.Welcome": {
+    "message": "Welcome",
+    "description": "The label of footer link with label=Welcome linking to /docs/welcome"
   }
 }
