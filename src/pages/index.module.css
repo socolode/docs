@@ -37,18 +37,18 @@ html[data-theme='dark'] .heroBackground {
   display: inline-block;
   padding: 0.5rem 1.25rem;
   border-radius: 999px;
-  background: rgba(79, 70, 229, 0.1);
+  background: rgba(79, 70, 229, 0.15);
   color: var(--ifm-color-primary);
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(79, 70, 229, 0.2);
+  border: 1px solid rgba(79, 70, 229, 0.35);
 }
 
 html[data-theme='dark'] .heroBadge {
-  background: rgba(129, 140, 248, 0.15);
-  border-color: rgba(129, 140, 248, 0.3);
+  background: rgba(129, 140, 248, 0.25);
+  border-color: rgba(129, 140, 248, 0.5);
 }
 
 .heroTitle {
@@ -79,11 +79,12 @@ html[data-theme='dark'] .heroBadge {
 .heroSubtitle {
   font-size: 1.25rem;
   line-height: 1.7;
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-font-color-base);
   margin-bottom: 2rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0.85;
 }
 
 .heroButtons {
@@ -164,10 +165,11 @@ html[data-theme='dark'] .sectionAlt2 {
 
 .sectionDesc {
   font-size: 1.1rem;
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-font-color-base);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.7;
+  opacity: 0.85;
 }
 
 /* ============ Features Grid ============ */
@@ -211,9 +213,10 @@ html[data-theme='dark'] .featureCard {
 
 .featureDesc {
   font-size: 0.95rem;
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-font-color-base);
   line-height: 1.6;
   margin: 0;
+  opacity: 0.8;
 }
 
 /* ============ Products Grid ============ */
@@ -276,11 +279,12 @@ html[data-theme='dark'] .productCard {
 
 .productDesc {
   font-size: 0.95rem;
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-font-color-base);
   line-height: 1.6;
   margin-bottom: 1.25rem;
   position: relative;
   z-index: 1;
+  opacity: 0.8;
 }
 
 .productLink {
@@ -366,7 +370,7 @@ html[data-theme='dark'] .quickSecondary {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 1.25rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .quickArrow {
@@ -424,7 +428,7 @@ html[data-theme='dark'] .quickSecondary {
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .communityButtons {

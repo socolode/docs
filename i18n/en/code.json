@@ -368,57 +368,90 @@
     "description": "The title of the tag list page"
   },
   "home.product.t1.desc": {
-    "message": "入门级光绘棒，60颗全彩LED，App一键控制"
+    "message": "Entry-level light painting wand with 60 full-color LEDs and app control"
   },
   "home.product.firefly.desc": {
-    "message": "DIY控制器，开源固件，支持 MicroPython 编程"
+    "message": "DIY controller with open-source firmware and MicroPython support"
   },
   "home.product.lmcam.desc": {
-    "message": "动态光绘相机，实时预览，视频级光绘创作"
+    "message": "Dynamic light painting camera with real-time preview for video-level creation"
   },
   "home.quicklink.users.desc": {
-    "message": "光绘拍摄教程、参数设置、常见问题"
+    "message": "Light painting tutorials, camera settings, and FAQs"
   },
   "home.quicklink.devs.desc": {
-    "message": "API 参考、固件开发、开源代码"
+    "message": "API reference, firmware development, and open-source code"
   },
   "home.hero.badge": {
     "message": "AI Native · Open Source"
   },
   "home.hero.title": {
-    "message": "让光的创意，触手可及"
+    "message": "Bringing light creativity within reach"
+  },
+  "home.hero.subtitle": {
+    "message": "AI-native open-source creative hardware — making light creativity accessible to everyone"
   },
   "home.hero.cta.start": {
-    "message": "🚀 开始探索"
+    "message": "🚀 Get Started"
   },
   "home.hero.cta.github": {
     "message": "⭐ GitHub"
   },
   "home.features.title": {
-    "message": "为什么选择 Socolode"
+    "message": "Why Choose Socolode"
   },
   "home.features.desc": {
-    "message": "我们相信好的硬件应该是开放的、可扩展的，结合 AI 能力让每个人都能轻松实现创意"
+    "message": "We believe great hardware should be open, extensible, and combined with AI to make creativity accessible to everyone"
   },
   "home.products.title": {
-    "message": "产品系列"
+    "message": "Product Line"
   },
   "home.products.desc": {
-    "message": "覆盖不同用户群体，从新手到开发者，都能找到适合的光绘方案"
+    "message": "Covering different user groups — from beginners to developers, find the right light painting solution for you"
   },
   "home.product.learnMore": {
-    "message": "了解更多 →"
+    "message": "Learn More →"
+  },
+  "home.feature.0.title": {
+    "message": "AI-Native"
+  },
+  "home.feature.0.desc": {
+    "message": "All hardware natively supports AI programming. Real-time application features without complex development"
+  },
+  "home.feature.1.title": {
+    "message": "Open Source"
+  },
+  "home.feature.1.desc": {
+    "message": "Hardware schematics, firmware, and APIs are all open-source — no black boxes"
+  },
+  "home.feature.2.title": {
+    "message": "Beginner-Friendly"
+  },
+  "home.feature.2.desc": {
+    "message": "Out of the box — no coding skills needed to create professional results"
+  },
+  "home.feature.3.title": {
+    "message": "Extensible"
+  },
+  "home.feature.3.desc": {
+    "message": "Supports custom programming, from light painting to various creative projects"
   },
   "home.community.title": {
-    "message": "加入我们的社区"
+    "message": "Join Our Community"
   },
   "home.community.desc": {
-    "message": "与全球光绘爱好者和开发者一起，探索光的无限可能"
+    "message": "Connect with light painting enthusiasts and developers worldwide to explore infinite possibilities"
   },
   "home.community.github": {
-    "message": "GitHub 开源仓库"
+    "message": "GitHub Repository"
   },
   "home.community.contact": {
-    "message": "联系我们"
+    "message": "Contact Us"
+  },
+  "home.meta.title": {
+    "message": "Socolode - Open-Source Creative Hardware"
+  },
+  "home.meta.description": {
+    "message": "Socolode - AI-native open-source creative hardware brand, making light creativity accessible to everyone"
   }
 }

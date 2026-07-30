@@ -12,25 +12,25 @@ const features = [
     title: 'AI-Native',
     icon: '🤖',
     description:
-      '全系列硬件原生支持 AI 编程，通过 AI 实时实现各种应用功能，无需复杂开发',
+      'All hardware natively supports AI programming. Real-time application features without complex development',
   },
   {
     title: 'Open Source',
     icon: '🔓',
     description:
-      '硬件原理图、固件、API 全部开源，没有黑盒，社区驱动持续创新',
+      'Hardware schematics, firmware, and APIs are all open-source — no black boxes',
   },
   {
     title: 'Beginner-Friendly',
     icon: '✨',
     description:
-      '开箱即用，不需要懂代码也能玩出专业效果，5分钟快速上手',
+      'Out of the box — no coding skills needed to create professional results',
   },
   {
     title: 'Extensible',
     icon: '🧩',
     description:
-      '支持自定义编程，从光绘到各种创意项目，可能性无限',
+      'Supports custom programming, from light painting to various creative projects',
   },
 ];
 
@@ -42,7 +42,7 @@ const products = [
       id: 'home.product.t1.desc',
       message: '入门级光绘棒，60颗全彩LED，App一键控制',
     }),
-    to: '/docs/light-painting-series/openstick-t1-kit/installation-guide',
+    to: '/light-painting-series/openstick-t1-kit/installation-guide',
   },
   {
     title: 'Firefly T1',
@@ -51,7 +51,7 @@ const products = [
       id: 'home.product.firefly.desc',
       message: 'DIY控制器，开源固件，支持 MicroPython 编程',
     }),
-    to: '/docs/quick-start/5-minute-quick-start',
+    to: '/quick-start/5-minute-quick-start',
   },
   {
     title: 'LM Cam',
@@ -60,7 +60,7 @@ const products = [
       id: 'home.product.lmcam.desc',
       message: '动态光绘相机，实时预览，视频级光绘创作',
     }),
-    to: '/docs/welcome',
+    to: '/welcome',
   },
 ];
 
@@ -72,7 +72,7 @@ const quickLinks = [
       id: 'home.quicklink.users.desc',
       message: '光绘拍摄教程、参数设置、常见问题',
     }),
-    to: '/docs/welcome',
+    to: '/welcome',
     variant: 'primary',
   },
   {
@@ -82,7 +82,7 @@ const quickLinks = [
       id: 'home.quicklink.devs.desc',
       message: 'API 参考、固件开发、开源代码',
     }),
-    to: '/docs/quick-start/5-minute-quick-start',
+    to: '/quick-start/5-minute-quick-start',
     variant: 'secondary',
   },
 ];
@@ -104,13 +104,13 @@ function HeroSection() {
           </Heading>
           <p className={styles.heroSubtitle}>
             <Translate id="home.hero.subtitle">
-              {siteConfig.tagline}
+              AI-native open-source creative hardware — making light creativity accessible to everyone
             </Translate>
           </p>
           <div className={styles.heroButtons}>
             <Link
               className={clsx('button button--lg', styles.primaryBtn)}
-              to="/docs/welcome">
+              to="/welcome">
               <Translate id="home.hero.cta.start">🚀 开始探索</Translate>
             </Link>
             <Link
@@ -261,8 +261,14 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} - 开源创意硬件`}
-      description="Socolode 烁彩代码 - AI原生开源创意硬件品牌，让每个人都能玩出光的创意">
+      title={translate({
+        id: 'home.meta.title',
+        message: `${siteConfig.title} - Open-Source Creative Hardware`,
+      })}
+      description={translate({
+        id: 'home.meta.description',
+        message: 'Socolode - AI-native open-source creative hardware brand, making light creativity accessible to everyone',
+      })}>
       <HeroSection />
       <FeaturesSection />
       <ProductsSection />

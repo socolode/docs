@@ -35,9 +35,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/socolode/docs/edit/main/',
-          editCurrentVersion: true,
-          editLocalizedFiles: true,
+          routeBasePath: '/',
         },
         blog: false,
         theme: {
@@ -61,7 +59,7 @@ const config: Config = {
         // 搜索框位置：导航栏右侧
         searchBarPosition: 'right',
         // 文档路由基础路径
-        docsRouteBasePath: '/docs',
+        docsRouteBasePath: '/',
         // 显式搜索结果路径
         explicitSearchResultPath: true,
         // 搜索结果显示摘要
@@ -94,11 +92,6 @@ const config: Config = {
           type: 'localeDropdown',
           position: 'right',
         },
-        {
-          href: 'https://github.com/socolode/docs',
-          label: 'GitHub',
-          position: 'right',
-        },
       ],
     },
     footer: {
@@ -109,15 +102,15 @@ const config: Config = {
           items: [
             {
               label: 'Welcome',
-              to: '/docs/welcome',
+              to: '/welcome',
             },
             {
               label: 'For Users',
-              to: '/docs/welcome',
+              to: '/welcome',
             },
             {
               label: 'For Developers',
-              to: '/docs/quick-start/5-minute-quick-start',
+              to: '/quick-start/5-minute-quick-start',
             },
           ],
         },

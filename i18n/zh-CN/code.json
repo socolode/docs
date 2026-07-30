@@ -391,6 +391,9 @@
   "home.hero.title": {
     "message": "让光的创意，触手可及"
   },
+  "home.hero.subtitle": {
+    "message": "AI 原生开源创意硬件 · 让每个人都能玩出光的创意"
+  },
   "home.hero.cta.start": {
     "message": "🚀 开始探索"
   },
@@ -412,6 +415,30 @@
   "home.product.learnMore": {
     "message": "了解更多 →"
   },
+  "home.feature.0.title": {
+    "message": "AI 原生"
+  },
+  "home.feature.0.desc": {
+    "message": "全系列硬件原生支持 AI 编程，通过 AI 实时实现各种应用功能，无需复杂开发"
+  },
+  "home.feature.1.title": {
+    "message": "完全开源"
+  },
+  "home.feature.1.desc": {
+    "message": "硬件原理图、固件、API 全部开源，没有黑盒，社区驱动持续创新"
+  },
+  "home.feature.2.title": {
+    "message": "新手友好"
+  },
+  "home.feature.2.desc": {
+    "message": "开箱即用，不需要懂代码也能玩出专业效果，5分钟快速上手"
+  },
+  "home.feature.3.title": {
+    "message": "无限扩展"
+  },
+  "home.feature.3.desc": {
+    "message": "支持自定义编程，从光绘到各种创意项目，可能性无限"
+  },
   "home.community.title": {
     "message": "加入我们的社区"
   },
@@ -423,5 +450,11 @@
   },
   "home.community.contact": {
     "message": "联系我们"
+  },
+  "home.meta.title": {
+    "message": "Socolode 烁彩代码 - AI原生开源创意硬件"
+  },
+  "home.meta.description": {
+    "message": "Socolode 烁彩代码 - AI原生开源创意硬件品牌，让每个人都能玩出光的创意"
   }
 }
