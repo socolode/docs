@@ -18,3 +18,21 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Temp scripts and data files
+*.py
+cookies*.txt
+doc_data.json
+doc_full.json
+doc_content.xml
+download_results.json
+fetch_doc_api.py
+extract_all_images.py
+extract_images*.py
+parse_and_download.py
+parse_lake_and_download.py
+try_all_apis.py
+yuque_doc*.json
+yuque_page*.html
+page_*.html
+pc.js

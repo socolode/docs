@@ -30,8 +30,11 @@ docusaurus.config.ts                     # Docusaurus 配置
 - 中文文档在 `i18n/zh-CN/.../current/` 下，英文在 `docs/` 下
 
 ### 2.3 图片规则
-- **存储位置**: 优先放 `static/img/`，文件名英文+连字符
+- **存储位置**:
+  - 全局共用图片放 `static/img/`，文件名英文+连字符
+  - 文档专属截图放在文档同级的 `assets/` 目录，中英文两侧都要放
 - **Markdown 语法**: `![alt](/img/image-name.jpg)`（自动处理路径）
+- **本地 assets 图片**: `![alt](./assets/image-name.png)`（相对路径，中英文两侧 assets 都需保存）
 - **HTML `<img>` 标签**: 必须用 `require()` 处理，禁止用 %20 URL 编码
   ```jsx
   // ✅ 正确
@@ -40,7 +43,6 @@ docusaurus.config.ts                     # Docusaurus 配置
   <img src="./assets/Pasted%20image%2020260729182054.png" />
   ```
 - 图片必须包含描述性 alt 文本
-- 历史遗留图片允许在 `assets/` 目录下，用 require() 引用
 
 ### 2.4 其他约定
 - Docusaurus admonitions 用原生 `:::note` 语法，不用 `<Callout>`
@@ -89,6 +91,12 @@ image: "/img/og-image.png"
 | `autoCollapseSidebar` 不是有效配置 | 正确的是 `themeConfig.autoCollapseCategories` |
 | HTML `<img>` 相对路径含空格，用 `%20` 编码无效 | 必须用 `require()` 让 webpack 在构建时解析路径 |
 | `/docs/` 绝对路径导致中文页面跳转到英文 | 改用相对路径 + `.mdx` 扩展名 |
+| 中文版页面 404，用 `npm start` 打不开 | 必须用 `npm start -- --locale zh-CN` 启动后才能访问中文页面 |
+| 移动 mdx 文件到上级/下级目录后链接失效 | 必须同步更新所有引用该文件的相对路径（如 `./` → `../`） |
+| 文档截图只在英文侧显示，中文侧缺失 | 图片必须同时保存到 `docs/.../assets/` 和 `i18n/zh-CN/.../assets/` 两侧 |
+| 语雀图片无法直接获取 URL | 语雀图片在 Lake XML `<card name="image">` 中，URL 是 URL 编码的 JSON，需 `urllib.parse.unquote` 解码 |
+| 中文 online-tool 点击后跳到英文工具页面 | 自定义页面路由在 i18n 下带 locale 前缀：`/zh-CN/tools/getbmp`，并通过 `?lang=zh-CN` 参数传递语言给 getbmp.tsx |
+| 自定义页面（src/pages/）的 i18n 路由 | 用 `--locale zh-CN` 启动时路由为 `/zh-CN/tools/getbmp`，默认 en 时为 `/tools/getbmp` |
 
 ## 6. 启动命令
 
@@ -110,3 +118,14 @@ npm run write-translations -- --locale zh-CN
 
 完整编辑规则见: `.trae/skills/docusaurus-editor-rules/SKILL.md`
 SEO/GEO 优化规则见: `.trae/skills/docusaurus-editor-rules/seo-geo-rules.md`
+
+## 8. 语雀图片迁移
+
+从语雀文档迁移图片的流程：
+1. 用浏览器工具打开语雀页面，提取页面 HTML/Lake XML 内容
+2. 找到 `<card name="image">` 标签，其中 `url` 字段是 URL 编码的 JSON
+3. 用 `urllib.parse.unquote` 解码获取真实图片 URL
+4. 下载图片到对应文档的 `assets/` 目录（中英文两侧都要）
+5. 在 mdx 中用 `![alt](./assets/filename.png)` 引用
+
+注意：语雀 CDN 为 `cdn.nlark.com/yuque/`，可能有防盗链限制
