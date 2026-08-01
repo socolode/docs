@@ -51,7 +51,7 @@ const products = [
       id: 'home.product.firefly.desc',
       message: 'DIY控制器，开源固件，支持 MicroPython 编程',
     }),
-    to: '/quick-start/5-minute-quick-start',
+    to: '/light-painting-series/photography-tutorials/light-painting-quick-start',
   },
   {
     title: 'LM Cam',
@@ -82,7 +82,7 @@ const quickLinks = [
       id: 'home.quicklink.devs.desc',
       message: 'API 参考、固件开发、开源代码',
     }),
-    to: '/quick-start/5-minute-quick-start',
+    to: '/light-painting-series/photography-tutorials/light-painting-quick-start',
     variant: 'secondary',
   },
 ];

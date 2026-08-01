@@ -3,80 +3,68 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.docsSidebar.category.Quick Start": {
-    "message": "快速开始",
-    "description": "The label for category 'Quick Start' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.Quick Start.link.generated-index.description": {
-    "message": "快速入门光绘 - 适合新手和开发者",
-    "description": "The generated-index page description for category 'Quick Start' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.For Developers": {
-    "message": "开发者",
-    "description": "The label for category 'For Developers' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.For Developers.link.generated-index.description": {
-    "message": "二次开发和自定义快速入门",
-    "description": "The generated-index page description for category 'For Developers' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.Light Painting Series": {
+  "sidebar.lightPaintingSeries.category.LightPainting": {
     "message": "光绘系列",
-    "description": "The label for category 'Light Painting Series' in sidebar 'docsSidebar'"
+    "description": "The label for category 'LightPainting' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Light Painting Series.link.generated-index.description": {
+  "sidebar.lightPaintingSeries.category.LightPainting.link.generated-index.description": {
     "message": "光绘产品系列文档",
-    "description": "The generated-index page description for category 'Light Painting Series' in sidebar 'docsSidebar'"
+    "description": "The generated-index page description for category 'LightPainting' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.OpenStick T1 Kit": {
+  "sidebar.lightPaintingSeries.category.OpenStick T1 Kit": {
     "message": "OpenStick T1套件",
-    "description": "The label for category 'OpenStick T1 Kit' in sidebar 'docsSidebar'"
+    "description": "The label for category 'OpenStick T1 Kit' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.OpenStick T1 Kit.link.generated-index.description": {
+  "sidebar.lightPaintingSeries.category.OpenStick T1 Kit.link.generated-index.description": {
     "message": "OpenStick T1光绘棒套件使用指南",
-    "description": "The generated-index page description for category 'OpenStick T1 Kit' in sidebar 'docsSidebar'"
+    "description": "The generated-index page description for category 'OpenStick T1 Kit' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Photography Tutorials": {
+  "sidebar.lightPaintingSeries.category.Photography Tutorials": {
     "message": "光绘摄影教程",
-    "description": "The label for category 'Photography Tutorials' in sidebar 'docsSidebar'"
+    "description": "The label for category 'Photography Tutorials' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Photography Tutorials.link.generated-index.description": {
+  "sidebar.lightPaintingSeries.category.Photography Tutorials.link.generated-index.description": {
     "message": "光绘摄影教程系列，从原理到实战，带你掌握光绘摄影技巧",
-    "description": "The generated-index page description for category 'Photography Tutorials' in sidebar 'docsSidebar'"
+    "description": "The generated-index page description for category 'Photography Tutorials' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.OpenStick S1 Kit": {
+  "sidebar.lightPaintingSeries.category.OpenStick S1 Kit": {
     "message": "OpenStick S1套件",
-    "description": "The label for category 'OpenStick S1 Kit' in sidebar 'docsSidebar'"
+    "description": "The label for category 'OpenStick S1 Kit' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.OpenStick S1 Kit.link.generated-index.description": {
+  "sidebar.lightPaintingSeries.category.OpenStick S1 Kit.link.generated-index.description": {
     "message": "OpenStick S1光绘棒套件使用指南",
-    "description": "The generated-index page description for category 'OpenStick S1 Kit' in sidebar 'docsSidebar'"
+    "description": "The generated-index page description for category 'OpenStick S1 Kit' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Light Painting Accessories": {
+  "sidebar.lightPaintingSeries.category.Light Painting Accessories": {
     "message": "光绘专用配件",
-    "description": "The label for category 'Light Painting Accessories' in sidebar 'docsSidebar'"
+    "description": "The label for category 'Light Painting Accessories' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Light Painting Accessories.link.generated-index.description": {
+  "sidebar.lightPaintingSeries.category.Light Painting Accessories.link.generated-index.description": {
     "message": "光绘摄影配件使用指南",
-    "description": "The generated-index page description for category 'Light Painting Accessories' in sidebar 'docsSidebar'"
+    "description": "The generated-index page description for category 'Light Painting Accessories' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Controller Series": {
-    "message": "控制器系列",
-    "description": "The label for category 'Controller Series' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.Controller Series.link.generated-index.description": {
-    "message": "Socolode 光绘控制器产品系列文档",
-    "description": "The generated-index page description for category 'Controller Series' in sidebar 'docsSidebar'"
-  },
-  "sidebar.docsSidebar.category.Light Painting Techniques": {
+  "sidebar.lightPaintingSeries.category.Light Painting Techniques": {
     "message": "光绘玩法",
-    "description": "The label for category 'Light Painting Techniques' in sidebar 'docsSidebar'"
+    "description": "The label for category 'Light Painting Techniques' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Dynamic Light Painting Series": {
-    "message": "动态光绘系列",
-    "description": "The label for category 'Dynamic Light Painting Series' in sidebar 'docsSidebar'"
+  "sidebar.lightPaintingSeries.category.Light Painting Techniques.link.generated-index.description": {
+    "message": "光绘玩法总汇，收集了丰富的创意素材和灵感",
+    "description": "The generated-index page description for category 'Light Painting Techniques' in sidebar 'lightPaintingSeries'"
   },
-  "sidebar.docsSidebar.category.Dynamic Light Painting Series.link.generated-index.description": {
-    "message": "Socolode 动态光绘主机产品系列文档",
-    "description": "The generated-index page description for category 'Dynamic Light Painting Series' in sidebar 'docsSidebar'"
+  "sidebar.controllerSeries.category.LightCoding": {
+    "message": "光码系列",
+    "description": "The label for category 'LightCoding' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.LightCoding.link.generated-index.description": {
+    "message": "Socolode 光码系列产品文档",
+    "description": "The generated-index page description for category 'LightCoding' in sidebar 'controllerSeries'"
+  },
+  "sidebar.dynamicLightPaintingSeries.category.LightMotion": {
+    "message": "光影流动系列",
+    "description": "The label for category 'LightMotion' in sidebar 'dynamicLightPaintingSeries'"
+  },
+  "sidebar.dynamicLightPaintingSeries.category.LightMotion.link.generated-index.description": {
+    "message": "Socolode 光影流动系列产品文档",
+    "description": "The generated-index page description for category 'LightMotion' in sidebar 'dynamicLightPaintingSeries'"
   }
 }
