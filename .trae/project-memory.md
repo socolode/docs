@@ -1,5 +1,7 @@
 # Socolode 项目记忆
 
+> 本文件是本项目的记忆文件。AI 每次处理本项目时，请先读取此文件了解项目约定、规则和经验教训。
+
 ## 1. 项目概述
 
 - **技术栈**: Docusaurus 3.10.2 + React 19 + TypeScript
@@ -18,6 +20,11 @@ docusaurus.config.ts                     # Docusaurus 配置
 ```
 
 ## 2. 核心约定
+
+### 2.0 Git 操作规则
+- **不要执行任何 git 动作**（add / commit / push 都不要）
+- 只做文件编辑，git 操作等用户明确要求时再执行
+- 用户说"提交"/"commit"/"推送"/"push"等才执行对应 git 命令
 
 ### 2.1 文件命名
 - 小写英文 + 连字符分隔单词
@@ -48,7 +55,7 @@ docusaurus.config.ts                     # Docusaurus 配置
 - Docusaurus admonitions 用原生 `:::note` 语法，不用 `<Callout>`
 - 侧栏 `autoCollapseCategories: false`，保持二级分类展开
 - Bilibili 视频用 `<iframe>` width 100% height 500px
-- FAQ 只在专用 FAQ 页面添加，普通文档不加
+- FAQ 保留原文内容，原文有的 FAQ 不必去掉
 - 侧边栏翻译在 `i18n/zh-CN/docusaurus-plugin-content-docs/current.json`
 
 ## 3. 翻译工作流
@@ -97,6 +104,7 @@ image: "/img/og-image.png"
 | 语雀图片无法直接获取 URL | 语雀图片在 Lake XML `<card name="image">` 中，URL 是 URL 编码的 JSON，需 `urllib.parse.unquote` 解码 |
 | 中文 online-tool 点击后跳到英文工具页面 | 自定义页面路由在 i18n 下带 locale 前缀：`/zh-CN/tools/getbmp`，并通过 `?lang=zh-CN` 参数传递语言给 getbmp.tsx |
 | 自定义页面（src/pages/）的 i18n 路由 | 用 `--locale zh-CN` 启动时路由为 `/zh-CN/tools/getbmp`，默认 en 时为 `/tools/getbmp` |
+| HTML `<a href="./file.mdx">` 链接不生效（404） | `<a>` 标签不会被 Docusaurus 处理成客户端路由；需用 `<Link to="./file">` 组件（来自 `@docusaurus/Link`），且 `to` 属性**不带 `.mdx` 扩展名** |
 
 ## 6. 启动命令
 

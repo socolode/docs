@@ -34,5 +34,45 @@
   "sidebar.docsSidebar.category.OpenStick T1 Kit.link.generated-index.description": {
     "message": "OpenStick T1光绘棒套件使用指南",
     "description": "The generated-index page description for category 'OpenStick T1 Kit' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Photography Tutorials": {
+    "message": "光绘摄影教程",
+    "description": "The label for category 'Photography Tutorials' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Photography Tutorials.link.generated-index.description": {
+    "message": "光绘摄影教程系列，从原理到实战，带你掌握光绘摄影技巧",
+    "description": "The generated-index page description for category 'Photography Tutorials' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.OpenStick S1 Kit": {
+    "message": "OpenStick S1套件",
+    "description": "The label for category 'OpenStick S1 Kit' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.OpenStick S1 Kit.link.generated-index.description": {
+    "message": "OpenStick S1光绘棒套件使用指南",
+    "description": "The generated-index page description for category 'OpenStick S1 Kit' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Light Painting Accessories": {
+    "message": "光绘专用配件",
+    "description": "The label for category 'Light Painting Accessories' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Light Painting Accessories.link.generated-index.description": {
+    "message": "光绘摄影配件使用指南",
+    "description": "The generated-index page description for category 'Light Painting Accessories' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Controller Series": {
+    "message": "控制器系列",
+    "description": "The label for category 'Controller Series' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Controller Series.link.generated-index.description": {
+    "message": "Socolode 光绘控制器产品系列文档",
+    "description": "The generated-index page description for category 'Controller Series' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Dynamic Light Painting Series": {
+    "message": "动态光绘系列",
+    "description": "The label for category 'Dynamic Light Painting Series' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Dynamic Light Painting Series.link.generated-index.description": {
+    "message": "Socolode 动态光绘主机产品系列文档",
+    "description": "The generated-index page description for category 'Dynamic Light Painting Series' in sidebar 'docsSidebar'"
   }
 }

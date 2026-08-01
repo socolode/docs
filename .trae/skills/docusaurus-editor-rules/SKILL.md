@@ -225,7 +225,7 @@ node scripts/clean-unused-assets.js
 1. 在 `i18n/zh-CN/docusaurus-plugin-content-docs/current/` 对应目录下创建 `.mdx` 文件
 2. 使用中文编写内容
 3. **添加 SEO/GEO Frontmatter**：`title`、`description`、`keywords`、`image`（详见 seo-geo-rules.md）
-4. **GEO 内容优化**：第一句为定义优先句式、事实密度达标（仅专门的 FAQ 页面需要添加 FAQ 部分）
+4. **GEO 内容优化**：第一句为定义优先句式、事实密度达标（原文内容包含 FAQ 的保留，不必去掉）
 5. **添加 JSON-LD Schema**：在 `<head>` 中添加结构化数据标记（详见 seo-geo-rules.md）
 6. 使用相对路径 + `.mdx` 扩展名链接内部文件
 7. 如果是新分类，添加 `_category_.json` 和 `current.json` 翻译
@@ -235,7 +235,7 @@ node scripts/clean-unused-assets.js
 1. 读取对应的中文文档
 2. 将内容翻译为英文（保持 Markdown 格式和结构）
 3. **翻译 SEO/GEO 字段**：title、description、keywords 独立翻译为英文
-4. **翻译 GEO 内容**：定义句式、FAQ（仅专门的 FAQ 页面）、Schema inLanguage 更新为 "en"
+4. **翻译 GEO 内容**：定义句式、FAQ（原文已有的保留并翻译）、Schema inLanguage 更新为 "en"
 5. 在 `docs/` 下创建对应的英文版本文件（相同路径和文件名）
 6. 同步所有链接、图片引用等
 7. 如果有新分类，同步 `_category_.json` 和侧栏配置
@@ -245,7 +245,7 @@ node scripts/clean-unused-assets.js
 - [ ] description 长度合规且包含价值主张
 - [ ] JSON-LD Schema 标记正确
 - [ ] 第一句为定义优先句式
-- [ ] 仅在专门的 FAQ 页面包含 FAQ 部分
+- [ ] 原文包含的 FAQ 部分已保留并翻译
 - [ ] 图片包含 alt 文本
 
 ### 添加图片
@@ -334,7 +334,7 @@ image: "/img/camera-settings-guide.jpg"
 - [ ] 图片引用路径正确
 - [ ] `_category_.json` 的 label 已翻译
 - [ ] SEO 字段完整：title、description、keywords、image
-- [ ] GEO 内容已同步：定义句式、FAQ（仅专门的 FAQ 页面）、JSON-LD Schema
+- [ ] GEO 内容已同步：定义句式、FAQ（原文已有的保留并翻译）、JSON-LD Schema
 - [ ] Schema 的 inLanguage 更新为 "en"
 - [ ] 本地预览正常显示（`npm start` 英文模式）
 
@@ -439,7 +439,7 @@ const config = { ... };
 - [ ] 图片包含描述性 alt 文本
 - [ ] 侧栏翻译已更新（如有新分类）
 - [ ] **SEO Frontmatter 完整**：title、description、keywords、image
-- [ ] **GEO 内容优化**：定义优先句式、仅专门的 FAQ 页面添加 FAQ 部分、事实密度
+- [ ] **GEO 内容优化**：定义优先句式、原文有的 FAQ 保留、事实密度
 - [ ] **JSON-LD Schema** 已添加到 `<head>`
 
 ### 执行 sync-to-en 后
