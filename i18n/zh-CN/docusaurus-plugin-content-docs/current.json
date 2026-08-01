@@ -67,6 +67,10 @@
     "message": "Socolode 光绘控制器产品系列文档",
     "description": "The generated-index page description for category 'Controller Series' in sidebar 'docsSidebar'"
   },
+  "sidebar.docsSidebar.category.Light Painting Techniques": {
+    "message": "光绘玩法",
+    "description": "The label for category 'Light Painting Techniques' in sidebar 'docsSidebar'"
+  },
   "sidebar.docsSidebar.category.Dynamic Light Painting Series": {
     "message": "动态光绘系列",
     "description": "The label for category 'Dynamic Light Painting Series' in sidebar 'docsSidebar'"
