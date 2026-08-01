@@ -76,17 +76,30 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Socolode',
+      title: '',
       logo: {
         alt: 'Socolode Logo',
-        src: 'img/logo.svg',
+        src: 'img/黑logo.png',
+        srcDark: 'img/白logo.png',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'docsSidebar',
+          sidebarId: 'lightPaintingSeries',
           position: 'left',
-          label: 'Docs',
+          label: 'LightPainting',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'controllerSeries',
+          position: 'left',
+          label: 'LightCoding',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'dynamicLightPaintingSeries',
+          position: 'left',
+          label: 'LightMotion',
         },
         {
           type: 'localeDropdown',
@@ -102,15 +115,15 @@ const config: Config = {
           items: [
             {
               label: 'Welcome',
-              to: '/welcome',
+              to: '/',
             },
             {
               label: 'For Users',
-              to: '/welcome',
+              to: '/',
             },
             {
               label: 'For Developers',
-              to: '/quick-start/5-minute-quick-start',
+              to: '/light-painting-series/photography-tutorials/light-painting-quick-start',
             },
           ],
         },
