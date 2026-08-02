@@ -18,5 +18,17 @@
   "item.label.内容管理": {
     "message": "内容管理",
     "description": "Navbar item with label 内容管理"
+  },
+  "item.label.LightPainting": {
+    "message": "LightPainting",
+    "description": "Navbar item with label LightPainting"
+  },
+  "item.label.LightCoding": {
+    "message": "LightCoding",
+    "description": "Navbar item with label LightCoding"
+  },
+  "item.label.LightMotion": {
+    "message": "LightMotion",
+    "description": "Navbar item with label LightMotion"
   }
 }

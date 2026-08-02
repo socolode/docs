@@ -56,7 +56,7 @@ docusaurus.config.ts                     # Docusaurus 配置
 - 侧栏 `autoCollapseCategories: false`，保持二级分类展开
 - Bilibili 视频用 `<iframe>` width 100% height 500px
 - FAQ 保留原文内容，原文有的 FAQ 不必去掉
-- 侧边栏翻译在 `i18n/zh-CN/docusaurus-plugin-content-docs/current.json`
+- 侧栏分类标签翻译在 `i18n/zh-CN/docusaurus-plugin-content-docs/current.json`，翻译 key 规则取决于 `_category_.json` 是否有 `key` 字段（详见经验教训）
 
 ## 3. 翻译工作流
 
@@ -105,6 +105,23 @@ image: "/img/og-image.png"
 | 中文 online-tool 点击后跳到英文工具页面 | 自定义页面路由在 i18n 下带 locale 前缀：`/zh-CN/tools/getbmp`，并通过 `?lang=zh-CN` 参数传递语言给 getbmp.tsx |
 | 自定义页面（src/pages/）的 i18n 路由 | 用 `--locale zh-CN` 启动时路由为 `/zh-CN/tools/getbmp`，默认 en 时为 `/tools/getbmp` |
 | HTML `<a href="./file.mdx">` 链接不生效（404） | `<a>` 标签不会被 Docusaurus 处理成客户端路由；需用 `<Link to="./file">` 组件（来自 `@docusaurus/Link`），且 `to` 属性**不带 `.mdx` 扩展名** |
+| `_category_.json` 写了中文 label 但侧栏仍显示英文 | i18n `_category_.json` 的 label **不直接用于侧栏显示**，必须靠 `current.json` 翻译条目；且当 `_category_.json` 有 `key` 字段时，翻译 key 用 `key` 值而非 `label` |
+
+### 5.1 侧栏分类标签翻译 key 规则（重要）
+
+侧栏分类标签的中文翻译来自 `i18n/zh-CN/docusaurus-plugin-content-docs/current.json`，翻译 key 格式取决于 `_category_.json` 是否有 `key` 字段：
+
+| `_category_.json` 配置 | 翻译 key 格式 | 示例 |
+|------------------------|---------------|------|
+| **无 `key` 字段** | `sidebar.{sidebarId}.category.{英文label}` | `sidebar.controllerSeries.category.Beetle S1` |
+| **有 `key` 字段** | `sidebar.{sidebarId}.category.{key值}` | `sidebar.controllerSeries.category.beetle-s1-product-intro` |
+
+**注意事项：**
+- 有 `key` 时，label-based 的翻译条目**不匹配**，必须补充 key-based 翻译条目
+- 同时需要补充 `...link.generated-index.description` 翻译条目
+- 单个文档的 `sidebar_label` 直接用 i18n MDX frontmatter，不需要 `current.json` 条目
+- 修改 `current.json` 后需重启 dev server（不热更新），生产构建无此问题
+- **已知情况**：beetle-s1 子分类有 `key`（如 `beetle-s1-product-intro`），firefly-t1 子分类没有 `key`
 
 ## 6. 启动命令
 

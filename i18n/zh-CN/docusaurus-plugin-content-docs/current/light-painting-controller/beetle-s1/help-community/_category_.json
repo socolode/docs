@@ -1,0 +1,9 @@
+{
+  "label": "帮助与社区",
+  "position": 6,
+  "key": "beetle-s1-help-community",
+  "link": {
+    "type": "generated-index",
+    "description": "常见问题、社区联系——独角仙S1 帮助与支持"
+  }
+}

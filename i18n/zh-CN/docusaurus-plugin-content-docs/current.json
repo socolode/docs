@@ -51,6 +51,70 @@
     "message": "光绘玩法总汇，收集了丰富的创意素材和灵感",
     "description": "The generated-index page description for category 'Light Painting Techniques' in sidebar 'lightPaintingSeries'"
   },
+  "sidebar.controllerSeries.category.Beetle S1": {
+    "message": "独角仙S1",
+    "description": "The label for category 'Beetle S1' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Beetle S1.link.generated-index.description": {
+    "message": "独角仙S1 控制器产品文档",
+    "description": "The generated-index page description for category 'Beetle S1' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Firefly T1": {
+    "message": "萤火虫T1",
+    "description": "The label for category 'Firefly T1' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Firefly T1.link.generated-index.description": {
+    "message": "萤火虫T1 创意灯光控制器——从开箱到创作，让你轻松玩转灯光创意",
+    "description": "The generated-index page description for category 'Firefly T1' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Product Introduction": {
+    "message": "产品介绍",
+    "description": "The label for category 'Product Introduction' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Product Introduction.link.generated-index.description": {
+    "message": "这是什么、能做什么——产品介绍",
+    "description": "The generated-index page description for category 'Product Introduction' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Quick Start": {
+    "message": "快速上手",
+    "description": "The label for category 'Quick Start' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Quick Start.link.generated-index.description": {
+    "message": "开箱准备、基本操作、安装第一个效果——5分钟快速上手",
+    "description": "The generated-index page description for category 'Quick Start' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Effects & Projects": {
+    "message": "效果与玩法",
+    "description": "The label for category 'Effects & Projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Effects & Projects.link.generated-index.description": {
+    "message": "兼容灯材、效果安装、创意玩法——玩转灯光创意",
+    "description": "The generated-index page description for category 'Effects & Projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.App Development": {
+    "message": "进阶开发",
+    "description": "The label for category 'App Development' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.App Development.link.generated-index.description": {
+    "message": "环境搭建、编写灯光程序、打包分享——从入门到进阶",
+    "description": "The generated-index page description for category 'App Development' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.System Maintenance": {
+    "message": "系统维护",
+    "description": "The label for category 'System Maintenance' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.System Maintenance.link.generated-index.description": {
+    "message": "固件更新、系统烧录、恢复出厂设置——系统维护指南",
+    "description": "The generated-index page description for category 'System Maintenance' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Help & Community": {
+    "message": "帮助与社区",
+    "description": "The label for category 'Help & Community' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Help & Community.link.generated-index.description": {
+    "message": "常见问题、社区联系——帮助与支持",
+    "description": "The generated-index page description for category 'Help & Community' in sidebar 'controllerSeries'"
+  },
   "sidebar.controllerSeries.category.LightCoding": {
     "message": "光码系列",
     "description": "The label for category 'LightCoding' in sidebar 'controllerSeries'"
@@ -66,5 +130,53 @@
   "sidebar.dynamicLightPaintingSeries.category.LightMotion.link.generated-index.description": {
     "message": "Socolode 光影流动系列产品文档",
     "description": "The generated-index page description for category 'LightMotion' in sidebar 'dynamicLightPaintingSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-product-intro": {
+    "message": "产品介绍",
+    "description": "The label for category 'beetle-s1-product-intro' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-product-intro.link.generated-index.description": {
+    "message": "这是什么、能做什么——独角仙S1 产品介绍",
+    "description": "The generated-index page description for category 'beetle-s1-product-intro' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-quick-start": {
+    "message": "快速上手",
+    "description": "The label for category 'beetle-s1-quick-start' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-quick-start.link.generated-index.description": {
+    "message": "开箱准备、基本操作、安装第一个效果——5分钟上手独角仙S1",
+    "description": "The generated-index page description for category 'beetle-s1-quick-start' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-effects-projects": {
+    "message": "效果与玩法",
+    "description": "The label for category 'beetle-s1-effects-projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-effects-projects.link.generated-index.description": {
+    "message": "兼容灯材、效果安装、光绘棒套件、创意玩法——独角仙S1 玩法全攻略",
+    "description": "The generated-index page description for category 'beetle-s1-effects-projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-app-development": {
+    "message": "进阶开发",
+    "description": "The label for category 'beetle-s1-app-development' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-app-development.link.generated-index.description": {
+    "message": "环境搭建、编写第一个灯光程序、S1 硬件适配编程——从入门到进阶",
+    "description": "The generated-index page description for category 'beetle-s1-app-development' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-system-maintenance": {
+    "message": "系统维护",
+    "description": "The label for category 'beetle-s1-system-maintenance' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-system-maintenance.link.generated-index.description": {
+    "message": "固件更新、系统烧录、恢复出厂设置——独角仙S1 系统维护指南",
+    "description": "The generated-index page description for category 'beetle-s1-system-maintenance' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-help-community": {
+    "message": "帮助与社区",
+    "description": "The label for category 'beetle-s1-help-community' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.beetle-s1-help-community.link.generated-index.description": {
+    "message": "常见问题、社区联系——独角仙S1 帮助与支持",
+    "description": "The generated-index page description for category 'beetle-s1-help-community' in sidebar 'controllerSeries'"
   }
 }
