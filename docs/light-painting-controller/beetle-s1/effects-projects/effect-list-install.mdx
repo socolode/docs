@@ -1,0 +1,55 @@
+---
+sidebar_position: 3
+sidebar_label: Effect List & Installation
+title: "Beetle S1 - Effect List & Installation"
+description: "Beetle S1 light effect library download and installation guide"
+keywords: ["Beetle S1", "Effect Library", "Effect Installation", "Light Effects", "Download"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Effect List & Installation
+
+## Effect List
+
+The effect library is an online spreadsheet providing various light effects for download. Visit the [Beetle S1 Effect Library](https://socolode.yuque.com/ogwgwg/xnlyru) for the complete list of effects and download links.
+
+:::note
+Some effects from the T1 library rely on the built-in microphone (sound-reactive effects) and 9-axis sensor (gesture interaction). The S1 does not have these built-in sensors, so these effects won't run directly. To use similar features, refer to the <Link to="../app-development/s1-hardware-programming">S1 Hardware Programming</Link> section for external module solutions.
+:::
+
+## Installing Light Effects
+
+### 1. Download an Effect File
+
+Open the effect library, choose a light effect you like and download it.
+
+### 2. Connect to Computer
+
+Use the USB data cable (data port) to connect your Beetle S1 to your computer. After a few seconds, a new USB drive will appear.
+
+### 3. Add the Effect
+
+1. Drag the downloaded effect file into the `/apps` folder on the USB drive
+
+### 4. Register the Effect (Enable)
+
+1. Open the `apps/config.json` file on the USB drive with a text editor
+2. Add the new effect information to the `config.json` file
+
+**Format:**
+
+Each light effect's basic information should follow this format:
+
+- `"name"`: Effect name
+- `"folder"`: Effect folder path
+- `"enabled"`: Whether the effect is enabled
+
+:::note
+- The `config.json` file must be filled in correctly for the effect to appear and work
+- The order of items in the list determines the display order of effects
+:::
+
+### 5. Launch the Effect
+
+Once configured, power on the device, use left/right to select the effect, and press the center button to launch it!

@@ -1,0 +1,9 @@
+{
+  "label": "系统维护",
+  "position": 5,
+  "key": "beetle-s1-system-maintenance",
+  "link": {
+    "type": "generated-index",
+    "description": "固件更新、系统烧录、恢复出厂设置——独角仙S1 系统维护指南"
+  }
+}

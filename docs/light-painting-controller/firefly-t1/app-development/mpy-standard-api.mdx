@@ -1,0 +1,58 @@
+---
+sidebar_position: 3
+sidebar_label: MicroPython API
+title: "Firefly T1 MicroPython API"
+description: "Common MicroPython standard libraries and APIs used in Firefly T1 development"
+keywords: ["Firefly T1", "MicroPython", "API", "Standard Library", "Python"]
+---
+
+import Link from '@docusaurus/Link';
+
+# MicroPython API
+
+Firefly T1 runs on MicroPython and supports most MicroPython standard libraries. Below are commonly used modules for light effect development.
+
+## Common Standard Libraries
+
+### `machine` — Hardware Control
+
+```python
+from machine import Pin, PWM, ADC
+
+# Set GPIO pin
+pin = Pin(4, Pin.OUT)
+pin.value(1)  # Output high
+
+# PWM control
+pwm = PWM(Pin(5))
+pwm.freq(1000)  # Set frequency
+pwm.duty(512)   # Set duty cycle
+```
+
+### `time` — Timing Control
+
+```python
+import time
+
+time.sleep(1)        # Delay 1 second
+time.sleep_ms(500)   # Delay 500 milliseconds
+time.ticks_ms()      # Get current milliseconds
+```
+
+### `math` — Math Operations
+
+```python
+import math
+
+# Used for generating smooth light animations
+value = math.sin(angle)  # Sine wave
+value = math.cos(angle)  # Cosine wave
+```
+
+## More Resources
+
+The MicroPython official documentation provides a complete standard library reference:
+
+- [MicroPython Documentation](https://docs.micropython.org/en/latest/)
+
+For Firefly T1 custom APIs, please refer to the <Link to="./custom-api">Custom API</Link> section.

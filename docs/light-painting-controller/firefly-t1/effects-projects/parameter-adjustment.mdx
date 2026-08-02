@@ -1,0 +1,72 @@
+---
+sidebar_position: 4
+sidebar_label: Parameter Adjustment
+title: "Firefly T1 - Effect Parameter Adjustment"
+description: "Adjust color, speed, brightness of Firefly T1 light effects — no coding needed, just use the joystick."
+keywords: ["Firefly T1", "Parameter Adjustment", "Color", "Speed", "Brightness", "Effect Settings"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Effect Parameter Adjustment
+
+Most light effects let you adjust parameters like brightness, speed, and color in real time — no computer needed, just use the five-way button on the device.
+
+## Entering Parameter Adjustment Mode
+
+1. While an effect is running, press the "center button" to open the effect menu
+2. Use the "up/down buttons" to select "Parameter Adjustment"
+3. Press the "center button" to enter the parameter list
+
+## Adjustable Parameters
+
+Different effects may offer different parameters. Common ones include:
+
+| Parameter | Description | Range |
+|-----------|-------------|-------|
+| Brightness | Overall light brightness | 0-100 |
+| Speed | Animation speed | 1-10 |
+| Color | Main color or color scheme | Preset palette |
+| Saturation | Color saturation | 0-100 |
+| Mode | Sub-mode switching | Effect-dependent |
+
+### How to Adjust
+
+1. Select a parameter, then use the "left/right buttons" to change the value
+2. The effect updates in real time as you adjust, so you can preview instantly
+3. Press the "center button" to save and return
+
+## Adjusting via Config File
+
+For finer control, you can edit the configuration file directly in the effect's folder.
+
+### Steps
+
+1. Connect Firefly T1 to your computer via USB
+2. Open the effect folder on the USB drive (`/apps/effect-name/`)
+3. Edit `config.json` or `settings.py` with a text editor
+4. Save the file and safely eject the USB drive
+
+### Config Example
+
+```json
+{
+  "name": "My Effect",
+  "brightness": 80,
+  "speed": 5,
+  "color": "#FF0000",
+  "mode": "rainbow"
+}
+```
+
+Restart the effect to see the changes.
+
+## Restoring Default Parameters
+
+If you're not happy with your adjustments, select "Restore Defaults" in the effect menu, or delete the config file and restart the effect.
+
+## Notes
+
+- Some simple effects may not support parameter adjustment
+- Real-time adjustments are saved after device reboot
+- When editing the config file, make sure the JSON format is valid

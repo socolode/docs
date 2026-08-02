@@ -1,0 +1,58 @@
+---
+sidebar_position: 3
+sidebar_label: MicroPython API
+title: "萤火虫T1 MicroPython API"
+description: "萤火虫T1 开发中常用的 MicroPython 标准库和API"
+keywords: ["萤火虫T1", "Firefly T1", "MicroPython", "API", "标准库", "Python"]
+---
+
+import Link from '@docusaurus/Link';
+
+# MicroPython API
+
+萤火虫T1 基于 MicroPython 运行，支持大部分 MicroPython 标准库。以下是在灯光效果开发中常用的模块。
+
+## 常用标准库
+
+### `machine` — 硬件控制
+
+```python
+from machine import Pin, PWM, ADC
+
+# 设置GPIO引脚
+pin = Pin(4, Pin.OUT)
+pin.value(1)  # 输出高电平
+
+# PWM控制
+pwm = PWM(Pin(5))
+pwm.freq(1000)  # 设置频率
+pwm.duty(512)   # 设置占空比
+```
+
+### `time` — 时间控制
+
+```python
+import time
+
+time.sleep(1)        # 延时1秒
+time.sleep_ms(500)   # 延时500毫秒
+time.ticks_ms()      # 获取当前毫秒数
+```
+
+### `math` — 数学运算
+
+```python
+import math
+
+# 用于生成平滑的灯光动画
+value = math.sin(angle)  # 正弦波
+value = math.cos(angle)  # 余弦波
+```
+
+## 更多资源
+
+MicroPython 官方文档提供了完整的标准库参考：
+
+- [MicroPython 文档](https://docs.micropython.org/en/latest/)
+
+萤火虫T1 的自定义API请参考<Link to="./custom-api">自定义API</Link>章节。

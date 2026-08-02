@@ -1,0 +1,86 @@
+---
+sidebar_position: 1
+sidebar_label: Compatible LEDs & Wiring
+title: "Beetle S1 - Compatible LEDs & Wiring Guide"
+description: "LED strip types compatible with Beetle S1 and XT30 wiring instructions"
+keywords: ["Beetle S1", "Compatible LEDs", "LED Strip", "Wiring", "XT30", "WS2812"]
+---
+
+# Compatible LEDs & Wiring Guide
+
+The Beetle S1 features an XT30(2+2) connector with high current output, capable of driving more and longer LED strips.
+
+## Supported Types
+
+### WS2812 / NeoPixel LED Strips
+
+The most common smart LED strips, each LED can be individually controlled for color and brightness. Ideal for light painting, ambient lighting, and more.
+
+| Spec | Recommendation |
+|------|----------------|
+| Voltage | 5V |
+| Density | 30 LEDs/m, 60 LEDs/m, 144 LEDs/m |
+| Length | Up to 10m (S1 high power output can drive longer strips) |
+
+### WS2812 LED Rings
+
+Circular LED rings, great for clocks, rhythm lights, and desktop decorations.
+
+| Spec | Use Case |
+|------|----------|
+| 12 LEDs | Small ambient light |
+| 16 LEDs | Clock display |
+| 24 LEDs | Rich clock display |
+| 60 LEDs | High resolution clock |
+
+### Other Compatible LEDs
+
+- SK6812 (RGBW, supports dedicated white channel)
+- Other WS2812-protocol LED strips/rings
+- High-power LED strips (requiring high current drive)
+
+## XT30(2+2) Pinout
+
+The S1 main output is an XT30(2+2) connector with 2 high-current power terminals and 2 high-speed control signal terminals.
+
+| Terminal | Signal | Description |
+|----------|--------|-------------|
+| High Current + | 5V | Power positive (high current) |
+| High Current - | GND | Power ground |
+| Signal + | DATA | Control signal |
+| Signal - | GND | Signal ground |
+
+## Wiring Steps
+
+### Standard Wiring
+
+The S1 comes with an XT30 adapter cable for direct connection to LED strips.
+
+| Beetle S1 | LED Strip/Ring |
+|-----------|----------------|
+| 5V (High Current +) | 5V / VCC |
+| DATA (Signal +) | DIN / DI |
+| GND (High Current - / Signal -) | GND |
+
+### Wiring Procedure
+
+1. Ensure the Beetle S1 is powered off
+2. Connect the XT30 adapter cable to the S1's XT30 port
+3. Connect the other end to the LED strip/ring
+4. Verify connections and power on
+
+## Shopping Tips
+
+- **Light Painting**: 144 LEDs/m high-density strips for finer light trails
+- **Light Painting Wand Kit**: Use with the official S1 wand kit for best results
+- **Desktop Clock**: 16-24 LED rings for clear display
+- **Rhythm Light**: 24+ LED rings for richer frequency response
+- **Large Installations**: S1 high power output can drive longer strips
+
+## Precautions
+
+- Ensure LED strips operate at 5V
+- The S1 supports high current output, but consider heat dissipation for long-term use with high-density strips
+- Power off the device before wiring
+- Avoid plugging/unplugging while powered on
+- The XT30 connector is keyed - do not force reverse connection

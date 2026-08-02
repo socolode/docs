@@ -1,0 +1,59 @@
+---
+sidebar_position: 6
+sidebar_label: Specifications
+title: "Beetle S1 Specifications"
+description: "Beetle S1 electrical specifications, interface definitions, and physical dimensions"
+keywords: ["Beetle S1", "Specifications", "Datasheet", "Interface", "Electrical", "XT30"]
+---
+
+# Specifications
+
+## Electrical Characteristics
+
+| Parameter | Min | Typical | Max | Unit |
+|-----------|-----|---------|-----|------|
+| Input Voltage | 4.5 | 5.0 | 5.5 | V |
+| Input Current (Charge Port) | 0.5 | 2.0 | 3.0 | A |
+| Output Voltage (XT30) | 4.75 | 5.0 | 5.25 | V |
+| Output Current (XT30) | - | 3.0 | 5.0 | A |
+| Charge Port | - | Type-C USB | - | - |
+| Data Port | - | Type-C USB | - | - |
+| Power Source | Built-in Lithium Battery / USB Power | | | |
+
+## Interface Definitions
+
+### XT30(2+2) Main Output
+
+| Terminal | Signal | Description |
+|----------|--------|-------------|
+| High Current + | 5V | Power positive (high current) |
+| High Current - | GND | Power ground |
+| Signal + | DATA | Control signal |
+| Signal - | GND | Signal ground |
+
+### XH2.54-4P Expansion Port
+
+| Pin | Signal | Description |
+|-----|--------|-------------|
+| 1 | 3.3V | Power output |
+| 2 | SDA / MOSI | I2C data / SPI master-out-slave-in |
+| 3 | SCL / SCK | I2C clock / SPI clock |
+| 4 | GND | Ground |
+
+## Physical Specifications
+
+| Parameter | Value |
+|-----------|-------|
+| Form Factor | Handle-shaped, integrated design |
+| Display | Round color screen |
+| Buttons | Function key / Left-right keys / Center key / Down key |
+| Auto Power Off | 5 minutes idle (default) |
+
+## System Support
+
+| Parameter | Description |
+|-----------|-------------|
+| Operating System | MicroPython |
+| API Compatibility | Mostly compatible with Firefly T1 |
+| Effect File Format | Python (.py) |
+| File Transfer | USB Mass Storage (USB drive mode) |

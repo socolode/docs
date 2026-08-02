@@ -1,0 +1,53 @@
+---
+sidebar_position: 2
+sidebar_label: Factory Reset
+title: "Firefly T1 - Factory Reset"
+description: "Reset Firefly T1 to factory state, clearing all user data and installed light effects"
+keywords: ["Firefly T1", "Factory Reset", "Reset", "Initialize", "Clear Data"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Factory Reset
+
+A factory reset clears all installed light effects and user configurations, restoring the system to its original state. Use this when:
+
+- The system is behaving abnormally and you can't fix it
+- Your effect files are messy and you want a fresh start
+- You're selling or transferring the device and need to clear personal data
+
+## Method 1: Reset via Menu
+
+If the system boots normally, you can reset from the device menu:
+
+1. Power on, then on the home screen use the "up/down buttons" to enter "System Settings"
+2. Select "Factory Reset"
+3. Confirm — the device will automatically clear data and reboot
+
+:::caution
+Factory reset will **delete all installed light effects**. Back up the `/apps/` folder first if needed.
+:::
+
+## Method 2: Reset by Re-flashing Firmware
+
+If the system won't boot or the menu option is unavailable, re-flash the firmware to restore the system:
+
+1. Follow the steps in <Link to="./firmware-update-flash">Firmware Update & Flash</Link>
+2. Download the latest firmware and flash it to the device
+3. After flashing, the device will be restored to factory state
+
+## After Reset
+
+Once the factory reset is complete, the device will be in its out-of-box state:
+
+1. Boots into the welcome screen
+2. Built-in default effects are still present
+3. You'll need to re-install any additional effects (see <Link to="../quick-start/first-effect">Install Your First Effect</Link>)
+
+## Backup Tips
+
+Before resetting, we recommend backing up:
+
+- Connect the device to your computer via USB
+- Copy the entire `/apps/` folder to your computer
+- After reset, drag the backup back into the USB drive

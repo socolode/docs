@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+sidebar_label: 环境搭建
+title: "独角仙S1 开发环境搭建"
+description: "搭建独角仙S1 的灯光程序开发环境，包括安装Thonny和更新固件。"
+keywords: ["独角仙S1", "Beetle S1", "环境搭建", "Thonny", "MicroPython", "开发环境"]
+---
+
+import Link from '@docusaurus/Link';
+
+# 独角仙S1 开发环境搭建
+
+适合有一定编程基础的用户，想自己编写灯光效果程序。
+
+## 安装 Thonny 编程工具
+
+前往 [https://thonny.org/](https://thonny.org/) 下载并安装 Thonny。
+
+Thonny 是一款专为 MicroPython 设计的轻量级 IDE，开箱即用，无需额外配置。
+
+## 更新固件
+
+确保你的独角仙S1 运行的是最新固件，以兼容最新的开发特性。
+
+参考<Link to="../system-maintenance/firmware-update-flash">固件更新与烧录</Link>章节更新固件。
+
+## 运行第一个程序
+
+连接独角仙S1 到电脑（使用数据口），打开 Thonny：
+
+1. 在 Thonny 右下角选择对应的 COM 端口
+2. 在编辑器中输入以下代码：
+
+```python
+print("Hello, Beetle S1!")
+```
+
+3. 点击运行按钮（绿色三角），即可在控制台看到输出
+
+:::tip
+如果找不到 COM 端口，请检查数据线是否支持数据传输，以及设备是否已开机。
+:::
+
+## 下一步
+
+开发环境搭建完成后，就可以开始<Link to="./first-script">编写第一个灯光程序</Link>了。

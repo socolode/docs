@@ -1,0 +1,55 @@
+---
+sidebar_position: 4
+sidebar_label: 自定义API
+title: "萤火虫T1 自定义API"
+description: "萤火虫T1 自定义API 参考，用于开发灯光效果程序"
+keywords: ["萤火虫T1", "Firefly T1", "自定义API", "灯光开发", "API参考"]
+---
+
+# 自定义API
+
+萤火虫T1 提供了一套自定义API，用于在灯光效果程序中控制硬件资源。
+
+## 屏幕显示
+
+### `display_text(text, x, y, color)`
+
+在屏幕上显示文字。
+
+- `text` (str): 要显示的文本
+- `x` (int): 横坐标
+- `y` (int): 纵坐标
+- `color` (int, 可选): 颜色值，默认白色
+
+### `display_clear()`
+
+清空屏幕内容。
+
+## 按键输入
+
+### `button_was_pressed(button_id)`
+
+检测指定按键是否被按下。
+
+- `button_id` (str): 按键标识，可选值：`"up"`, `"down"`, `"left"`, `"right"`, `"center"`
+
+返回 `True` 或 `False`。
+
+## LED控制
+
+### `set_led(index, r, g, b)`
+
+设置单个LED的颜色。
+
+- `index` (int): LED编号
+- `r` (int): 红色值 (0-255)
+- `g` (int): 绿色值 (0-255)
+- `b` (int): 蓝色值 (0-255)
+
+### `set_all_leds(r, g, b)`
+
+设置所有LED为同一颜色。
+
+## 更多API
+
+详细API文档正在编写中，敬请期待。如需了解最新API信息，请参考社区或固件源码。

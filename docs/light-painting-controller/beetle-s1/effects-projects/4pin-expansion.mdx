@@ -1,0 +1,80 @@
+---
+sidebar_position: 4
+sidebar_label: 4PIN Expansion Interface
+title: "Beetle S1 - 4PIN Expansion Interface"
+description: "Beetle S1 XH2.54-4P expansion interface supporting SPI/I2C/UART/GPIO peripheral programming"
+keywords: ["Beetle S1", "4PIN", "Expansion Interface", "XH2.54", "SPI", "I2C", "UART", "GPIO"]
+---
+
+import Link from '@docusaurus/Link';
+
+# 4PIN Expansion Interface
+
+The Beetle S1 features an XH2.54-4P multi-function expansion port supporting SPI/I2C/UART/GPIO protocols for connecting various sensors and peripherals.
+
+## Pinout
+
+| Pin | Signal | Description |
+|-----|--------|-------------|
+| 1 | 3.3V | Power output |
+| 2 | SDA / MOSI | I2C data / SPI master-out-slave-in |
+| 3 | SCL / SCK | I2C clock / SPI clock |
+| 4 | GND | Ground |
+
+## Supported Protocols
+
+| Protocol | Typical Applications |
+|----------|---------------------|
+| SPI | High-speed data transfer, external displays, sensor modules |
+| I2C | Connect sensors (temperature, humidity, IMU, etc.) |
+| UART | Serial communication, GPS, Bluetooth modules |
+| GPIO | General purpose I/O, relays, buttons, etc. |
+
+## External Microphone for Sound-Reactive Effects
+
+The S1 has no built-in microphone, but you can connect an external microphone module via the 4PIN port for sound-reactive lighting effects.
+
+**Materials Needed:**
+- Electret microphone module (MAX9814 or similar)
+- Dupont wires
+
+**Wiring:**
+
+| 4PIN Port | Microphone Module |
+|-----------|-------------------|
+| 3.3V | VCC |
+| SDA/MOSI | Analog output (to GPIO) |
+| GND | GND |
+
+## External IMU for Gesture Interaction
+
+Connect an IMU (Inertial Measurement Unit) module via the 4PIN port for gesture-controlled lighting effects.
+
+**Materials Needed:**
+- MPU6050 or similar IMU module
+- Dupont wires
+
+**Wiring:**
+
+| 4PIN Port | IMU Module |
+|-----------|------------|
+| 3.3V | VCC |
+| SDA/MOSI | SDA |
+| SCL/SCK | SCL |
+| GND | GND |
+
+## Programming Example
+
+```python
+from machine import Pin, I2C
+import time
+
+# Initialize I2C
+i2c = I2C(0, scl=Pin(3), sda=Pin(2), freq=400000)
+
+# Scan for I2C devices
+devices = i2c.scan()
+print("I2C devices:", [hex(addr) for addr in devices])
+```
+
+For detailed programming guides, see <Link to="../app-development/s1-hardware-programming">S1 Hardware Programming</Link>.

@@ -1,0 +1,9 @@
+{
+  "label": "产品介绍",
+  "position": 1,
+  "key": "beetle-s1-product-intro",
+  "link": {
+    "type": "generated-index",
+    "description": "这是什么、能做什么——独角仙S1 产品介绍"
+  }
+}

@@ -1,0 +1,63 @@
+---
+sidebar_position: 2
+sidebar_label: First Script
+title: "Beetle S1 - Writing Your First Light Program"
+description: "Write your first Beetle S1 light effect program from scratch."
+keywords: ["Beetle S1", "First Script", "Light Program", "MicroPython", "Tutorial"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Beetle S1 - Writing Your First Light Program
+
+After completing the <Link to="./setup-environment">environment setup</Link>, you can start writing your own light effects.
+
+## Writing a Simple Light Effect
+
+Create a new file in Thonny and enter the following code:
+
+```python
+import ws2812
+import time
+
+# Initialize LED strip (connected to XT30 signal port, 60 LEDs)
+led_strip = ws2812.WS2812(pin=4, count=60)
+
+# Light up one by one
+for i in range(60):
+    led_strip[i] = (255, 0, 0)  # Red
+    led_strip.show()
+    time.sleep_ms(50)
+
+# Turn off one by one
+time.sleep(1)
+for i in range(60):
+    led_strip[i] = (0, 0, 0)
+    led_strip.show()
+    time.sleep_ms(50)
+```
+
+This code will light up the LED strip in red, one LED at a time, then turn them off one by one.
+
+## Testing the Effect
+
+1. Click the run button in Thonny
+2. Observe if the LED strip behaves as expected
+3. If the effect works, save it to the Beetle S1
+
+## Saving to Device
+
+1. Click File → Save
+2. Select "MicroPython Device"
+3. Save the file to the `/apps/` directory
+4. Add the new effect entry to the `config.json` file following the existing format
+
+## Reference Resources
+
+- <Link to="./custom-api">Custom API Documentation</Link>
+- <Link to="./mpy-standard-api">MicroPython Standard API</Link>
+- <Link to="./s1-hardware-programming">S1 Hardware Programming</Link>
+
+## Next Steps
+
+After writing your effect, see the <Link to="./package-share">Package & Share</Link> tutorial to share it with others.

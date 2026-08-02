@@ -1,0 +1,53 @@
+---
+sidebar_position: 2
+sidebar_label: Factory Reset
+title: "Beetle S1 - Factory Reset"
+description: "Reset the Beetle S1 to factory state, clearing all user data and installed effects"
+keywords: ["Beetle S1", "Factory Reset", "Reset", "Initialize", "Clear Data"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Factory Reset
+
+A factory reset will clear all installed light effects and user configurations, restoring the system to its initial state. This is useful when:
+
+- The system is acting abnormally
+- Effect files are disorganized and you want to start fresh
+- You're selling or transferring the device
+
+## Via Menu
+
+If the system boots normally, you can reset through the device menu:
+
+1. Power on, navigate to "System Settings" from the home screen
+2. Select "Factory Reset"
+3. Confirm - the device will automatically clear data and reboot
+
+:::caution
+A factory reset will **delete all installed light effects**. Back up the `/apps/` directory first if needed.
+:::
+
+## Via Firmware Reflash
+
+If the system won't boot or the menu option is unavailable, reflash the firmware:
+
+1. Follow the steps in <Link to="./firmware-update-flash">Firmware Update & Flash</Link>
+2. Download the latest firmware and flash it to the device
+3. After flashing, the device will be restored to factory state
+
+## After Reset
+
+After a factory reset, the device will return to its out-of-box state:
+
+1. Boot into the welcome screen
+2. Default built-in effects are retained
+3. Reinstall your desired effects (see <Link to="../quick-start/first-effect">Install First Effect</Link>)
+
+## Backup Tips
+
+Before resetting, we recommend backing up:
+
+- Connect to computer, enter USB drive mode
+- Copy the entire `/apps/` folder to your computer
+- After reset, simply drag the backed-up effects back

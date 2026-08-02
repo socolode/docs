@@ -1,0 +1,63 @@
+---
+sidebar_position: 2
+sidebar_label: 第一个脚本
+title: "独角仙S1 编写第一个灯光程序"
+description: "从零开始编写你的第一个独角仙S1 灯光效果程序。"
+keywords: ["独角仙S1", "Beetle S1", "第一个脚本", "灯光程序", "MicroPython", "教程"]
+---
+
+import Link from '@docusaurus/Link';
+
+# 独角仙S1 编写第一个灯光程序
+
+当你完成<Link to="./setup-environment">环境搭建</Link>后，就可以开始编写属于自己的灯光效果了。
+
+## 编写一个简单的灯光效果
+
+在 Thonny 中新建一个文件，输入以下代码：
+
+```python
+import ws2812
+import time
+
+# 初始化灯带（假设连接到 XT30 信号端口，灯珠数量为 60）
+led_strip = ws2812.WS2812(pin=4, count=60)
+
+# 逐点亮起
+for i in range(60):
+    led_strip[i] = (255, 0, 0)  # 红色
+    led_strip.show()
+    time.sleep_ms(50)
+
+# 逐点熄灭
+time.sleep(1)
+for i in range(60):
+    led_strip[i] = (0, 0, 0)
+    led_strip.show()
+    time.sleep_ms(50)
+```
+
+这段代码会让灯带依次亮起红色，再依次熄灭。
+
+## 测试效果
+
+1. 在 Thonny 中点击运行按钮
+2. 观察灯带是否按预期亮起
+3. 如果效果正常，就可以保存到独角仙S1 中
+
+## 保存到设备
+
+1. 点击文件 → 保存
+2. 选择保存到"MicroPython 设备"
+3. 将文件保存到 `/apps/` 目录下
+4. 参照已有的 `config.json` 格式，在配置文件中添加新效果的入口
+
+## 参考资源
+
+- <Link to="./custom-api">自定义 API 文档</Link>
+- <Link to="./mpy-standard-api">MicroPython 标准 API</Link>
+- <Link to="./s1-hardware-programming">S1 硬件适配编程</Link>
+
+## 下一步
+
+编写完成后，可以参考<Link to="./package-share">打包分享</Link>教程，将你的效果分享给更多人。

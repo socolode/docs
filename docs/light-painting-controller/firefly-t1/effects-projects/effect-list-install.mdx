@@ -1,0 +1,55 @@
+---
+sidebar_position: 3
+sidebar_label: Effects & Installation
+title: "Firefly T1 - Effects & Installation Guide"
+description: "Firefly T1 effect library download and installation guide"
+keywords: ["Firefly T1", "Effect Library", "Effect Installation", "Download"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Effects & Installation Guide
+
+## Effect Library
+
+The effect library is an online spreadsheet with various light effects for Firefly T1. Visit the [Firefly T1 Effect Library](https://socolode.yuque.com/ogwgwg/xnlyru/ktn7g8bbx5d6wln6) to browse the full list and download links.
+
+## Installing Effects
+
+### 1. Download an Effect
+
+Open the effect library, choose a light effect and download it.
+
+### 2. Connect to Computer
+
+Connect Firefly T1 to your computer using a USB cable. After a few seconds, a new USB drive will appear.
+
+### 3. Add the Effect
+
+1. Drag the downloaded effect file into the `/apps` folder on the USB drive
+
+![Effect file](../assets/firefly-t1-09.png)
+
+### 4. Register the Effect
+
+1. Open `apps/config.json` on the USB drive with a text editor
+
+![config.json](../assets/firefly-t1-10.png)
+
+2. Add the new effect information to `config.json`
+
+![Config example](../assets/firefly-t1-11.png)
+
+Each effect entry includes:
+- `"name"`: Effect name
+- `"folder"`: Effect folder path
+- `"enabled"`: Whether the effect is enabled
+
+:::note
+- The `config.json` file must be updated for the effect to appear on the device
+- The order of entries determines the display order
+:::
+
+### 5. Launch the Effect
+
+After successful configuration, power on the Firefly T1, navigate with the joystick, and press the center button to launch your new effect!

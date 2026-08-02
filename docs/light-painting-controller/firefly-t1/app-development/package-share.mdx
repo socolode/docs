@@ -1,0 +1,64 @@
+---
+sidebar_position: 5
+sidebar_label: Package & Share
+title: "Firefly T1 - Package & Share Light Effects"
+description: "Package your Firefly T1 light effects and share them with others."
+keywords: ["Firefly T1", "Package", "Share", "Light Effect", "Icon"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Firefly T1 - Package & Share Light Effects
+
+After writing your light effect script, you can package it as an effect file for easy sharing with other users.
+
+## Preparation
+
+Before packaging, make sure your light script has been tested and works properly on Firefly T1.
+
+## Create an Effect Icon
+
+Create a preview icon for your light effect so other users can easily identify it on the device:
+
+![Create Effect Icon](../assets/firefly-t1-13.png)
+
+Icon requirements:
+- Format: PNG
+- Recommended size: 64×64 pixels
+- File name: Same as the effect folder name
+
+## Package the Effect Files
+
+Follow the demo effect's directory structure to package your script and icon together:
+
+![Package Effect](../assets/firefly-t1-12.png)
+
+Packaging steps:
+1. Create your effect folder under `/apps/`
+2. Place your light script file in it
+3. Add the effect icon file
+4. Update the `config.json` configuration file
+
+## Run on Device
+
+Upload the packaged effect to Firefly T1 and test it on the device:
+
+![Packaging Complete](../assets/firefly-t1-14.png)
+
+:::caution
+Make sure to disable the "Restart interpreter before running code" option in Thonny, otherwise the device may restart.
+:::
+
+## Share with the Community
+
+After packaging, feel free to share your work with the community:
+
+- Compress the effect files into a ZIP package
+- Include a description and screenshots
+- Share on community forums or social media
+
+## Next Step
+
+Want to learn more programming techniques? Check out:
+- <Link to="./custom-api">Custom API Documentation</Link>
+- <Link to="./mpy-standard-api">MicroPython Standard API</Link>
