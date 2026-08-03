@@ -71,10 +71,7 @@
     "message": "产品介绍",
     "description": "The label for category 'Product Introduction' in sidebar 'controllerSeries'"
   },
-  "sidebar.controllerSeries.category.Product Introduction.link.generated-index.description": {
-    "message": "这是什么、能做什么——产品介绍",
-    "description": "The generated-index page description for category 'Product Introduction' in sidebar 'controllerSeries'"
-  },
+  
   "sidebar.controllerSeries.category.Quick Start": {
     "message": "快速上手",
     "description": "The label for category 'Quick Start' in sidebar 'controllerSeries'"
@@ -90,6 +87,14 @@
   "sidebar.controllerSeries.category.Effects & Projects.link.generated-index.description": {
     "message": "兼容灯材、效果安装、创意玩法——玩转灯光创意",
     "description": "The generated-index page description for category 'Effects & Projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Creative Projects": {
+    "message": "创意玩法",
+    "description": "The label for category 'Creative Projects' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Creative Projects.link.generated-index.description": {
+    "message": "光绘摄影、时光环、桌面节奏灯——创意灯光玩法全攻略",
+    "description": "The generated-index page description for category 'Creative Projects' in sidebar 'controllerSeries'"
   },
   "sidebar.controllerSeries.category.App Development": {
     "message": "进阶开发",

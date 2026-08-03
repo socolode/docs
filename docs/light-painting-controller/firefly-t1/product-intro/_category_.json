@@ -2,7 +2,7 @@
   "label": "Product Introduction",
   "position": 1,
   "link": {
-    "type": "generated-index",
-    "description": "What it is, what it can do — Firefly T1 product introduction"
+    "type": "doc",
+    "id": "light-painting-controller/firefly-t1/product-intro/what-is-this"
   }
 }
