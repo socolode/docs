@@ -80,13 +80,13 @@
     "message": "开箱准备、基本操作、安装第一个效果——5分钟快速上手",
     "description": "The generated-index page description for category 'Quick Start' in sidebar 'controllerSeries'"
   },
-  "sidebar.controllerSeries.category.Effects & Projects": {
-    "message": "效果与玩法",
-    "description": "The label for category 'Effects & Projects' in sidebar 'controllerSeries'"
+  "sidebar.controllerSeries.category.Apps & Play": {
+    "message": "应用与玩法",
+    "description": "The label for category 'Apps & Play' in sidebar 'controllerSeries'"
   },
-  "sidebar.controllerSeries.category.Effects & Projects.link.generated-index.description": {
-    "message": "兼容灯材、效果安装、创意玩法——玩转灯光创意",
-    "description": "The generated-index page description for category 'Effects & Projects' in sidebar 'controllerSeries'"
+  "sidebar.controllerSeries.category.Apps & Play.link.generated-index.description": {
+    "message": "兼容灯材、应用安装、创意玩法——玩转灯光创意",
+    "description": "The generated-index page description for category 'Apps & Play' in sidebar 'controllerSeries'"
   },
   "sidebar.controllerSeries.category.Creative Projects": {
     "message": "创意玩法",
@@ -119,6 +119,14 @@
   "sidebar.controllerSeries.category.Help & Community.link.generated-index.description": {
     "message": "常见问题、社区联系——帮助与支持",
     "description": "The generated-index page description for category 'Help & Community' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Product Materials": {
+    "message": "产品资料",
+    "description": "The label for category 'Product Materials' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.Product Materials.link.generated-index.description": {
+    "message": "产品手册、数据手册——萤火虫T1 的产品规格与技术资料",
+    "description": "The generated-index page description for category 'Product Materials' in sidebar 'controllerSeries'"
   },
   "sidebar.controllerSeries.category.LightCoding": {
     "message": "光码系列",

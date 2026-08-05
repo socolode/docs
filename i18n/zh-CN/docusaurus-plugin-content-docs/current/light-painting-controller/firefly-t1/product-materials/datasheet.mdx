@@ -1,0 +1,97 @@
+---
+sidebar_position: 2
+sidebar_label: 数据手册
+title: "萤火虫T1 数据手册 - Socolode 技术规格"
+description: "萤火虫T1 数据手册：电子电气特性、管脚映射、5P-PIN 接口定义与 PIN 引脚映射表等完整技术资料。"
+keywords: ["萤火虫T1", "Firefly T1", "数据手册", "Datasheet", "管脚映射", "5P-PIN", "电气特性"]
+---
+
+# 数据手册
+
+## 电子电气特性
+
+| 特性 | 描述 |
+|------|------|
+| 输入电压 | 5V DC |
+| 输入电流 | 2A |
+| 输出电压 | 5V DC |
+| 输出电流 | MAX 2.5A |
+| 电源接口 | TYPE-C USB |
+| 电源类型 | 内置 18650 锂电池 / USB 口外接 5V 供电 |
+| 电池保护 | 反接保护、过充保护、过放保护 |
+| PIN 引脚电压 | TTL 电平 3.3V |
+
+## 管脚映射
+
+### 外设映射表
+
+| GPIO | 功能 |
+|------|------|
+| GPIO0 | 五向按键 RIGHT |
+| GPIO1 | SCL（麦克风 / 加速度&地磁传感器 / 电源管理） |
+| GPIO2 | SDA（麦克风 / 加速度&地磁传感器 / 电源管理） |
+| GPIO3 | INT（麦克风 / 加速度&地磁传感器） |
+| GPIO6 | LCD SDA |
+| GPIO7 | LCD SCL |
+| GPIO8 | LCD RS |
+| GPIO9 | LCD RES |
+| GPIO10 | LCD CS |
+| GPIO11 | LCD BL |
+| GPIO12 | 蜂鸣器 IN |
+| GPIO18 | 五向按键 UP |
+| GPIO40 | 电源管理 SCK |
+| GPIO41 | 电源管理 SD |
+| GPIO44 | 五向按键 CENTRE（中） |
+| GPIO45 | 五向按键 DOWN |
+| GPIO46 | 五向按键 LEFT |
+
+主要外设对应关系：
+
+| 外设 | 型号 | 说明 |
+|------|------|------|
+| 麦克风 | SPM1423HM4H-B | 数字麦克风 |
+| 显示屏 | ST7789 | 1.14 寸彩色 TFT LCD |
+| 加速度&地磁传感器 | BMI270 & BMM150 | 九轴惯性测量 |
+| 电源管理 | SW6106 | PMU 电源管理 |
+| 蜂鸣器 | 无源 SMD | 无源蜂鸣器 |
+
+## PIN 接口映射表
+
+### 5P-PIN（上）
+
+| 引脚 | 功能 | 控制端口 |
+|------|------|----------|
+| PIN1 | VCC 输出（5V） | GPIO43（高阻态关断，低电平接通） |
+| PIN2 | GPIO | GPIO14 |
+| PIN3 | GND | 直连 GND |
+| PIN4 | - | - |
+| PIN5 | GPIO | GPIO13 |
+
+:::note 注意
+显示屏面为“正面”，5P-PIN 的顺序为正面“从左往右”。
+:::
+
+### 5P-PIN（左侧）
+
+| 引脚 | 功能 | 控制端口 |
+|------|------|----------|
+| PIN1 | VCC 输出（5V） | GPIO43（高阻态关断，低电平接通） |
+| PIN2 | GND | 直连 GND |
+| PIN3 | GPIO | GPIO42 |
+| PIN4 | GPIO | GPIO15 |
+| PIN5 | GPIO | GPIO16 |
+
+:::note 注意
+显示屏面为“正面”，5P-PIN 的顺序为正面“从上往下”。
+:::
+
+## 原理图
+
+如需原理图，请联系我们获取。
+
+## 开发资料
+
+芯片手册、参考资料等开发资料：
+
+- 下载链接：https://pan.baidu.com/s/1OmxvygI7yPeuGEKa7StyQw
+- 提取码：`a0uv`

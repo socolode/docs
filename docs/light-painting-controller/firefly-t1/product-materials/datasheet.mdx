@@ -1,0 +1,97 @@
+---
+sidebar_position: 2
+sidebar_label: Data Manual
+title: "Firefly T1 Data Manual - Socolode Technical Specification"
+description: "Firefly T1 data manual: electrical characteristics, pin mapping, 5P-PIN interface definitions, and PIN mapping tables with complete technical details."
+keywords: ["Firefly T1", "Firefly T1 Datasheet", "pin mapping", "5P-PIN", "electrical characteristics", "Socolode"]
+---
+
+# Data Manual
+
+## Electrical Characteristics
+
+| Characteristic | Description |
+|----------------|-------------|
+| Input Voltage | 5V DC |
+| Input Current | 2A |
+| Output Voltage | 5V DC |
+| Output Current | MAX 2.5A |
+| Power Interface | TYPE-C USB |
+| Power Source | Built-in 18650 Li-ion battery / external 5V via USB |
+| Battery Protection | Reverse-polarity, over-charge, and over-discharge protection |
+| PIN Voltage | TTL level 3.3V |
+
+## Pin Mapping
+
+### Peripheral Mapping
+
+| GPIO | Function |
+|------|----------|
+| GPIO0 | 5-way joystick RIGHT |
+| GPIO1 | SCL (microphone / accelerometer & magnetometer / PMU) |
+| GPIO2 | SDA (microphone / accelerometer & magnetometer / PMU) |
+| GPIO3 | INT (microphone / accelerometer & magnetometer) |
+| GPIO6 | LCD SDA |
+| GPIO7 | LCD SCL |
+| GPIO8 | LCD RS |
+| GPIO9 | LCD RES |
+| GPIO10 | LCD CS |
+| GPIO11 | LCD BL |
+| GPIO12 | Buzzer IN |
+| GPIO18 | 5-way joystick UP |
+| GPIO40 | PMU SCK |
+| GPIO41 | PMU SD |
+| GPIO44 | 5-way joystick CENTRE |
+| GPIO45 | 5-way joystick DOWN |
+| GPIO46 | 5-way joystick LEFT |
+
+Peripheral mapping overview:
+
+| Peripheral | Model | Description |
+|------------|-------|-------------|
+| Microphone | SPM1423HM4H-B | Digital microphone |
+| Display | ST7789 | 1.14-inch color TFT LCD |
+| Accelerometer & Magnetometer | BMI270 & BMM150 | 9-axis inertial measurement |
+| Power Management | SW6106 | PMU power management |
+| Buzzer | Passive SMD | Passive buzzer |
+
+## PIN Interface Mapping
+
+### 5P-PIN (Top)
+
+| Pin | Function | Control Port |
+|-----|----------|--------------|
+| PIN1 | VCC output (5V) | GPIO43 (high-impedance off, low-level on) |
+| PIN2 | GPIO | GPIO14 |
+| PIN3 | GND | Direct GND |
+| PIN4 | - | - |
+| PIN5 | GPIO | GPIO13 |
+
+:::note
+The display side is the "front". The 5P-PIN order is "from left to right" when viewed from the front.
+:::
+
+### 5P-PIN (Left)
+
+| Pin | Function | Control Port |
+|-----|----------|--------------|
+| PIN1 | VCC output (5V) | GPIO43 (high-impedance off, low-level on) |
+| PIN2 | GND | Direct GND |
+| PIN3 | GPIO | GPIO42 |
+| PIN4 | GPIO | GPIO15 |
+| PIN5 | GPIO | GPIO16 |
+
+:::note
+The display side is the "front". The 5P-PIN order is "from top to bottom" when viewed from the front.
+:::
+
+## Schematic
+
+Please contact us for the schematic diagram.
+
+## Development Resources
+
+Chip manuals, reference materials, and other development resources:
+
+- Download link: https://pan.baidu.com/s/1OmxvygI7yPeuGEKa7StyQw
+- Extraction code: `a0uv`

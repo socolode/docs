@@ -1,0 +1,57 @@
+---
+sidebar_position: 3
+sidebar_label: App Installation
+title: "Firefly T1 - App Installation Guide"
+description: "Firefly T1 app library download and installation guide"
+keywords: ["Firefly T1", "App Library", "App Installation", "Download"]
+---
+
+import Link from '@docusaurus/Link';
+
+# App Installation
+
+The official app library is continuously updated with new and fun apps, helping you expand the capabilities of Firefly T1. It's designed for photography enthusiasts and players — no programming required, just download a ready-made app and get started.
+
+## App Library
+
+The app library is an online spreadsheet with various light apps for Firefly T1. Visit the [Firefly T1 App Library](https://socolode.yuque.com/ogwgwg/xnlyru/ktn7g8bbx5d6wln6) to browse the full list and download links.
+
+## Installing Apps
+
+### 1. Download an App
+
+Open the app library, choose a light app and download it.
+
+### 2. Connect to Computer
+
+Connect Firefly T1 to your computer using a USB cable. After a few seconds, a new USB drive will appear.
+
+### 3. Add the App
+
+1. Drag the downloaded app file into the `/apps` folder on the USB drive
+
+![App file](../assets/firefly-t1-09.png)
+
+### 4. Register the App
+
+1. Open `apps/config.json` on the USB drive with a text editor
+
+![config.json](../assets/firefly-t1-10.png)
+
+2. Add the new app information to `config.json`
+
+![Config example](../assets/firefly-t1-11.png)
+
+Each app entry includes:
+- `"name"`: App name
+- `"folder"`: App folder path
+- `"enabled"`: Whether the app is enabled
+
+:::note
+- The `config.json` file must be updated for the app to appear on the device
+- The order of entries determines the display order
+:::
+
+### 5. Launch the App
+
+After successful configuration, power on the Firefly T1, navigate with the joystick, and press the center button to launch your new app!
