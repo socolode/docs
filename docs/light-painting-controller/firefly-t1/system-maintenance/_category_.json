@@ -1,8 +1,0 @@
-{
-  "label": "System Maintenance",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Firmware update, system flashing, factory reset — Firefly T1 maintenance guide"
-  }
-}

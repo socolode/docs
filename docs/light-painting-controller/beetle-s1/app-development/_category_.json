@@ -1,9 +1,0 @@
-{
-  "label": "App Development",
-  "position": 4,
-  "key": "beetle-s1-app-development",
-  "link": {
-    "type": "generated-index",
-    "description": "Environment setup, writing your first script, S1 hardware programming - from beginner to advanced"
-  }
-}

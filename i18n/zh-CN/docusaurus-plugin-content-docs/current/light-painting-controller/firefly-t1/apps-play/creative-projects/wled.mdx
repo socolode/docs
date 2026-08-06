@@ -1,0 +1,47 @@
+---
+sidebar_position: 4
+sidebar_label: WLED（即将支持）
+title: "萤火虫T1 WLED 功能 — 即将支持"
+description: "萤火虫T1 即将支持 WLED 开源 LED 控制固件，敬请期待"
+keywords: ["萤火虫T1", "Firefly T1", "WLED", "开源固件", "LED 控制", "ESP32"]
+---
+
+import Link from '@docusaurus/Link';
+
+# WLED
+
+:::note 功能状态
+🚧 本功能正在开发中，尚未正式集成到萤火虫T1 系统中。本文档为预留占位，更新进度请关注官方通知。
+:::
+
+## 什么是 WLED
+
+**WLED** 是一个非常流行的开源 LED 控制固件（运行在 ESP32 / ESP8266 等芯片上），被全球 DIY 玩家广泛使用，是地址码 LED 社区事实上的标准工具。它拥有：
+
+- **200+ 内置动画效果** — 经典动画、音频响应、2D 矩阵特效等
+- **分段控制** — 把一条 LED 灯带拆成多段，每段独立颜色和效果
+- **预设与播放列表** — 一键切换场景，支持定时/触发切换
+- **网页 UI + 手机 App** — 无需写代码，手机/电脑浏览器就能调颜色、选效果
+- **多种协议接入** — 原生支持 E1.31 (sACN) / Art-Net / DDP / MQTT / Home Assistant
+- **社区庞大** — 自定义效果（Usermods）、教程、第三方控制器非常多
+
+## 萤火虫T1 接入 WLED 后能做什么
+
+完成集成后，你可以在萤火虫T1 上使用 WLED 的完整生态，例如：
+
+- 直接通过 WLED 的网页界面 / 手机 App 实时调色、切换效果
+- 接入智能家居系统（Home Assistant、小爱同学、HomeKit 等）
+- 作为 DMX/E1.31 像素节点，被专业灯光软件（xLights、Jinx!、Vixen 等）控制
+- 音频响应效果、预设播放列表、分段混合叠加等高级玩法
+
+## 目前可用方案
+
+如果你现在就想体验 WLED 功能：
+
+1. **等待萤火虫T1 官方固件更新** — 我们正在开发，会第一时间在官方资源仓库发布
+2. **使用萤火虫T1 自带的效果库** — 资源仓库中已经有大量灯光效果，持续更新中，覆盖大多数日常玩法：<Link to="../app-list-install">应用安装</Link>
+
+## 关注更新
+
+- 官方资源仓库：[萤火虫T1 官方资源仓库 · GitHub](https://github.com/socolode/firefly-t1)
+- 联系社区获取最新动态：<Link to="../../../help-community/community-contact">帮助与社区</Link>

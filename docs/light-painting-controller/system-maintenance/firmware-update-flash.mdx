@@ -1,0 +1,58 @@
+---
+sidebar_position: 1
+sidebar_label: Firmware Update & Flash
+title: "Firefly T1 - Firmware Update & System Flashing"
+description: "Complete guide to checking, downloading, and flashing Firefly T1 firmware"
+keywords: ["Firefly T1", "Firmware Update", "Firmware Flash", "System Flashing", "Thonny"]
+---
+
+import Link from '@docusaurus/Link';
+
+# Firmware Update & System Flashing
+
+## Check Firmware Version
+
+On power-up, the current firmware version is displayed on the home screen. If you encounter issues or want to try new features, consider updating the firmware.
+
+## Firmware Download
+
+Latest firmware files are hosted in the official GitHub repository, organized by release channel:
+
+[Firefly T1 Firmware Directory · GitHub](https://github.com/socolode/firefly-t1/tree/main/firmware)
+
+- `firmware/stable/` – Stable releases (recommended for everyday use)
+- `firmware/beta/` – Beta releases (includes new features, may be unstable)
+
+## Update Steps
+
+### Method 1: Flash via Thonny
+
+1. Install Thonny IDE
+2. Download the appropriate `.uf2` firmware file from the directory above
+3. Flashing steps:
+   - Power off, hold the joystick "right" button
+   - Connect USB to computer
+   - Open Thonny and configure the interpreter
+   - Click "Install/Update MicroPython"
+   - Select the firmware file and COM port
+
+![Thonny Flash](../firefly-t1/assets/firefly-t1-12.png)
+
+![Flash Settings](../firefly-t1/assets/firefly-t1-15.png)
+
+### Method 2: Flash via Command Line
+
+1. Open command line (Thonny Tools -> Open System Shell)
+2. Enter the flash command
+
+![Command Line Flash](../firefly-t1/assets/firefly-t1-16.png)
+
+:::caution
+If the COM port is not detected, you may have forgotten to hold the "boot" button while connecting USB.
+:::
+
+## Update Tips
+
+- Ensure battery is sufficiently charged before updating
+- Use the latest stable firmware unless you need specific features
+- You can revert to a previous version if needed

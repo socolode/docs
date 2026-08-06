@@ -1,0 +1,8 @@
+{
+  "label": "系统维护",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "固件更新、系统刷写、恢复出厂设置——萤火虫T1 系统维护指南"
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "label": "System Maintenance",
-  "position": 5,
-  "key": "beetle-s1-system-maintenance",
-  "link": {
-    "type": "generated-index",
-    "description": "Firmware updates, system flashing, factory reset - Beetle S1 maintenance guide"
-  }
-}
