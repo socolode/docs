@@ -87,7 +87,7 @@ export default function FirmwareFlasherPage() {
           </div>
         ) : (
           <iframe
-            srcDoc={html}
+            src={config.toolURL}
             title={config.iframeTitle}
             style={{
               width: '100%',
@@ -95,8 +95,6 @@ export default function FirmwareFlasherPage() {
               border: 'none',
               display: 'block',
             }}
-            sandbox="allow-scripts allow-downloads allow-same-origin allow-forms allow-popups allow-modals"
-            allow="clipboard-read; clipboard-write; serial"
           />
         )}
       </div>
