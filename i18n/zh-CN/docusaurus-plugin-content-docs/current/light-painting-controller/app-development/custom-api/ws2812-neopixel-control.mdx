@@ -1,0 +1,177 @@
+---
+sidebar_position: 7
+sidebar_label: "WS2812 LED 控制（neopixel）"
+title: "萤火虫T1 WS2812 LED 控制教程（neopixel）- Socolode 光绘开发"
+description: "萤火虫T1 开发板扩展接口驱动 WS2812 系列 RGB 炫彩灯的完整教程：电源初始化、GPIO43 控制 P-MOS、neopixel 库使用、点亮灯珠、完整代码示例及 AI 编程模板。"
+keywords: ["萤火虫T1", "Firefly T1", "WS2812", "neopixel", "RGB LED", "炫彩灯", "扩展接口", "GPIO43", "LED 控制", "MicroPython"]
+---
+
+# WS2812 LED 控制（neopixel）
+
+## 概述
+
+本文旨在介绍如何利用萤火虫T1开发板的**扩展接口**，结合 `neopixel` 库，实现对 WS2812 系列 RGB 炫彩灯的精确控制与应用。
+
+### 硬件准备
+
+需准备以下硬件组件：
+
+- **萤火虫T1主机**：作为核心控制器，提供计算与接口支持。
+- **5Pin 端子**：用于连接信号线与电源线，确保电路连接的稳定性。
+- **5V WS2812 炫彩灯珠或灯条**：可选用符合 WS2812 规格的灯珠或灯条，具体数量和长度可根据实际需求调整。
+
+### 软件准备
+
+炫彩灯的控制基于 `neopixel` 库完成，但在正式使用前，需对系统电源进行初始化配置。具体步骤如下：
+
+1. **电源管理模块配置**
+
+   通过萤火虫T1的[电源管理（pm）API](./power-management.mdx)，将 VCC 设置为「输出」模式，并配置其输出电压为 5V，以满足 WS2812 灯珠的供电需求。
+
+2. **GPIO 引脚电平控制**
+
+   将 GPIO43 引脚配置为「低电平」，以导通外部 P-MOS 管的控制电路。此操作将 VCC 的 5V 电压接入 PIN 引脚。
+
+## 应用示例
+
+### 电源初始化
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+```
+
+### 初始化 neopixel
+
+```python
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+```
+
+### 点亮 WS2812 LED 灯
+
+在 `neopixel` 库中，`np[i]` 用来控制第 `i` 个灯珠的颜色，使用方法如下：
+
+```python
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+### 完整程序
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+
+
+
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+**说明**：
+
+- `np[i] = (R, G, B)`：设置第 `i` 个灯珠的颜色，`R, G, B` 是红、绿、蓝的亮度值，范围 0-255。
+- `np.write()`：将设置的颜色发送到灯珠，所有更改才会生效。
+
+这样，你可以通过 `np[i]` 单独控制每一颗灯珠的颜色！
+
+## AI 编程
+
+### API 代码模板
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+
+
+
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+### 提问格式
+
+1. **提供代码模板**：直接发送代码模板。
+2. **明确需求**：清晰描述需要的功能点，越具体越好。
+3. **期望的输出或行为**：比如运行结果、变化响应等。
+
+### 举例提问
+
+:::info
+帮我编写一段运行在萤火虫T1上的 MicroPython 代码：
+
+- **硬件说明：**
+  - WS2812 灯带，数量 60 颗
+  - 数据线连接在 PIN5（即引脚编号 13）
+- **功能需求：**
+  - 以彩虹渐变色填充整个灯带
+  - 每颗灯珠的颜色不同，形成平滑过渡效果
+  - 灯带点亮后持续显示，不需要循环动画
+- **注意事项：**
+  - 包含电源初始化（VCC输出、GPIO43 控制 P-MOS）
+  - 使用 `neopixel` 库实现控制
+  - 代码请直接完整提供，可以复制运行
+- **期望效果：**
+  - 所有灯珠均点亮，呈现出彩虹色渐变
+:::

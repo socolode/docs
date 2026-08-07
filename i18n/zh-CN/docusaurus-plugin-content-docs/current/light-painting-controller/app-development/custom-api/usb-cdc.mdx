@@ -1,0 +1,81 @@
+---
+sidebar_position: 1
+sidebar_label: USB串口控制（CDC）
+title: "萤火虫T1 USB串口控制（CDC）教程 - Socolode 光绘开发"
+description: "学习如何使用萤火虫T1的USB-CDC串口通信功能，实现电脑与设备之间的指令控制和数据传输，无需驱动即可连接。"
+keywords: ["萤火虫T1", "Firefly T1", "USB串口控制", "CDC", "串口通信", "MicroPython", "ESP32-S3"]
+---
+
+# USB串口控制（CDC）
+
+萤火虫T1的 Type-C USB 接口默认集成了 **MSC（Mass Storage Class）** 和 **USB-CDC（Communication Device Class）** 功能，可同时实现 U 盘存储与串口通信的功能。通过数据线将设备连接至计算机后，系统会自动识别并生成一个 U 盘设备以及一个串口设备。
+
+## 简介
+
+本文重点介绍 **USB-CDC** 功能，即 USB 串口通信能力。借助该功能，用户无需安装任何驱动程序或额外组件，仅需通过 USB 数据线连接萤火虫T1与计算机，即可实现两者之间的直接通信，操作简便高效。
+
+![萤火虫T1 USB-CDC 串口接口示意图](./assets/usb-cdc-interface.png)
+
+## 应用场景
+
+- **指令控制**：用户可通过计算机端运行“串口助手”工具，向萤火虫T1发送数据或控制命令，从而实现对设备的实时操控。
+- **数据传输**：萤火虫T1采集的数据可通过串口通信直接上传至计算机，便于后续分析与处理。
+
+## 应用示例
+
+### 1. 电脑发送命令给萤火虫T1
+
+**API：**
+
+```python
+import sys
+
+cmd = sys.stdin.readline().strip()
+```
+
+**说明：**
+
+- 电脑端（串口助手）发送一行数据，ESP32-S3 通过 `sys.stdin.readline()` 读取。
+- 读取到的 `cmd` 是一个字符串，去掉了换行符。
+
+**示例：**
+
+```python
+import sys
+
+while True:
+    cmd = sys.stdin.readline().strip()
+    print("收到命令：", cmd)
+```
+
+### 2. 萤火虫T1上传数据给电脑
+
+**API：**
+
+**说明：**
+
+- ESP32-S3 通过 `sys.stdout.write()` 或 `print()` 向电脑发送数据。
+- 电脑端串口助手即可收到这些数据。
+
+**示例：**
+
+:::note
+通过 `print()` 或 `sys.stdout.write()` 即可向上位机发送数据，串口助手会实时显示接收到的内容。
+:::
+
+## AI 编程
+
+因为 USB-CDC 功能是常规功能，所以无需特意学习，直接交给 AI 生成想要的功能，然后再自己进行一定的修改调试即可！
+
+### 通用提示词模板
+
+> 帮我编写一段 MicroPython 代码，运行在 ESP32-S3 上，通过 USB-CDC 串口通信实现以下功能：
+>
+> - **功能需求：**
+>   - 电脑通过串口发送命令（如：LED ON、LED OFF）
+>   - 设备接收命令并控制 GPIO（比如 GPIO2 控制 LED 灯）
+>   - 设备定时（每秒）上传一段模拟传感器数据到电脑
+> - **额外要求（可选）：**
+>   - 代码要有异常处理，防止串口断开时程序崩溃
+>   - 逻辑要清晰，便于扩展
+>   - 提供完整代码，不要伪代码

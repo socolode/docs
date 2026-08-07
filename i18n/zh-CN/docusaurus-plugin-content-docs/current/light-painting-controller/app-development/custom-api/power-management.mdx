@@ -1,0 +1,158 @@
+---
+sidebar_position: 3
+sidebar_label: 电源管理(pm)
+title: "萤火虫T1 电源管理(pm) API - Socolode 光绘开发"
+description: "萤火虫T1 电源管理模块 API 参考，适配 SW6106 芯片，支持电源状态控制、充电状态读取、电池电量读取、休眠控制等功能。"
+keywords: ["萤火虫T1", "Firefly T1", "电源管理", "pm", "SW6106", "电池电量", "休眠"]
+---
+
+# 电源管理(pm)
+
+## 模块简介
+
+该模块用于电源管理，适配 SW6106 芯片，支持电源状态控制、充电状态读取、电池电量读取、芯片温度读取、休眠控制等功能。
+
+## 常量定义
+
+| 常量 | 含义 |
+| --- | --- |
+| `pm.IDLE` | 空闲状态 (PM_STATE_IDLE) |
+| `pm.VCC_OUTPUT` | VCC供电输出 (PM_STATE_VCC_OUTPUT) |
+| `pm.USB_OUTPUT` | USB供电输出 (PM_STATE_USB_OUTPUT) |
+| `pm.SLEEP` | 休眠状态 (PM_STATE_SLEEP) |
+
+## 方法列表
+
+### 1. `pm.init()`
+
+初始化电源管理模块。必须在其他调用之前先初始化一次。重复调用无副作用。
+
+```python
+pm.init()
+```
+
+### 2. `pm.set_power_state(state: int)`
+
+设置当前电源状态。参数为上述常量之一。
+
+```python
+pm.set_power_state(pm.VCC_OUTPUT)
+```
+
+**参数说明：**
+
+- `pm.IDLE`
+- `pm.VCC_OUTPUT`
+- `pm.USB_OUTPUT`
+- `pm.SLEEP`
+
+### 3. `pm.poll()`
+
+电源管理定期轮询函数。
+内部根据当前 power_state 做对应的输出控制（用于自动切换供电模式）。
+建议定时调用。
+
+```python
+pm.poll()
+```
+
+### 4. `pm.sleep() -> str`
+
+进入休眠模式。充电时无法休眠。返回休眠结果字符串：
+
+- `"no sleep"`：充电中，无法休眠
+- `"go to sleep"`：成功进入休眠
+
+```python
+result = pm.sleep()
+print(result)
+```
+
+### 5. `pm.get_system_status() -> int`
+
+返回 SW6106 芯片寄存器 `0x11` 的系统状态值（原始值）。
+
+```python
+status = pm.get_system_status()
+```
+
+### 6. `pm.get_charging_status() -> int`
+
+读取当前充电状态：
+
+- `0`：未充电
+- `1`：正在充电
+
+```python
+charging = pm.get_charging_status()
+```
+
+### 7. `pm.get_4D_status() -> int`
+
+读取电池电量百分比（百分比数值直接返回）。
+
+```python
+percent = pm.get_4D_status()
+print(percent, "%")
+```
+
+### 8. `pm.get_4E_status() -> int`
+
+读取芯片 `0x4E` 寄存器内容（通常用于电量评估内部状态）。
+
+```python
+value = pm.get_4E_status()
+```
+
+### 9. `pm.get_4F_status() -> int`
+
+读取芯片 `0x4F` 寄存器内容（也可表示电量百分比，与 `get_4D_status()` 通常略有不同）。
+
+```python
+percent = pm.get_4F_status()
+```
+
+### 10. `pm.get_chip_temperature() -> float`
+
+读取芯片内部温度（单位：摄氏度，内部通过寄存器换算得出）。
+
+```python
+temp = pm.get_chip_temperature()
+print(temp, "°C")
+```
+
+### 11. `pm.refresh_power_percent() -> int`
+
+强制刷新电量百分比（使用 SW6106 内部模拟供电切换算法，重新计算电量百分比）。
+
+```python
+new_percent = pm.refresh_power_percent()
+```
+
+建议在充电状态变化后手动调用，能获取更准确的剩余电量。
+
+:::warning 注意事项
+- 所有 API 都需在 `pm.init()` 后调用，否则无效。
+- `pm.poll()` 建议周期性调用，以便根据充电状态自动切换供电输出。
+- `pm.sleep()` 会执行芯片休眠动作，但充电中不会休眠。
+- 电量百分比推荐使用 `get_4D_status()`，`get_4F_status()`、`refresh_power_percent()` 可用于校准。
+:::
+
+## 示例代码
+
+```python
+import pm
+import time
+
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+while True:
+    pm.poll()
+    percent = pm.get_4D_status()
+    charging = pm.get_charging_status()
+    temp = pm.get_chip_temperature()
+
+    print("电量:", percent, "% 充电中:", charging, "温度:", temp, "°C")
+    time.sleep(5)
+```

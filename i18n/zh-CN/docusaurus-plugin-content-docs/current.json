@@ -104,6 +104,14 @@
     "message": "环境搭建、编写灯光程序、打包分享——从入门到进阶",
     "description": "The generated-index page description for category 'App Development' in sidebar 'controllerSeries'"
   },
+  "sidebar.controllerSeries.category.custom-api": {
+    "message": "自定义API",
+    "description": "The label for category 'custom-api' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.custom-api.link.generated-index.description": {
+    "message": "萤火虫T1 自定义API 参考文档，包括 USB 串口控制（CDC）、拓展接口、电源管理等",
+    "description": "The generated-index page description for category 'custom-api' in sidebar 'controllerSeries'"
+  },
   "sidebar.controllerSeries.category.System Maintenance": {
     "message": "系统维护",
     "description": "The label for category 'System Maintenance' in sidebar 'controllerSeries'"

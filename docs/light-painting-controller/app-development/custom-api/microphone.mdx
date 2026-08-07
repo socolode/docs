@@ -1,0 +1,85 @@
+---
+sidebar_position: 4
+sidebar_label: Microphone (mic)
+title: "Firefly T1 Microphone (mic) API - Socolode Light Development"
+description: "Firefly T1 PDM microphone module API reference, based on the I2S_PDM driver. Supports initialization, data reading, release, and simple audio statistics analysis."
+keywords: ["Firefly T1", "Microphone", "mic", "PDM", "I2S", "Audio Capture"]
+---
+
+# Microphone (mic)
+
+This module controls PDM microphone capture, based on the I2S_PDM driver. It supports initialization, data reading, release, and simple audio statistics analysis.
+
+## Methods
+
+### 1. `mic.init(sample_rate, bit_width, slot_mode, buff_size)`
+
+**Function:** Initialize microphone capture, fixed to use GPIO40 (clock) and GPIO41 (data input).
+
+**Arguments:**
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| sample_rate | int | Sample rate (e.g. 16000, 44100, etc.) |
+| bit_width | int | Bit width (usually 16) |
+| slot_mode | int | Slot mode (mono or stereo configuration, matching your driver definition) |
+| buff_size | int | Buffer size (in bytes) |
+
+**Example:**
+
+```python
+import mic
+
+mic.init(16000, 16, 1, 4096)
+```
+
+### 2. `mic.read_data(buffer) -> int`
+
+**Function:** Read audio data from PDM and write it into the passed buffer.
+
+**Arguments:**
+
+- `buffer`: a bytearray that must be pre-allocated with sufficient size, not smaller than buff_size.
+
+**Return value:**
+
+- The actual number of bytes read (int)
+
+**Note:**
+
+- The buffer length must be greater than or equal to the buff_size set during initialization.
+- Calling it before initialization will raise an exception.
+
+### 3. `mic.release()`
+
+**Function:** Release microphone resources and close I2S PDM.
+
+### 4. `mic.calculate_stats() -> dict`
+
+**Function:** Automatically reads one frame of data from PDM and calculates its maximum, minimum, and average values.
+
+**Return value:**
+
+- A dictionary containing:
+  - `max`: maximum sample value (int16)
+  - `min`: minimum sample value (int16)
+  - `avg`: average sample value (int16)
+
+**Note:**
+
+- It automatically allocates and releases the buffer internally;
+- Calling it before initialization will raise an exception.
+
+## Usage Example
+
+Combined with `calculate_stats()`, you can easily implement volume detection or sound energy analysis.
+
+:::warning Notes
+- GPIOs are fixed at initialization:
+  - Clock CLK_IO = 40
+  - Data DIN_IO = 41
+- Each initialization overwrites the previous configuration;
+- You must call `mic.init()` before calling other methods;
+- `calculate_stats()` is suitable for simple volume detection and sound energy analysis.
+- Calling other methods before initialization will raise an exception.
+:::

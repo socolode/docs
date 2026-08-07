@@ -1,0 +1,82 @@
+---
+sidebar_position: 5
+sidebar_label: 蜂鸣器(beep)
+title: "萤火虫T1 蜂鸣器(beep) API - Socolode 光绘开发"
+description: "萤火虫T1 蜂鸣器模块 API 参考，使用 ESP32 硬件 PWM（LEDC）实现频率控制发声，支持定时停止、停止、释放等功能。"
+keywords: ["萤火虫T1", "Firefly T1", "蜂鸣器", "beep", "PWM", "LEDC", "声音"]
+---
+
+# 蜂鸣器(beep)
+
+该模块用于控制蜂鸣器发声，使用 ESP32 硬件 PWM (LEDC) 实现频率控制发声，并支持定时停止、停止、释放等功能。
+
+- 固定蜂鸣器连接在 GPIO12
+
+## 方法列表
+
+### 1. `beep.init()`
+
+**功能：** 初始化蜂鸣器模块。首次调用前需初始化。若未手动调用，`beep.tone()` 内部也会自动调用。
+
+**示例：**
+
+```python
+import beep
+
+beep.init()
+```
+
+### 2. `beep.tone(freq, duration_ms)`
+
+**功能：** 蜂鸣器发声。以指定频率（Hz）发出声音，并在持续指定时间（ms）后自动停止。
+
+**参数：**
+
+| 参数名 | 类型 | 说明 |
+|--------|------|------|
+| freq | int | 发声频率（单位：Hz） |
+| duration_ms | int | 持续时间（单位：毫秒） |
+
+**示例：**
+
+```python
+import beep
+
+beep.tone(1000, 500)  # 发出 1000Hz 声音持续500ms
+```
+
+### 3. `beep.stop()`
+
+**功能：** 立即停止蜂鸣器发声（手动停止，不管定时器是否还在倒计时）。
+
+### 4. `beep.deinit()`
+
+**功能：** 释放蜂鸣器资源，停止 PWM、删除定时器。再次使用前需重新初始化。
+
+## 简单使用示例
+
+初始化后，调用 `tone()` 即可发声，达到持续时间后自动停止：
+
+```python
+import beep
+
+beep.init()
+beep.tone(1000, 500)  # 发出 1000Hz 声音持续500ms
+```
+
+:::warning 注意事项
+- 蜂鸣器引脚固定在 GPIO12。
+- 每次发声调用会更新频率和定时器。
+- 若 `tone()` 前未调用 `init()`，模块会自动初始化。
+- 不支持重入：请等待上一次 `tone()` 执行结束后再发出新的音调，否则可能有覆盖行为。
+- 采用硬件 PWM，精度较高，频率支持范围广。
+:::
+
+## 模块硬件参数
+
+| 参数 | 值 |
+|------|-----|
+| GPIO | 12 |
+| PWM Timer | LEDC_TIMER_1 |
+| PWM Channel | LEDC_CHANNEL_1 |
+| Duty | 50%（内部固定 512 / 1024） |

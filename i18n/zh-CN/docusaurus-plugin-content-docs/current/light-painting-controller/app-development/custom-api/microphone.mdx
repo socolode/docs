@@ -1,0 +1,85 @@
+---
+sidebar_position: 4
+sidebar_label: 麦克风(mic)
+title: "萤火虫T1 麦克风(mic) API - Socolode 光绘开发"
+description: "萤火虫T1 PDM 麦克风模块 API 参考，基于 I2S_PDM 驱动，支持初始化、数据读取、释放以及音频统计分析功能。"
+keywords: ["萤火虫T1", "Firefly T1", "麦克风", "mic", "PDM", "I2S", "音频采集"]
+---
+
+# 麦克风(mic)
+
+该模块用于控制 PDM 麦克风的采集，基于 I2S_PDM 驱动，支持初始化、数据读取、释放、以及简单的音频统计分析功能。
+
+## 方法列表
+
+### 1. `mic.init(sample_rate, bit_width, slot_mode, buff_size)`
+
+**功能：** 初始化麦克风采集，固定使用 GPIO40（时钟）和 GPIO41（数据输入）。
+
+**参数：**
+
+| 参数名 | 类型 | 说明 |
+|--------|------|------|
+| sample_rate | int | 采样率（如 16000、44100 等） |
+| bit_width | int | 位宽（通常为 16） |
+| slot_mode | int | 槽位模式（单声道或双声道配置，与你的驱动定义一致） |
+| buff_size | int | 缓冲区大小（单位：字节） |
+
+**示例：**
+
+```python
+import mic
+
+mic.init(16000, 16, 1, 4096)
+```
+
+### 2. `mic.read_data(buffer) -> int`
+
+**功能：** 从 PDM 读取音频数据并写入传入的 buffer 中。
+
+**参数：**
+
+- `buffer`：需提前分配好足够大小的 bytearray，长度不小于 buff_size。
+
+**返回值：**
+
+- 实际读取到的字节数（int）
+
+**注意：**
+
+- 需保证 buffer 长度大于等于初始化时设置的 buff_size。
+- 未初始化时调用将抛出异常。
+
+### 3. `mic.release()`
+
+**功能：** 释放麦克风资源，关闭 I2S PDM。
+
+### 4. `mic.calculate_stats() -> dict`
+
+**功能：** 自动从 PDM 读取一帧数据，并计算其最大值、最小值、平均值。
+
+**返回值：**
+
+- 字典对象，包含：
+  - `max`：最大采样值（int16）
+  - `min`：最小采样值（int16）
+  - `avg`：平均采样值（int16）
+
+**注意：**
+
+- 内部自动分配并释放缓冲区；
+- 未初始化时调用将抛出异常。
+
+## 用法示例
+
+结合 `calculate_stats()` 可以方便地实现音量检测或声音能量分析。
+
+:::warning 注意事项
+- 初始化时 GPIO 已固定：
+  - 时钟 CLK_IO = 40
+  - 数据 DIN_IO = 41
+- 每次初始化会覆盖之前的配置；
+- 必须先调用 `mic.init()`，再调用其他方法；
+- `calculate_stats()` 适合做简单音量检测、声音能量分析。
+- 未初始化时调用其他方法将抛出异常。
+:::

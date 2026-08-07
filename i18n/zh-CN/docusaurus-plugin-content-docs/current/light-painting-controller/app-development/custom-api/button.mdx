@@ -1,0 +1,109 @@
+---
+sidebar_position: 6
+sidebar_label: 五向按键(button)
+title: "萤火虫T1 五向按键(button) API - Socolode 光绘开发"
+description: "萤火虫T1 五向按键模块 API 参考，支持消抖、短按、长按检测，自动处理中断，可为每个按键注册短按和长按回调函数。"
+keywords: ["萤火虫T1", "Firefly T1", "五向按键", "button", "GPIO", "长按", "短按"]
+---
+
+# 五向按键(button)
+
+该模块用于管理 5 个按键的输入，支持消抖、短按、长按检测，自动处理中断，无需频繁轮询。支持为每个按键分别注册短按和长按的回调函数。
+
+## 按键布局与硬件连接
+
+| 按键名称 | GPIO 引脚 |
+|----------|-----------|
+| up | 18 |
+| down | 45 |
+| left | 46 |
+| right | 0 |
+| center | 44 |
+
+:::note
+所有按键均使用内部上拉，低电平触发按下。
+:::
+
+## 类定义
+
+### 1. `Button(long_press_threshold=1000, debounce_time=50)`
+
+**功能：** 初始化按钮管理器，开始监听所有按键的输入。
+
+**参数：**
+
+| 参数名 | 类型 | 说明 | 默认值 |
+|--------|------|------|--------|
+| long_press_threshold | int | 长按阈值（毫秒） | 1000 |
+| debounce_time | int | 消抖时间（毫秒） | 50 |
+
+**示例：**
+
+```python
+from button import Button
+
+buttons = Button(long_press_threshold=800, debounce_time=30)
+```
+
+### 2. `register_callback(button_name, press_type, callback)`
+
+**功能：** 为指定按键注册短按或长按的回调函数。
+
+**参数：**
+
+| 参数名 | 类型 | 说明 |
+|--------|------|------|
+| button_name | str | 按键名称：`'up'`, `'down'`, `'left'`, `'right'`, `'center'` |
+| press_type | str | 事件类型：`'short'`（短按）、`'long'`（长按） |
+| callback | function | 回调函数（无参数） |
+
+### 3. `get_button_state(button_name) -> bool`
+
+**功能：** 查询指定按键当前是否处于按下状态。
+
+**返回值：**
+
+- `True`：按下
+- `False`：未按下
+- `None`：无效按键名
+
+### 4. `deinit()`
+
+**功能：** 释放所有资源，关闭中断与定时器。在不再需要按键控制时调用。
+
+## 工作流程说明
+
+- 使用硬件中断（IRQ）检测按键状态变化；
+- 内置消抖逻辑，避免按键抖动引起误判；
+- 按下时启动长按定时器，到达 `long_press_threshold` 后触发长按事件；
+- 松开时判断按压时长，若未达到长按阈值则触发短按事件。
+
+## 完整使用示例
+
+以下示例演示了如何为指定按键注册回调：
+
+```python
+from button import Button
+
+buttons = Button()
+
+def on_up_short():
+    print("up short pressed")
+
+def on_up_long():
+    print("up long pressed")
+
+buttons.register_callback('up', 'short', on_up_short)
+buttons.register_callback('up', 'long', on_up_long)
+```
+
+:::warning 注意事项
+- 本模块适合嵌入式实时控制，避免频繁轮询。
+- 使用 lambda 或自定义函数注册回调都可以。
+- 建议在系统退出时调用 `deinit()` 释放硬件资源。
+:::
+
+## 硬件限制说明
+
+- 按键逻辑电平为低电平有效（内部上拉）。
+- 按键数量固定为 5 个，GPIO 不可自定义（除非改代码）。

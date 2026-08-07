@@ -1,0 +1,177 @@
+---
+sidebar_position: 7
+sidebar_label: "WS2812 LED Control (neopixel)"
+title: "Firefly T1 WS2812 LED Control Tutorial (neopixel) - Socolode Light Painting Development"
+description: "Complete guide to driving WS2812 RGB LEDs using the Firefly T1 expansion header: power initialization, GPIO43 P-MOS control, neopixel library usage, LED coloring, full code examples, and AI programming templates."
+keywords: ["Firefly T1", "WS2812", "neopixel", "RGB LED", "expansion header", "GPIO43", "LED control", "MicroPython", "Socolode", "Light Painting"]
+---
+
+# WS2812 LED Control (neopixel)
+
+## Overview
+
+This article explains how to use the **expansion header** of the Firefly T1 development board together with the `neopixel` library to precisely control and drive WS2812-series RGB smart LEDs.
+
+### Hardware Requirements
+
+Prepare the following hardware components:
+
+- **Firefly T1 Main Unit**: Acts as the core controller, providing processing power and interface support.
+- **5-Pin Terminal**: Used to connect signal and power lines, ensuring a stable electrical connection.
+- **5V WS2812 LED(s) or Strip**: LEDs or strips conforming to the WS2812 specification. The exact count and length can be adjusted according to your project needs.
+
+### Software Setup
+
+Controlling the LEDs relies on the `neopixel` library. Before use, the system power must be initialized. Follow these steps:
+
+1. **Power Management Module Configuration**
+
+   Use the Firefly T1 [Power Management (pm) API](./power-management.mdx) to set VCC to "output" mode with 5V output, satisfying the WS2812 LED supply requirements.
+
+2. **GPIO Pin Level Control**
+
+   Set the GPIO43 pin to "low" level to turn on the external P-MOS control circuit. This connects the VCC 5V rail to the PIN output.
+
+## Application Examples
+
+### Power Initialization
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+```
+
+### Initialize neopixel
+
+```python
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+```
+
+### Light Up WS2812 LEDs
+
+In the `neopixel` library, `np[i]` controls the color of the `i`-th LED. Usage:
+
+```python
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+### Full Example
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+
+
+
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+**Notes**:
+
+- `np[i] = (R, G, B)`: Sets the color of the `i`-th LED. `R, G, B` are red, green, and blue brightness values in the range 0-255.
+- `np.write()`: Sends the configured colors to the LEDs. No changes take effect until this is called.
+
+With this, you can control each LED's color individually via `np[i]`!
+
+## AI Programming
+
+### API Code Template
+
+```python
+# 打开电源管理的VCC输出。
+import pm
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+
+# 接通电源引脚
+from machine import Pin
+enable_pin = Pin(43,Pin.OPEN_DRAIN)  # 初始化VCC引脚为"高阻态"
+enable_pin.value(0) # 设置为低电平，接通p-mos，VCC使能输出
+
+import neopixel
+MAX_RESOLUTION = 480 # 定义最大灯珠数
+np = neopixel.NeoPixel(Pin(13), MAX_RESOLUTION)  # 设置LED控制引脚
+
+
+
+# 设置第 0 颗灯珠为红色
+np[0] = (255, 0, 0)
+
+# 设置第 1 颗灯珠为绿色
+np[1] = (0, 255, 0)
+
+# 设置第 2 颗灯珠为蓝色
+np[2] = (0, 0, 255)
+
+# 应用更改，使颜色生效
+np.write()
+```
+
+### Prompt Format
+
+1. **Provide the code template**: Send the template directly.
+2. **State your requirements clearly**: Describe the desired functionality in concrete terms — the more specific, the better.
+3. **Describe expected output or behavior**: e.g. run results, reactive changes, etc.
+
+### Example Prompt
+
+:::info
+Please write a MicroPython program running on the Firefly T1:
+
+- **Hardware description:**
+  - WS2812 LED strip, 60 LEDs
+  - Data wire connected to PIN5 (i.e. pin number 13)
+- **Feature requirements:**
+  - Fill the entire strip with a rainbow color gradient
+  - Each LED has a different color, creating a smooth transition
+  - Keep the strip lit once colored; no looping animation
+- **Implementation notes:**
+  - Include power initialization (VCC output, GPIO43 P-MOS control)
+  - Use the `neopixel` library
+  - Provide the code directly, ready to copy and run
+- **Expected result:**
+  - All LEDs light up, showing a rainbow gradient
+:::

@@ -1,0 +1,9 @@
+{
+  "label": "自定义API",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "萤火虫T1 自定义API 参考文档，包括 USB 串口控制（CDC）、拓展接口、电源管理等"
+  },
+  "key": "custom-api"
+}

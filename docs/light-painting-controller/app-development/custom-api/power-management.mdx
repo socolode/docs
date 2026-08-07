@@ -1,0 +1,158 @@
+---
+sidebar_position: 3
+sidebar_label: Power Management (pm)
+title: "Firefly T1 Power Management (pm) API - Socolode Light Painting Development"
+description: "Firefly T1 power management module API reference, compatible with the SW6106 chip. Supports power state control, charging status reading, battery level reading, chip temperature reading, and sleep control."
+keywords: ["Firefly T1", "Power Management", "pm", "SW6106", "Battery Level", "Sleep"]
+---
+
+# Power Management (pm)
+
+## Module Overview
+
+This module handles power management and is compatible with the SW6106 chip. It supports power state control, charging status reading, battery level reading, chip temperature reading, and sleep control.
+
+## Constants
+
+| Constant | Meaning |
+| --- | --- |
+| `pm.IDLE` | Idle state (PM_STATE_IDLE) |
+| `pm.VCC_OUTPUT` | VCC power output (PM_STATE_VCC_OUTPUT) |
+| `pm.USB_OUTPUT` | USB power output (PM_STATE_USB_OUTPUT) |
+| `pm.SLEEP` | Sleep state (PM_STATE_SLEEP) |
+
+## Methods
+
+### 1. `pm.init()`
+
+Initialize the power management module. Must be called once before any other calls. Repeated calls have no side effects.
+
+```python
+pm.init()
+```
+
+### 2. `pm.set_power_state(state: int)`
+
+Set the current power state. Accepts one of the constants listed above.
+
+```python
+pm.set_power_state(pm.VCC_OUTPUT)
+```
+
+**Arguments:**
+
+- `pm.IDLE`
+- `pm.VCC_OUTPUT`
+- `pm.USB_OUTPUT`
+- `pm.SLEEP`
+
+### 3. `pm.poll()`
+
+Periodic polling function for power management.
+Internally controls the corresponding output based on the current power_state (used to switch power modes automatically).
+Recommended to call periodically.
+
+```python
+pm.poll()
+```
+
+### 4. `pm.sleep() -> str`
+
+Enter sleep mode. Cannot enter sleep while charging. Returns a sleep result string:
+
+- `"no sleep"`: Charging, cannot sleep
+- `"go to sleep"`: Successfully entered sleep
+
+```python
+result = pm.sleep()
+print(result)
+```
+
+### 5. `pm.get_system_status() -> int`
+
+Returns the raw system status value of the SW6106 chip register `0x11`.
+
+```python
+status = pm.get_system_status()
+```
+
+### 6. `pm.get_charging_status() -> int`
+
+Read the current charging status:
+
+- `0`: Not charging
+- `1`: Charging
+
+```python
+charging = pm.get_charging_status()
+```
+
+### 7. `pm.get_4D_status() -> int`
+
+Read the battery percentage (the percentage value is returned directly).
+
+```python
+percent = pm.get_4D_status()
+print(percent, "%")
+```
+
+### 8. `pm.get_4E_status() -> int`
+
+Read the chip register `0x4E` content (usually used for internal battery evaluation state).
+
+```python
+value = pm.get_4E_status()
+```
+
+### 9. `pm.get_4F_status() -> int`
+
+Read the chip register `0x4F` content (can also represent battery percentage, usually slightly different from `get_4D_status()`).
+
+```python
+percent = pm.get_4F_status()
+```
+
+### 10. `pm.get_chip_temperature() -> float`
+
+Read the chip internal temperature (in Celsius, converted internally from registers).
+
+```python
+temp = pm.get_chip_temperature()
+print(temp, "°C")
+```
+
+### 11. `pm.refresh_power_percent() -> int`
+
+Force-refresh the battery percentage (recalculates using the SW6106 internal analog power switching algorithm).
+
+```python
+new_percent = pm.refresh_power_percent()
+```
+
+It is recommended to call manually after the charging status changes to obtain a more accurate remaining battery level.
+
+:::warning Notes
+- All APIs must be called after `pm.init()`, otherwise they have no effect.
+- `pm.poll()` should be called periodically so the power output switches automatically based on the charging status.
+- `pm.sleep()` performs the chip sleep action, but will not sleep while charging.
+- For battery percentage, `get_4D_status()` is recommended; `get_4F_status()` and `refresh_power_percent()` can be used for calibration.
+:::
+
+## Example Code
+
+```python
+import pm
+import time
+
+pm.init()
+pm.set_power_state(pm.VCC_OUTPUT)
+
+while True:
+    pm.poll()
+    percent = pm.get_4D_status()
+    charging = pm.get_charging_status()
+    temp = pm.get_chip_temperature()
+
+    print("Battery:", percent, "% Charging:", charging, "Temp:", temp, "°C")
+    time.sleep(5)
+```

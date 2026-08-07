@@ -1,0 +1,109 @@
+---
+sidebar_position: 6
+sidebar_label: Five-Way Button (button)
+title: "Firefly T1 Five-Way Button (button) API - Socolode Light Development"
+description: "Firefly T1 five-way button module API reference. Supports debouncing, short press and long press detection, automatic interrupt handling, and per-button short/long press callbacks."
+keywords: ["Firefly T1", "Five-Way Button", "button", "GPIO", "Long Press", "Short Press"]
+---
+
+# Five-Way Button (button)
+
+This module manages the input of 5 buttons. It supports debouncing, short press and long press detection, automatic interrupt handling, and eliminates the need for frequent polling. It lets you register short press and long press callbacks for each button separately.
+
+## Button Layout and Hardware Connection
+
+| Button Name | GPIO Pin |
+|-------------|----------|
+| up | 18 |
+| down | 45 |
+| left | 46 |
+| right | 0 |
+| center | 44 |
+
+:::note
+All buttons use internal pull-up and are triggered on a low level (active-low press).
+:::
+
+## Class Definition
+
+### 1. `Button(long_press_threshold=1000, debounce_time=50)`
+
+**Function:** Initialize the button manager and start listening for all button inputs.
+
+**Arguments:**
+
+| Argument | Type | Description | Default |
+|----------|------|-------------|---------|
+| long_press_threshold | int | Long press threshold (ms) | 1000 |
+| debounce_time | int | Debounce time (ms) | 50 |
+
+**Example:**
+
+```python
+from button import Button
+
+buttons = Button(long_press_threshold=800, debounce_time=30)
+```
+
+### 2. `register_callback(button_name, press_type, callback)`
+
+**Function:** Register a short press or long press callback for a specified button.
+
+**Arguments:**
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| button_name | str | Button name: `'up'`, `'down'`, `'left'`, `'right'`, `'center'` |
+| press_type | str | Event type: `'short'` (short press), `'long'` (long press) |
+| callback | function | Callback function (no arguments) |
+
+### 3. `get_button_state(button_name) -> bool`
+
+**Function:** Query whether the specified button is currently pressed.
+
+**Return value:**
+
+- `True`: pressed
+- `False`: not pressed
+- `None`: invalid button name
+
+### 4. `deinit()`
+
+**Function:** Release all resources and close interrupts and timers. Call it when button control is no longer needed.
+
+## Workflow
+
+- Uses hardware interrupts (IRQ) to detect button state changes;
+- Built-in debounce logic avoids false triggers from button bounce;
+- On press, starts a long press timer; when `long_press_threshold` is reached, triggers the long press event;
+- On release, judges the press duration; if it is below the long press threshold, triggers the short press event.
+
+## Complete Usage Example
+
+The following example demonstrates how to register callbacks for a specified button:
+
+```python
+from button import Button
+
+buttons = Button()
+
+def on_up_short():
+    print("up short pressed")
+
+def on_up_long():
+    print("up long pressed")
+
+buttons.register_callback('up', 'short', on_up_short)
+buttons.register_callback('up', 'long', on_up_long)
+```
+
+:::warning Notes
+- This module suits embedded real-time control and avoids frequent polling.
+- You can register callbacks with lambda or custom functions.
+- It is recommended to call `deinit()` to release hardware resources when the system exits.
+:::
+
+## Hardware Limitations
+
+- The button logic level is active-low (internal pull-up).
+- The number of buttons is fixed at 5, and the GPIOs cannot be customized (unless you change the code).
