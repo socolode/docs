@@ -2,44 +2,78 @@
 sidebar_position: 1
 sidebar_label: Setup Environment
 title: "Firefly T1 - Setup Development Environment"
-description: "Set up the development environment for Firefly T1 light effect programming, including installing Thonny and updating firmware."
-keywords: ["Firefly T1", "Setup Environment", "Thonny", "MicroPython", "Development"]
+description: "Set up the development environment for Firefly T1 light effect programming, including installing Thonny, updating firmware, and running your first program."
+keywords: ["Firefly T1", "Setup Environment", "Thonny", "MicroPython", "Development", "APP Development"]
 ---
 
 import Link from '@docusaurus/Link';
 
 # Firefly T1 - Setup Development Environment
 
-Suitable for users with some programming experience who want to create their own light effect scripts.
+This guide explains how to develop your own MicroPython scripts for the Firefly T1. Suitable for developers with some programming experience who want to create their own light effect programs.
 
-## Install Thonny IDE
+## 1. Install Thonny IDE
 
-Go to [https://thonny.org/](https://thonny.org/) to download and install Thonny.
+Go to [https://thonny.org/](https://thonny.org/) and download the installer for your operating system:
 
-Thonny is a lightweight IDE designed for MicroPython, ready to use out of the box with no additional configuration needed.
+<img src={require('./assets/thonny-download-page.png').default} alt="Thonny download page" style={{borderRadius: '8px'}} />
 
-## Update Firefly T1 Firmware
+Thonny is a lightweight IDE designed for MicroPython, ready to use out of the box with no additional configuration needed. Follow the installation prompts to complete the setup.
+
+## 2. Update Firefly T1 Firmware
 
 Make sure your Firefly T1 is running the latest firmware for compatibility with the latest development features.
 
-Refer to the <Link to="../system-maintenance/firmware-update-flash">Firmware Update & Flash</Link> section to update the firmware.
+Refer to the <Link to="../system-maintenance/firmware-update-flash">Firmware Update & Flash</Link> section to update the firmware. You can skip this step if your firmware is already up to date.
 
-## Run Your First Program
+## 3. Run Your First Program
 
-Connect Firefly T1 to your computer, open Thonny:
+### 3.1 Connect the Device
 
-1. Select the corresponding COM port in the bottom-right corner of Thonny
-2. Enter the following code in the editor:
+Connect your Firefly T1 to your computer via USB cable:
+
+<img src={require('./assets/firefly-t1-connected.png').default} alt="Firefly T1 connected to computer" style={{borderRadius: '8px'}} />
+
+### 3.2 Open Thonny and Configure Interpreter
+
+Open Thonny, go to **Run → Configure Interpreter**, select the COM port corresponding to your Firefly T1 (look for the port with the `Espressif CDC Device` prefix), then click OK:
+
+<img src={require('./assets/thonny-interface.png').default} alt="Thonny interpreter configuration" style={{borderRadius: '8px'}} />
+
+:::caution
+Make sure to **uncheck "Restart interpreter before running the script"**, otherwise the device will keep restarting and you won't be able to enter debug mode.
+:::
+
+### 3.3 Restart the Device
+
+Click the restart button in the toolbar to restart the Firefly T1.
+
+### 3.4 Interrupt the Current Program
+
+The Firefly T1 runs the main program by default when powered on. You must interrupt the current program first before running scripts from Thonny.
+
+### 3.5 Write and Run Hello World
+
+Enter the following code in the Thonny editor:
 
 ```python
 print("Hello, Firefly T1!")
 ```
 
-3. Click the Run button (green triangle) to see the output in the console
+Click the Run button to see the output in the console.
 
-:::tip
-If you can't find the COM port, check that your USB cable supports data transfer and the device is powered on.
-:::
+Now you're ready to write your own APP programs!
+
+## 4. Package Your APP
+
+You can refer to the existing demo programs for packaging:
+
+- **Icon creation**: Create an icon for your APP
+- **Package APP**: Package your script into a format that can run on the Firefly T1
+
+## 5. Run Your APP
+
+Upload the packaged APP to your Firefly T1 and run it.
 
 ## Next Step
 

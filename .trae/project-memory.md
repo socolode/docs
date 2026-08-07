@@ -118,6 +118,9 @@ image: "/img/og-image.png"
 | 自定义页面（src/pages/）的 i18n 路由 | 用 `--locale zh-CN` 启动时路由为 `/zh-CN/tools/getbmp`，默认 en 时为 `/tools/getbmp` |
 | HTML `<a href="./file.mdx">` 链接不生效（404） | `<a>` 标签不会被 Docusaurus 处理成客户端路由；需用 `<Link to="./file">` 组件（来自 `@docusaurus/Link`），且 `to` 属性**不带 `.mdx` 扩展名** |
 | `_category_.json` 写了中文 label 但侧栏仍显示英文 | i18n `_category_.json` 的 label **不直接用于侧栏显示**，必须靠 `current.json` 翻译条目；且当 `_category_.json` 有 `key` 字段时，翻译 key 用 `key` 值而非 `label` |
+| 语雀 API token 过期（返回 401）无法用 `/api/v2` 拉取文档 | 改用 integrated_browser 打开语雀页面，从渲染后 DOM 提取内容：正文在 `.ne-viewer`；图片在 `ne-card[data-card-name=image]` 内 `<img>`；图片懒加载（`ne-image-hide` 类、src 为空）需逐个 `scrollIntoView` 触发后再取 src |
+| 语雀图片内容难以辨认（无法用 view_image 看图） | 语雀自带 OCR 文本在 `.ne-ui-image-ocr-text` 元素里，可据此判断图片内容并命名，无需真正"看"图 |
+| 语雀代码块含行号伪字符（如 `​91` 前缀） | 行号在 CodeMirror gutter（`.cm-lineNumbers`），真实代码在 `.cm-line` 元素，取 `.cm-line` 文本即可 |
 
 ### 5.1 侧栏分类标签翻译 key 规则（重要）
 
@@ -158,11 +161,20 @@ SEO/GEO 优化规则见: `.trae/skills/docusaurus-editor-rules/seo-geo-rules.md`
 
 ## 8. 语雀图片迁移
 
-从语雀文档迁移图片的流程：
-1. 用浏览器工具打开语雀页面，提取页面 HTML/Lake XML 内容
-2. 找到 `<card name="image">` 标签，其中 `url` 字段是 URL 编码的 JSON
-3. 用 `urllib.parse.unquote` 解码获取真实图片 URL
-4. 下载图片到对应文档的 `assets/` 目录（中英文两侧都要）
-5. 在 mdx 中用 `![alt](./assets/filename.png)` 引用
+### 8.1 首选：API 拉取（需要有效 token）
+1. `GET https://www.yuque.com/api/v2/repos/{group}/{book}/docs/{slug}`，请求头带 `X-Auth-Token: <token>`
+2. 返回 `data.body`（Lake/HTML）和 `data.body_lake`（结构化 XML）
+3. 图片 URL 在 `<card name="image">` 的 `url` 字段（URL 编码的 JSON），用 `urllib.parse.unquote` 解码
+4. **限制**：可能被 429 限流（等 45s+ 重试），token 过期会返回 401。此时改用 8.2
 
-注意：语雀 CDN 为 `cdn.nlark.com/yuque/`，可能有防盗链限制
+### 8.2 兜底：浏览器 DOM 提取（token 失效时，已验证可用）
+用 integrated_browser 打开语雀页面（用户已登录的会话），从渲染后 DOM 提取：
+1. **正文/顺序**：在 `.ne-viewer` 内遍历 DOM，按顺序拿标题(`h1-h4`)、段落(`ne-text`)、图片、代码块
+2. **图片定位**：图片在 `ne-card[data-card-name="image"]` 内的 `<img>`，`src` 即真实 CDN URL（`cdn.nlark.com/yuque/...`）
+   - **懒加载坑**：未滚动到的图 `src` 为空、带 `ne-image-hide` 类。需逐个 `img.scrollIntoView({block:'center'})` + 等待 2s 后再取 src
+3. **图片内容辨认（无需"看图"）**：语雀自带 OCR 文本在 `.ne-ui-image-ocr-text` 元素里，据此判断每张图内容并命名，不用依赖 view_image（当前环境可能不支持多模态）
+4. **代码块**：真实代码在 `.cm-line` 元素；`.cm-lineNumbers` 是行号 gutter，其文本（如 `91` 前缀）是伪字符，别混进命令
+5. **下载图片**：语雀 CDN 有防盗链，用 PowerShell `Invoke-WebRequest -Headers @{Referer='https://socolode.yuque.com/'}` 即可下载
+6. 图片保存到中英文两侧 `assets/`，用规范英文名（小写+连字符），mdx 中用 `require('./assets/xxx.png')`
+
+注意：语雀 CDN 为 `cdn.nlark.com/yuque/`，可能有防盗链限制（需带 Referer）

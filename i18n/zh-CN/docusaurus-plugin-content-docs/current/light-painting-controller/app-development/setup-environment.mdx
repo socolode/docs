@@ -2,44 +2,78 @@
 sidebar_position: 1
 sidebar_label: 环境搭建
 title: "萤火虫T1 开发环境搭建"
-description: "搭建萤火虫T1 的灯光程序开发环境，包括安装Thonny和更新固件。"
-keywords: ["萤火虫T1", "Firefly T1", "环境搭建", "Thonny", "MicroPython", "开发环境"]
+description: "搭建萤火虫T1 的灯光程序开发环境，包括安装Thonny、更新固件和运行第一个程序。"
+keywords: ["萤火虫T1", "Firefly T1", "环境搭建", "Thonny", "MicroPython", "开发环境", "APP开发"]
 ---
 
 import Link from '@docusaurus/Link';
 
 # 萤火虫T1 开发环境搭建
 
-适合有一定编程基础的用户，想自己编写灯光效果程序。
+本文介绍如何结合萤火虫T1，开发自己的 MicroPython 脚本程序。适合有一定编程基础，想自己编写灯光效果程序的开发者。
 
-## 安装 Thonny 编程工具
+## 1. 安装 Thonny IDE
 
-前往 [https://thonny.org/](https://thonny.org/) 下载并安装 Thonny。
+前往 [https://thonny.org/](https://thonny.org/) 下载对应自己电脑操作系统的安装包：
 
-Thonny 是一款专为 MicroPython 设计的轻量级 IDE，开箱即用，无需额外配置。
+<img src={require('./assets/thonny-download-page.png').default} alt="Thonny 官网下载页面" style={{borderRadius: '8px'}} />
 
-## 更新萤火虫 T1 固件
+Thonny 是一款专为 MicroPython 设计的轻量级 IDE，开箱即用，无需额外配置。根据提示完成安装即可。
+
+## 2. 更新萤火虫T1 固件
 
 确保你的萤火虫T1 运行的是最新固件，以兼容最新的开发特性。
 
-参考<Link to="../system-maintenance/firmware-update-flash">固件更新与烧录</Link>章节更新固件。
+参考<Link to="../system-maintenance/firmware-update-flash">固件更新与烧录</Link>章节更新固件。如无需更新，可跳过此步骤。
 
-## 运行第一个程序
+## 3. 运行第一个程序
 
-连接萤火虫T1 到电脑，打开 Thonny：
+### 3.1 连接设备
 
-1. 在 Thonny 右下角选择对应的 COM 端口
-2. 在编辑器中输入以下代码：
+把萤火虫T1 通过数据线连接到电脑：
+
+<img src={require('./assets/firefly-t1-connected.png').default} alt="萤火虫T1 连接电脑" style={{borderRadius: '8px'}} />
+
+### 3.2 打开 Thonny 并配置解释器
+
+打开 Thonny，进入 **运行 → 配置解释器**，选择萤火虫T1 对应的 COM 口（前缀为 `Espressif CDC Device` 的端口），然后点击确认：
+
+<img src={require('./assets/thonny-interface.png').default} alt="Thonny 配置解释器界面" style={{borderRadius: '8px'}} />
+
+:::caution
+一定要去掉 **"运行代码前，先重启解释器"** 的选项，不然设备会不断重启，导致无法进入调试模式。
+:::
+
+### 3.3 重启设备
+
+点击工具栏中的重启按钮，重启萤火虫T1。
+
+### 3.4 中断当前程序
+
+萤火虫T1 上电默认会执行主程序，必须先中断当前程序，才能运行 Thonny 上的脚本。
+
+### 3.5 编写并运行 Hello World
+
+在 Thonny 编辑器中输入以下代码：
 
 ```python
 print("Hello, Firefly T1!")
 ```
 
-3. 点击运行按钮（绿色三角），即可在控制台看到输出
+点击运行按钮，即可在控制台看到输出。
 
-:::tip
-如果找不到 COM 端口，请检查数据线是否支持数据传输，以及设备是否已开机。
-:::
+接下来，你就可以随心所欲地编写自己的 APP 程序了。
+
+## 4. 打包 APP
+
+可以参考已有的示例程序进行打包：
+
+- **图标制作**：为你的 APP 制作图标
+- **打包 APP**：将脚本打包为可在萤火虫T1 上运行的格式
+
+## 5. 运行 APP
+
+将打包好的 APP 上传到萤火虫T1，即可实际运行。
 
 ## 下一步
 

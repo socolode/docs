@@ -2,19 +2,74 @@
 sidebar_position: 1
 sidebar_label: Firmware Update & Flash
 title: "Firefly T1 - Firmware Update & System Flashing"
-description: "Complete guide to checking, downloading, and flashing Firefly T1 firmware"
-keywords: ["Firefly T1", "Firmware Update", "Firmware Flash", "System Flashing", "Thonny"]
+description: "Complete guide to checking, downloading, and flashing Firefly T1 firmware, supporting both Thonny and command-line methods"
+keywords: ["Firefly T1", "Firmware Update", "Firmware Flash", "System Flashing", "Thonny", "esptool"]
 ---
 
 import Link from '@docusaurus/Link';
 
 # Firmware Update & System Flashing
 
-## Check Firmware Version
+There are three ways to flash firmware: **online update**, **via Thonny**, or **via command line**. Choose the method that works best for you.
 
-On power-up, the current firmware version is displayed on the home screen. If you encounter issues or want to try new features, consider updating the firmware.
+:::tip Recommended
+**Online Update** is the simplest and fastest method. No software installation is required — you can flash the firmware directly in your browser. We recommend using it first.
+:::
 
-## Firmware Download
+## Method 1: Online Firmware Update (Recommended)
+
+Use the online tool to flash the firmware in one click, no software such as Thonny required.
+
+<div style={{textAlign: 'center', padding: '2rem 0'}}>
+
+<a href="/tools/firmware-flasher?lang=en" style={{
+  display: 'inline-block',
+  padding: '1rem 2.5rem',
+  backgroundColor: '#3b82f6',
+  color: 'white',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  borderRadius: '12px',
+  textDecoration: 'none',
+  boxShadow: '0 4px 14px rgba(59, 130, 246, 0.4)',
+  transition: 'transform 0.15s, box-shadow 0.15s'
+}} onMouseOver={e => { e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 6px 20px rgba(59,130,246,0.5)'; }} onMouseOut={e => { e.currentTarget.style.transform=''; e.currentTarget.style.boxShadow='0 4px 14px rgba(59,130,246,0.4)'; }}>
+
+🚀 Open Online Firmware Flasher →
+
+</a>
+
+<p style={{marginTop: '1rem', color: '#6b7280', fontSize: '0.9rem'}}>
+The tool opens in a new page. When done, click "Back to Docs" in the top-left corner to return here.
+</p>
+
+</div>
+
+**Steps:**
+
+1. Download the firmware file (see the "Download Firmware" section below)
+2. Click the **"Open Online Firmware Flasher"** button above to open the tool page
+3. **Hold the joystick right button** (BOOT key) without releasing, and connect the USB cable to your computer at the same time
+4. On the tool page, click **"Select"** and choose the downloaded firmware `.bin` file
+5. Click **"Connect Device"** and select the Firefly T1 serial port in the browser popup
+6. Click **"Start Update"** and wait for the progress bar to finish
+
+:::caution Browser requirement
+The online tool is built on browser Web Serial technology. It **only supports Chrome / Edge browsers** and requires a desktop computer — iOS devices are not supported. Please update your browser to the latest version before use.
+:::
+
+## Method 2: Flash via Thonny
+
+### 1. Install Thonny
+
+- Go to the Thonny official website: https://thonny.org/
+- Download the Thonny IDE installer for your operating system:
+
+<img src={require('./assets/thonny-download-page.png').default} alt="Thonny official download page" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+- Follow the prompts to install Thonny.
+
+### 2. Download Firmware
 
 Latest firmware files are hosted in the official GitHub repository, organized by release channel:
 
@@ -23,32 +78,71 @@ Latest firmware files are hosted in the official GitHub repository, organized by
 - `firmware/stable/` – Stable releases (recommended for everyday use)
 - `firmware/beta/` – Beta releases (includes new features, may be unstable)
 
-## Update Steps
+### 3. Flashing Steps
 
-### Method 1: Flash via Thonny
+**① Power off** — Turn off your Firefly T1.
 
-1. Install Thonny IDE
-2. Download the appropriate `.uf2` firmware file from the directory above
-3. Flashing steps:
-   - Power off, hold the joystick "right" button
-   - Connect USB to computer
-   - Open Thonny and configure the interpreter
-   - Click "Install/Update MicroPython"
-   - Select the firmware file and COM port
+**② Hold the joystick right button** — Press and hold the joystick's right direction button. Keep holding it:
 
-![Thonny Flash](../firefly-t1/assets/firefly-t1-12.png)
+<img src={require('./assets/hold-right-button.png').default} alt="Hold the joystick right button" style={{borderRadius: '8px', maxWidth: '400px'}} />
 
-![Flash Settings](../firefly-t1/assets/firefly-t1-15.png)
+**③ Connect to computer** — While holding the right button, connect the USB cable to your computer. Once the device is detected, you can release the button (the device will not power on).
 
-### Method 2: Flash via Command Line
+**④ Open Thonny interpreter configuration** — Go to **Run → Configure Interpreter** in the toolbar:
 
-1. Open command line (Thonny Tools -> Open System Shell)
-2. Enter the flash command
+<img src={require('./assets/thonny-configure-interpreter.png').default} alt="Thonny configure interpreter" style={{borderRadius: '8px', maxWidth: '600px'}} />
 
-![Command Line Flash](../firefly-t1/assets/firefly-t1-16.png)
+**⑤ Click "Install or update MicroPython"** — In the interpreter configuration window, click "Install or update MicroPython":
+
+<img src={require('./assets/thonny-install-micropython-option.png').default} alt="Click Install or update MicroPython" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+**⑥ Select the firmware file** — Choose the firmware file you just downloaded:
+
+<img src={require('./assets/thonny-select-firmware.png').default} alt="Select local firmware file" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+**⑦ Select the COM port and install** — Choose the COM port corresponding to your Firefly T1, and click Install to start flashing:
+
+<img src={require('./assets/thonny-select-com-port.png').default} alt="Select COM port and click install" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+## Method 3: Flash via Command Line
+
+### 1. Open Command Line
+
+In Thonny, go to **Tools → Open System Shell**:
+
+<img src={require('./assets/thonny-open-system-shell.png').default} alt="Thonny Tools menu - Open System Shell" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+You will get a command-line terminal:
+
+<img src={require('./assets/command-line-terminal.png').default} alt="Command-line terminal window" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+### 2. Enter the Flash Command
+
+Use the esptool to flash the firmware. Reference command:
+
+```bash
+D:\micropython\Thonny\python.exe -u -m esptool --port COM14 --chip esp32s3 --baud 115200 write_flash --flash_mode keep --flash_size keep --erase-all 0x0 D:\mpy\micropython\ports\esp32\build-FIREFLY_S3\firmware.bin
+```
+
+<img src={require('./assets/esptool-flash-command.png').default} alt="Run the flash command in terminal" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+Copy the command into the terminal and press Enter to execute it.
+
+Replace the following parameters according to your setup:
+- `D:\micropython\Thonny\python.exe`: Replace with the path to Thonny's built-in Python (i.e., your Thonny install location)
+- `COM14`: Replace with the actual COM port of your Firefly T1
+- `D:\mpy\micropython\ports\esp32\build-FIREFLY_S3\firmware.bin`: Replace with the actual path where you stored the `firmware.bin` file
 
 :::caution
-If the COM port is not detected, you may have forgotten to hold the "boot" button while connecting USB.
+The target COM port looks like this (shown in the Thonny install dialog as "USB JTAG / SERIAL DEBUG UNIT @ COMxxx"):
+
+<img src={require('./assets/com-port-target.png').default} alt="Target COM port example" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+If the target port does not show the Firefly T1 COM port, it's likely because you didn't hold the joystick right button while connecting the USB cable. Try again a few times.
+
+You can also find the Firefly T1 COM port in your computer's **Device Manager**:
+
+<img src={require('./assets/device-manager-com-port.png').default} alt="COM port in Device Manager" style={{borderRadius: '8px', maxWidth: '600px'}} />
 :::
 
 ## Update Tips

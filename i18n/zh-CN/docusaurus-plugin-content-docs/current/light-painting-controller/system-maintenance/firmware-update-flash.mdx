@@ -2,19 +2,74 @@
 sidebar_position: 1
 sidebar_label: 固件更新与烧录
 title: "萤火虫T1 固件更新与系统烧录"
-description: "萤火虫T1 固件更新检查、下载和系统烧录的完整指南"
-keywords: ["萤火虫T1", "Firefly T1", "固件更新", "系统烧录", "固件烧录", "Thonny"]
+description: "萤火虫T1 固件更新检查、下载和系统烧录的完整指南，支持 Thonny 和命令行两种方式"
+keywords: ["萤火虫T1", "Firefly T1", "固件更新", "系统烧录", "固件烧录", "Thonny", "esptool"]
 ---
 
 import Link from '@docusaurus/Link';
 
 # 固件更新与系统烧录
 
-## 如何检查固件版本
+固件烧录有三种方式：**在线更新**、**通过 Thonny 烧录** 和 **通过命令行烧录**，可根据个人习惯选择。
 
-开机后，在主页界面即可看到当前固件版本号。如果遇到功能异常或想体验新功能，可以尝试更新固件。
+:::tip 推荐
+**在线更新** 是最简单快捷的方式，无需安装任何软件，直接在浏览器中即可完成固件烧录，推荐优先使用。
+:::
 
-## 固件下载
+## 方法一：在线更新固件（推荐）
+
+使用在线工具即可一键完成固件烧录，无需安装 Thonny 等任何软件。
+
+<div style={{textAlign: 'center', padding: '2rem 0'}}>
+
+<a href="/zh-CN/tools/firmware-flasher?lang=zh-CN" style={{
+  display: 'inline-block',
+  padding: '1rem 2.5rem',
+  backgroundColor: '#3b82f6',
+  color: 'white',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  borderRadius: '12px',
+  textDecoration: 'none',
+  boxShadow: '0 4px 14px rgba(59, 130, 246, 0.4)',
+  transition: 'transform 0.15s, box-shadow 0.15s'
+}} onMouseOver={e => { e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 6px 20px rgba(59,130,246,0.5)'; }} onMouseOut={e => { e.currentTarget.style.transform=''; e.currentTarget.style.boxShadow='0 4px 14px rgba(59,130,246,0.4)'; }}>
+
+🚀 打开在线固件更新工具 →
+
+</a>
+
+<p style={{marginTop: '1rem', color: '#6b7280', fontSize: '0.9rem'}}>
+在新页面中使用，处理完成后点击左上角「返回文档」即可回到此处
+</p>
+
+</div>
+
+**操作步骤：**
+
+1. 下载固件文件（见下方「下载固件」章节）
+2. 点击上方 **「打开在线固件更新工具」** 按钮，跳转到工具页面
+3. **按住摇杆右键**（BOOT键）不要松开，同时用 USB 数据线连接电脑
+4. 在工具页面点击 **「选择」**，选择刚才下载的固件 `.bin` 文件
+5. 点击 **「连接设备」**，在浏览器弹出的窗口中选择萤火虫T1 对应的端口
+6. 点击 **「开始更新」**，等待进度条跑完即可完成烧录
+
+:::caution 浏览器要求
+在线工具基于浏览器 Web Serial 技术，**仅支持 Chrome / Edge 浏览器**，且需要电脑端操作，不支持 iOS 设备。使用前请将浏览器更新到最新版本。
+:::
+
+## 方法二：通过 Thonny 烧录固件
+
+### 1. 安装 Thonny
+
+- 登录 Thonny 官网：https://thonny.org/
+- 下载自己电脑对应版本的 Thonny IDE 安装包：
+
+<img src={require('./assets/thonny-download-page.png').default} alt="Thonny 官网下载页面" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+- 根据提示，安装 Thonny。
+
+### 2. 下载固件
 
 最新固件文件已托管到官方 GitHub 仓库，按稳定版 / 测试版分类存放：
 
@@ -23,32 +78,71 @@ import Link from '@docusaurus/Link';
 - `firmware/stable/`：稳定版固件（推荐日常使用）
 - `firmware/beta/`：测试版固件（含新功能，可能存在不稳定）
 
-## 更新步骤
+### 3. 烧录步骤
 
-### 方法一：通过Thonny烧录固件
+**① 关机**——先关闭萤火虫T1 电源。
 
-1. 安装Thonny编程工具
-2. 从上述固件目录下载对应版本的 `.uf2` 或固件文件
-3. 刷写步骤：
-   - 先关机，按住摇杆的"右方向键"
-   - USB数据线连接电脑
-   - 打开Thonny配置解释器
-   - 点击"安装/更新MicroPython"
-   - 选择固件文件和COM端口
+**② 按住摇杆右键**——按住摇杆的“右方向键”，一直按住不要松手：
 
-![Thonny烧录](../firefly-t1/assets/firefly-t1-12.png)
+<img src={require('./assets/hold-right-button.png').default} alt="按住摇杆右键" style={{borderRadius: '8px', maxWidth: '400px'}} />
 
-![烧录设置](../firefly-t1/assets/firefly-t1-15.png)
+**③ 连接电脑**——一边按住右键，一边插入 USB 数据线连接电脑。电脑提示设备接入后，即可松开右键（此时主机不会开机）。
 
-### 方法二：通过命令行烧录
+**④ 打开 Thonny 配置解释器**——点击工具栏 **运行 → 配置解释器**：
 
-1. 打开命令行（Thonny工具 -> 打开系统Shell）
-2. 输入烧录命令
+<img src={require('./assets/thonny-configure-interpreter.png').default} alt="Thonny 配置解释器" style={{borderRadius: '8px', maxWidth: '600px'}} />
 
-![命令行烧录](../firefly-t1/assets/firefly-t1-16.png)
+**⑤ 点击“安装/更新 MicroPython”**——在解释器配置界面中，点击“Install or update MicroPython”：
+
+<img src={require('./assets/thonny-install-micropython-option.png').default} alt="点击安装或更新 MicroPython" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+**⑥ 选择固件文件**——选择刚刚下载的固件文件：
+
+<img src={require('./assets/thonny-select-firmware.png').default} alt="选择本地固件文件" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+**⑦ 选择 COM 端口并安装**——选择萤火虫T1 对应的目标 COM 端口，点击安装即可开始烧录：
+
+<img src={require('./assets/thonny-select-com-port.png').default} alt="选择 COM 端口并点击安装" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+## 方法三：通过命令行烧录
+
+### 1. 打开命令行
+
+在 Thonny 中点击 **工具 → 打开系统 Shell**：
+
+<img src={require('./assets/thonny-open-system-shell.png').default} alt="Thonny 工具菜单 - 打开系统 Shell" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+获得命令行终端工具：
+
+<img src={require('./assets/command-line-terminal.png').default} alt="命令行终端窗口" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+### 2. 输入烧录命令
+
+使用 esptool 工具进行烧录，参考命令如下：
+
+```bash
+D:\micropython\Thonny\python.exe -u -m esptool --port COM14 --chip esp32s3 --baud 115200 write_flash --flash_mode keep --flash_size keep --erase-all 0x0 D:\mpy\micropython\ports\esp32\build-FIREFLY_S3\firmware.bin
+```
+
+<img src={require('./assets/esptool-flash-command.png').default} alt="在终端中执行烧录命令" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+把命令复制到终端，直接按回车键即可执行。
+
+请根据实际情况替换以下参数：
+- `D:\micropython\Thonny\python.exe`：替换为你自己的 Thonny 内置 Python 路径（即 Thonny 安装地址）
+- `COM14`：替换为萤火虫T1 实际的 COM 端口号
+- `D:\mpy\micropython\ports\esp32\build-FIREFLY_S3\firmware.bin`：替换为你存放 `firmware.bin` 固件的实际路径
 
 :::caution 注意
-如目标端口没有萤火虫T1的COM端口，可能是在USB连接电脑时没有"按住boot"的原因。
+目标 COM 端口示例如下（在 Thonny 安装界面中会显示为 “USB JTAG / SERIAL DEBUG UNIT @ COMxxx”）：
+
+<img src={require('./assets/com-port-target.png').default} alt="目标 COM 端口示例" style={{borderRadius: '8px', maxWidth: '600px'}} />
+
+如目标端口中没有萤火虫T1 的 COM 端口，很可能是 USB 连接电脑时没有按住摇杆右键的原因，建议多尝试几次。
+
+萤火虫T1 的 COM 端口号也可以在电脑的 **设备管理器** 中查看：
+
+<img src={require('./assets/device-manager-com-port.png').default} alt="设备管理器中的 COM 端口" style={{borderRadius: '8px', maxWidth: '600px'}} />
 :::
 
 ## 更新建议
