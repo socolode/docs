@@ -1,0 +1,105 @@
+---
+sidebar_position: 8
+sidebar_label: 九轴传感器(imu)
+title: "萤火虫T1 九轴传感器(imu) API - Socolode 光绘开发"
+description: "萤火虫T1 BMI270+BMM150 九轴传感器模块 API 参考，基于共享 I2C 驱动，支持初始化与 9 轴数据读取（加速度、陀螺仪、磁力计）。"
+keywords: ["萤火虫T1", "Firefly T1", "九轴传感器", "imu", "BMI270", "BMM150", "I2C"]
+---
+
+# 九轴传感器(imu)
+
+该模块用于管理 BMI270+BMM150 九轴传感器模块（3轴加速度、3轴陀螺仪、3轴磁力计），通过共享 I2C 驱动实现初始化与数据读取。
+
+- I2C 引脚固定为：
+  - **SCL = GPIO 1**
+  - **SDA = GPIO 2**
+  - 速率 = 100kHz
+
+## 方法列表
+
+### 1. `imu.init() -> int`
+
+**功能：** 初始化 IMU 传感器模块。
+
+- 内部自动初始化共享 I2C 接口；
+- 只会初始化一次，重复调用直接返回上一次结果；
+- 返回 `0` 表示初始化成功，返回非 `0` 表示初始化失败（由 `imu_init()` 返回值决定）。
+
+**示例：**
+
+```python
+import imu
+
+ret = imu.init()
+if ret == 0:
+    print("IMU 初始化成功")
+else:
+    print("IMU 初始化失败，错误码:", ret)
+```
+
+### 2. `imu.read_9axis() -> (int, (float, float, float), (float, float, float), (float, float, float))`
+
+**功能：** 读取 9 轴传感器数据。
+
+**返回值：**
+
+返回一个 4 元组，格式如下：
+
+```python
+(rslt, accel, gyro, mag)
+```
+
+- `rslt`：读取状态码，0 表示成功，非 0 表示失败。
+- `accel`：3元组 (ax, ay, az)，单位通常为 g。
+- `gyro`：3元组 (gx, gy, gz)，单位通常为 °/s。
+- `mag`：3元组 (mx, my, mz)，单位通常为 μT。
+
+**示例：**
+
+```python
+rslt, accel, gyro, mag = imu.read_9axis()
+
+if rslt == 0:
+    print("加速度:", accel)
+    print("陀螺仪:", gyro)
+    print("磁力计:", mag)
+else:
+    print("读取失败，错误码:", rslt)
+```
+
+## 简单使用示例
+
+```python
+import imu
+import time
+
+# 初始化
+ret = imu.init()
+if ret != 0:
+    print("IMU 初始化失败")
+else:
+    while True:
+        rslt, accel, gyro, mag = imu.read_9axis()
+        if rslt == 0:
+            print("加速度:", accel)
+            print("陀螺仪:", gyro)
+            print("磁力计:", mag)
+        else:
+            print("读取失败")
+
+        time.sleep(0.5)
+```
+
+## ⚠ 注意事项
+
+- 每次读取数据时都需检查返回值 `rslt` 是否为 `0`；
+- I2C 引脚固定为 GPIO 1（SCL）与 GPIO 2（SDA）；
+- 若 I2C 总线上存在其他设备，请注意地址冲突；
+- 本模块内部不做单位换算，单位解释需参考 BMI270+BMM150 数据手册。
+
+## 模块硬件支持
+
+| 传感器 | 描述 |
+|--------|------|
+| BMI270 | 3轴加速度 + 3轴陀螺仪 |
+| BMM150 | 3轴磁力计 |

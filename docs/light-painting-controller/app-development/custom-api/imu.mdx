@@ -1,0 +1,105 @@
+---
+sidebar_position: 8
+sidebar_label: 9-Axis Sensor (imu)
+title: "Firefly T1 9-Axis Sensor (imu) API - Socolode Light Development"
+description: "Firefly T1 BMI270+BMM150 9-axis sensor module API reference. Based on a shared I2C driver, it supports initialization and 9-axis data reading (accelerometer, gyroscope, magnetometer)."
+keywords: ["Firefly T1", "9-Axis Sensor", "imu", "BMI270", "BMM150", "I2C"]
+---
+
+# 9-Axis Sensor (imu)
+
+This module manages the BMI270+BMM150 9-axis sensor module (3-axis accelerometer, 3-axis gyroscope, 3-axis magnetometer). It uses a shared I2C driver for initialization and data reading.
+
+- Fixed I2C pins:
+  - **SCL = GPIO 1**
+  - **SDA = GPIO 2**
+  - Speed = 100kHz
+
+## Methods
+
+### 1. `imu.init() -> int`
+
+**Function:** Initialize the IMU sensor module.
+
+- Automatically initializes the shared I2C interface internally;
+- Only initializes once; repeated calls directly return the previous result;
+- Returns `0` on successful initialization, non-zero on failure (determined by the `imu_init()` return value).
+
+**Example:**
+
+```python
+import imu
+
+ret = imu.init()
+if ret == 0:
+    print("IMU initialized successfully")
+else:
+    print("IMU initialization failed, error code:", ret)
+```
+
+### 2. `imu.read_9axis() -> (int, (float, float, float), (float, float, float), (float, float, float))`
+
+**Function:** Read the 9-axis sensor data.
+
+**Return value:**
+
+Returns a 4-tuple in the following format:
+
+```python
+(rslt, accel, gyro, mag)
+```
+
+- `rslt`: read status code, 0 means success, non-zero means failure.
+- `accel`: 3-tuple (ax, ay, az), unit usually g.
+- `gyro`: 3-tuple (gx, gy, gz), unit usually °/s.
+- `mag`: 3-tuple (mx, my, mz), unit usually μT.
+
+**Example:**
+
+```python
+rslt, accel, gyro, mag = imu.read_9axis()
+
+if rslt == 0:
+    print("Accelerometer:", accel)
+    print("Gyroscope:", gyro)
+    print("Magnetometer:", mag)
+else:
+    print("Read failed, error code:", rslt)
+```
+
+## Simple Usage Example
+
+```python
+import imu
+import time
+
+# Initialize
+ret = imu.init()
+if ret != 0:
+    print("IMU initialization failed")
+else:
+    while True:
+        rslt, accel, gyro, mag = imu.read_9axis()
+        if rslt == 0:
+            print("Accelerometer:", accel)
+            print("Gyroscope:", gyro)
+            print("Magnetometer:", mag)
+        else:
+            print("Read failed")
+
+        time.sleep(0.5)
+```
+
+## ⚠ Notes
+
+- Always check whether the return value `rslt` is `0` on every read;
+- I2C pins are fixed to GPIO 1 (SCL) and GPIO 2 (SDA);
+- If there are other devices on the I2C bus, watch out for address conflicts;
+- This module does not perform unit conversion; refer to the BMI270+BMM150 datasheet for unit interpretation.
+
+## Module Hardware Support
+
+| Sensor | Description |
+|--------|-------------|
+| BMI270 | 3-axis accelerometer + 3-axis gyroscope |
+| BMM150 | 3-axis magnetometer |

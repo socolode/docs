@@ -50,9 +50,25 @@ mic.init(16000, 16, 1, 4096)
 - 需保证 buffer 长度大于等于初始化时设置的 buff_size。
 - 未初始化时调用将抛出异常。
 
+**示例：**
+
+```python
+import mic
+
+buffer = bytearray(4096)
+bytes_read = mic.read_data(buffer)
+print("读取了", bytes_read, "字节")
+```
+
 ### 3. `mic.release()`
 
 **功能：** 释放麦克风资源，关闭 I2S PDM。
+
+**示例：**
+
+```python
+mic.release()
+```
 
 ### 4. `mic.calculate_stats() -> dict`
 
@@ -65,6 +81,15 @@ mic.init(16000, 16, 1, 4096)
   - `min`：最小采样值（int16）
   - `avg`：平均采样值（int16）
 
+**示例：**
+
+```python
+stats = mic.calculate_stats()
+print("最大值:", stats['max'])
+print("最小值:", stats['min'])
+print("平均值:", stats['avg'])
+```
+
 **注意：**
 
 - 内部自动分配并释放缓冲区；
@@ -72,14 +97,29 @@ mic.init(16000, 16, 1, 4096)
 
 ## 用法示例
 
-结合 `calculate_stats()` 可以方便地实现音量检测或声音能量分析。
+```python
+import mic
 
-:::warning 注意事项
+# 初始化
+mic.init(16000, 16, 1, 4096)
+
+# 读取数据
+buffer = bytearray(4096)
+mic.read_data(buffer)
+
+# 计算统计数据
+stats = mic.calculate_stats()
+print(stats)
+
+# 释放资源
+mic.release()
+```
+
+## ⚠ 注意事项
+
 - 初始化时 GPIO 已固定：
   - 时钟 CLK_IO = 40
   - 数据 DIN_IO = 41
 - 每次初始化会覆盖之前的配置；
 - 必须先调用 `mic.init()`，再调用其他方法；
 - `calculate_stats()` 适合做简单音量检测、声音能量分析。
-- 未初始化时调用其他方法将抛出异常。
-:::

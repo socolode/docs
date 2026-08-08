@@ -112,6 +112,14 @@
     "message": "萤火虫T1 自定义API 参考文档，包括 USB 串口控制（CDC）、拓展接口、电源管理等",
     "description": "The generated-index page description for category 'custom-api' in sidebar 'controllerSeries'"
   },
+  "sidebar.controllerSeries.category.display": {
+    "message": "显示屏",
+    "description": "The label for category 'display' in sidebar 'controllerSeries'"
+  },
+  "sidebar.controllerSeries.category.display.link.generated-index.description": {
+    "message": "萤火虫T1 显示屏(LCD)模块参考文档，基于 ST7789 驱动，支持图形绘制、文本渲染、图像显示与背光调节",
+    "description": "The generated-index page description for category 'display' in sidebar 'controllerSeries'"
+  },
   "sidebar.controllerSeries.category.System Maintenance": {
     "message": "系统维护",
     "description": "The label for category 'System Maintenance' in sidebar 'controllerSeries'"

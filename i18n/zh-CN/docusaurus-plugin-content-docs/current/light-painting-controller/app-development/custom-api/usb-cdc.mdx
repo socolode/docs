@@ -52,6 +52,14 @@ while True:
 
 **API：**
 
+```python
+import sys
+
+sys.stdout.write("数据内容\n")
+# 或者更简单
+print("数据内容")
+```
+
 **说明：**
 
 - ESP32-S3 通过 `sys.stdout.write()` 或 `print()` 向电脑发送数据。
@@ -59,9 +67,14 @@ while True:
 
 **示例：**
 
-:::note
-通过 `print()` 或 `sys.stdout.write()` 即可向上位机发送数据，串口助手会实时显示接收到的内容。
-:::
+```python
+import sys
+import time
+
+for i in range(5):
+    sys.stdout.write("上传数据: {}\n".format(i))
+    time.sleep(1)
+```
 
 ## AI 编程
 
@@ -69,13 +82,15 @@ while True:
 
 ### 通用提示词模板
 
-> 帮我编写一段 MicroPython 代码，运行在 ESP32-S3 上，通过 USB-CDC 串口通信实现以下功能：
->
-> - **功能需求：**
->   - 电脑通过串口发送命令（如：LED ON、LED OFF）
->   - 设备接收命令并控制 GPIO（比如 GPIO2 控制 LED 灯）
->   - 设备定时（每秒）上传一段模拟传感器数据到电脑
-> - **额外要求（可选）：**
->   - 代码要有异常处理，防止串口断开时程序崩溃
->   - 逻辑要清晰，便于扩展
->   - 提供完整代码，不要伪代码
+:::info
+帮我编写一段 MicroPython 代码，运行在 ESP32-S3 上，通过 USB-CDC 串口通信实现以下功能：
+
+- **功能需求：**
+  - 电脑通过串口发送命令（如：LED ON、LED OFF）
+  - 设备接收命令并控制 GPIO（比如 GPIO2 控制 LED 灯）
+  - 设备定时（每秒）上传一段模拟传感器数据到电脑
+- **额外要求（可选）：**
+  - 代码要有异常处理，防止串口断开时程序崩溃
+  - 逻辑要清晰，便于扩展
+  - 提供完整代码，不要伪代码
+:::

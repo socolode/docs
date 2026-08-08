@@ -57,6 +57,19 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 | press_type | str | 事件类型：`'short'`（短按）、`'long'`（长按） |
 | callback | function | 回调函数（无参数） |
 
+**示例：**
+
+```python
+def on_center_short():
+    print("中心键短按")
+
+def on_left_long():
+    print("左键长按")
+
+buttons.register_callback('center', 'short', on_center_short)
+buttons.register_callback('left', 'long', on_left_long)
+```
+
 ### 3. `get_button_state(button_name) -> bool`
 
 **功能：** 查询指定按键当前是否处于按下状态。
@@ -67,9 +80,22 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 - `False`：未按下
 - `None`：无效按键名
 
+**示例：**
+
+```python
+if buttons.get_button_state('center'):
+    print("中心键被按下")
+```
+
 ### 4. `deinit()`
 
 **功能：** 释放所有资源，关闭中断与定时器。在不再需要按键控制时调用。
+
+**示例：**
+
+```python
+buttons.deinit()
+```
 
 ## 工作流程说明
 
@@ -80,30 +106,36 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 
 ## 完整使用示例
 
-以下示例演示了如何为指定按键注册回调：
-
 ```python
 from button import Button
+import time
 
+# 初始化按键管理器
 buttons = Button()
 
-def on_up_short():
-    print("up short pressed")
+# 注册短按事件
+buttons.register_callback('center', 'short', lambda: print("中心短按"))
+buttons.register_callback('up', 'short', lambda: print("上短按"))
 
-def on_up_long():
-    print("up long pressed")
+# 注册长按事件
+buttons.register_callback('center', 'long', lambda: print("中心长按"))
+buttons.register_callback('down', 'long', lambda: print("下长按"))
 
-buttons.register_callback('up', 'short', on_up_short)
-buttons.register_callback('up', 'long', on_up_long)
+# 主循环 (可配合其他任务运行)
+try:
+    while True:
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    buttons.deinit()
 ```
 
-:::warning 注意事项
+## ⚠ 注意事项
+
 - 本模块适合嵌入式实时控制，避免频繁轮询。
-- 使用 lambda 或自定义函数注册回调都可以。
+- 使用 `lambda` 或自定义函数注册回调都可以。
 - 建议在系统退出时调用 `deinit()` 释放硬件资源。
-:::
 
 ## 硬件限制说明
 
-- 按键逻辑电平为低电平有效（内部上拉）。
+- 按键逻辑电平为 **低电平有效**（内部上拉）。
 - 按键数量固定为 5 个，GPIO 不可自定义（除非改代码）。

@@ -1,0 +1,766 @@
+---
+sidebar_position: 1
+sidebar_label: Display (LCD)
+title: "Firefly T1 Display (LCD) API - Socolode Light Development"
+description: "Firefly T1 display (LCD) module API reference. Based on the ST7789 driver, it provides rich graphics drawing, text rendering, image display and backlight control."
+keywords: ["Firefly T1", "Display", "LCD", "ST7789", "TFT", "Drawing"]
+---
+
+# Display (LCD)
+
+## Introduction
+
+The `LCD` module is used to manage and control the ST7789 display. It provides rich drawing functions such as drawing text, shapes and images, as well as display control functions such as adjusting the backlight and rotating the screen.
+
+:::info
+The API interfaces in this document have not been fully tested yet. If you run into any strange problems, feel free to contact me and I will fix them as soon as possible!
+
+This module is based on the MicroPython ST7789 module. For any application examples, you can search for "micropython st7789" online and you will basically find relevant references (or just ask GPT).
+:::
+
+## Usage Example
+
+The following example shows how to use the `LCD` class to create an instance and perform some basic operations:
+
+```python
+from lcd import LCD
+import time
+import vga2_8x16 as font
+
+# Create an LCD instance
+display = LCD(backlight=200)
+
+# Clear the screen to black
+display.fill(LCD.BLACK)
+
+# Display text
+display.text(font, "Hello World", 0, 0, LCD.WHITE, LCD.BLACK)
+
+# Draw a rectangle
+display.draw_rect(10, 10, 100, 50, LCD.RED)
+
+# Draw a circle
+display.draw_circle(60, 60, 30, LCD.BLUE)
+
+# Main loop
+while True:
+    time.sleep(1)  # keep the main loop running
+```
+
+**Note:**
+
+- `vga2_8x16` is a bitmap font library for strings.
+
+# LCD Class
+
+## Features
+
+The `LCD` class provides a comprehensive interface for controlling the ST7789-driven TFT display, supporting graphics drawing, text rendering, image display and backlight control.
+
+## Constructor
+
+### `LCD(rotation, buffer_size, options, backlight)`
+
+- **Function**: Create and initialize an LCD instance.
+- **Arguments**:
+
+| Argument | Type | Default | Description |
+|----------|------|---------|-------------|
+| `rotation` | `int` | `0` | Screen rotation angle (0, 90, 180, 270). |
+| `buffer_size` | `int` | `0` | Display buffer size. |
+| `options` | `int` | `0` | Display options (configuration options at initialization). |
+| `backlight` | `int` | `200` | Backlight brightness (0-255). |
+
+- **Returns**: an `LCD` instance.
+- **Example**:
+
+```python
+from lcd import LCD
+
+# Initialize the LCD screen, set rotation angle and backlight brightness
+display = LCD(rotation=90, backlight=255)
+
+# Clear the screen using the fill method
+display.fill(LCD.RED)
+```
+
+## Methods
+
+To make the methods in the `LCD` class easier to understand and use, we group them by function. The following table lists each method's category and a brief description:
+
+| Category | Method | Description |
+|----------|--------|-------------|
+| **Power Control** | `on` | Turn on the display backlight. |
+|  | `off` | Turn off the display backlight. |
+|  | `sleep` | Put the display into sleep mode. |
+|  | `wake` | Wake the display from sleep mode. |
+| **Display Control** | `fill` | Fill the entire screen with a specified color. |
+|  | `set_rotation` | Set the screen rotation angle (0, 90, 180 or 270 degrees). |
+|  | `width` | Return the display width. |
+|  | `height` | Return the display height. |
+|  | `rotation` | Get or set the current rotation angle of the display. |
+|  | `offset` | Set the offset for display window rendering. |
+|  | `vscrdef` | Set vertical scroll definition parameters. |
+|  | `vscsad` | Set the vertical scroll start address. |
+| **Drawing** | `draw_pixel` | Draw a single pixel at a specified coordinate using a given color. |
+|  | `draw_line` | Draw a straight line between two points (x0, y0) and (x1, y1) using a specified color. |
+|  | `draw_rect` | Draw a rectangle outline with the top-left corner at (x, y) and a specified width, height and color. |
+|  | `fill_rect` | Fill a rectangle with the top-left corner at (x, y) and a specified width, height and color. |
+|  | `draw_circle` | Draw a circle centered at (x, y) with radius `r` using a specified color. |
+|  | `fill_circle` | Fill a circle centered at (x, y) with radius `r` using a specified color. |
+|  | `hline` | Draw a horizontal line starting at (x, y) with a specified length and color. |
+|  | `vline` | Draw a vertical line starting at (x, y) with a specified length and color. |
+| **Image Processing** | `blit` | Copy a buffer to the display with a specified coordinate, width and height. |
+|  | `bitmap` | Draw a bitmap at a specified coordinate, optionally using an index for color mapping. |
+|  | `jpg` | Draw a JPEG image at a specified coordinate using a fast or slow rendering method. |
+|  | `jpg_decode` | Decode a JPEG file and optionally resize it to fit a specified size. |
+|  | `png` | Draw a PNG image at a specified coordinate, optionally using a mask for transparency. |
+| **Text Processing** | `text` | Display text at a specified coordinate using a font, color and background color. |
+|  | `write` | Draw text at a specified coordinate using a bitmap font, with foreground and background colors. |
+|  | `write_len` | Return the width of a string rendered with a bitmap font. |
+|  | `draw` | Draw text at a specified coordinate using a vector font, with a given scale. |
+|  | `draw_len` | Return the width of a string rendered with a vector font, considering the scale. |
+| **Polygon** | `polygon_center` | Calculate the center point of a given polygon. |
+|  | `fill_polygon` | Draw and fill a polygon at a specified coordinate, with a given color, angle and center offset. |
+|  | `polygon` | Draw a polygon outline at a specified coordinate, with a given color, angle and center offset. |
+| **Color Processing** | `color565` | Convert RGB color values to 16-bit RGB565 format. |
+|  | `map_bitarray_to_rgb565` | Map a bitarray to an RGB565 color buffer using specified foreground and background colors. |
+| **Boundary Control** | `bounding` | Set or get the bounding box of the drawing area, optionally returning it as a rectangle. |
+
+### `text(font, text, x, y, color, background)`
+
+- **Function**: Display text on the screen.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| font | Font | Text font (e.g. Monospace, Sans) |
+| text | str | The text content to display |
+| x | int | Starting X coordinate of the text |
+| y | int | Starting Y coordinate of the text |
+| color | int | Text color (RGB565 format) |
+| background | int | Background color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+from lcd import LCD
+import vga2_8x16 as font
+
+# Initialize the LCD
+display = LCD()
+
+# Display text on the screen
+display.text(font, "Hello, World!", 10, 20, LCD.WHITE, LCD.BLACK)
+```
+
+### `fill(color)`
+
+- **Function**: Fill the screen with a color.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| color | int | Fill color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.fill(LCD.BLUE)
+```
+
+### `on()`
+
+- **Function**: Turn on the backlight.
+- **Arguments**: none
+- **Returns**: None
+- **Example**:
+
+```python
+display.on()
+```
+
+### `off()`
+
+- **Function**: Turn off the backlight.
+- **Arguments**: none
+- **Returns**: None
+- **Example**:
+
+```python
+display.off()
+```
+
+### `sleep()`
+
+- **Function**: Enter sleep mode.
+- **Arguments**: none
+- **Returns**: None
+- **Example**:
+
+```python
+display.sleep()
+```
+
+### `wake()`
+
+- **Function**: Exit sleep mode.
+- **Arguments**: none
+- **Returns**: None
+- **Example**:
+
+```python
+display.wake()
+```
+
+### `set_rotation(rotation)`
+
+- **Function**: Set the screen rotation.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| rotation | int | Rotation angle (0, 90, 180, 270) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.set_rotation(90)
+```
+
+### `draw_pixel(x, y, color)`
+
+- **Function**: Draw a single pixel.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | X coordinate of the pixel |
+| y | int | Y coordinate of the pixel |
+| color | int | Pixel color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.draw_pixel(15, 10, LCD.RED)
+```
+
+### `draw_line(x0, y0, x1, y1, color)`
+
+- **Function**: Draw a line.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x0 | int | Starting X coordinate |
+| y0 | int | Starting Y coordinate |
+| x1 | int | Ending X coordinate |
+| y1 | int | Ending Y coordinate |
+| color | int | Line color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.draw_line(10, 20, 100, 200, LCD.GREEN)
+```
+
+### `draw_rect(x, y, width, height, color)`
+
+- **Function**: Draw a rectangle.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | Starting X coordinate of the rectangle |
+| y | int | Starting Y coordinate of the rectangle |
+| width | int | Rectangle width |
+| height | int | Rectangle height |
+| color | int | Rectangle outline color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.draw_rect(10, 20, 50, 30, LCD.YELLOW)
+```
+
+### `fill_rect(x, y, width, height, color)`
+
+- **Function**: Fill a rectangle.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | Starting X coordinate of the rectangle |
+| y | int | Starting Y coordinate of the rectangle |
+| width | int | Rectangle width |
+| height | int | Rectangle height |
+| color | int | Fill color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.fill_rect(10, 20, 50, 30, LCD.RED)
+```
+
+### `draw_circle(x, y, r, color)`
+
+- **Function**: Draw a circle.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | X coordinate of the circle center |
+| y | int | Y coordinate of the circle center |
+| r | int | Circle radius |
+| color | int | Circle color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.draw_circle(50, 50, 20, LCD.CYAN)
+```
+
+### `fill_circle(x, y, r, color)`
+
+- **Function**: Fill a circle.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | X coordinate of the circle center |
+| y | int | Y coordinate of the circle center |
+| r | int | Circle radius |
+| color | int | Fill color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.fill_circle(50, 50, 20, LCD.MAGENTA)
+```
+
+### `blit(buffer, x, y, width, height)`
+
+- **Function**: Copy buffer contents to the screen.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| buffer | bytes | Image data buffer |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| width | int | Image width |
+| height | int | Image height |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.blit(image_data, 0, 0, 135, 240)
+```
+
+### `hline(x, y, length, color)`
+
+- **Function**: Draw a horizontal line.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | Starting X coordinate |
+| y | int | Y coordinate |
+| length | int | Line length |
+| color | int | Line color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.hline(10, 20, 100, LCD.YELLOW)
+```
+
+### `vline(x, y, length, color)`
+
+- **Function**: Draw a vertical line.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x | int | X coordinate |
+| y | int | Starting Y coordinate |
+| length | int | Line length |
+| color | int | Line color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.vline(20, 10, 100, LCD.GREEN)
+```
+
+### `bitmap(bitmap, x, y, index=None)`
+
+- **Function**: Draw a bitmap.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| bitmap | bytes | Bitmap data |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| index | int | Bitmap index (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.bitmap(bitmap_data, 0, 0)
+```
+
+### `write(bitmap_font, s, x, y, fg=WHITE, bg=BLACK, background_tuple=None, fill_flag=False)`
+
+- **Function**: Draw text using a bitmap font.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| bitmap_font | Font | Bitmap font |
+| s | str | The text content to display |
+| x | int | Starting X coordinate of the text |
+| y | int | Starting Y coordinate of the text |
+| fg | int | Foreground color (RGB565 format) |
+| bg | int | Background color (RGB565 format) |
+| background_tuple | tuple | Background parameters (optional) |
+| fill_flag | bool | Fill flag (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.write(bitmap_font, "Hello", 10, 20, LCD.WHITE, LCD.BLACK)
+```
+
+### `write_len(bitmap_font, s)`
+
+- **Function**: Get the width of the text.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| bitmap_font | Font | Bitmap font |
+| s | str | The text content to display |
+
+- **Returns**: int - text width
+- **Example**:
+
+```python
+width = display.write_len(bitmap_font, "Hello")
+```
+
+### `draw(vector_font, s, x, y, fg=WHITE, scale=1.0)`
+
+- **Function**: Draw text using a vector font.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| vector_font | Font | Vector font |
+| s | str | The text content to display |
+| x | int | Starting X coordinate of the text |
+| y | int | Starting Y coordinate of the text |
+| fg | int | Foreground color (RGB565 format) |
+| scale | float | Font scale |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.draw(vector_font, "Hello", 10, 20, LCD.WHITE, scale=1.5)
+```
+
+### `draw_len(vector_font, s, scale=1.0)`
+
+- **Function**: Get the width of vector font text.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| vector_font | Font | Vector font |
+| s | str | The text content to display |
+| scale | float | Font scale |
+
+- **Returns**: int - text width
+- **Example**:
+
+```python
+width = display.draw_len(vector_font, "Hello", scale=1.5)
+```
+
+### `jpg(jpg, x, y, method='FAST')`
+
+- **Function**: Draw a JPEG image.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| jpg | bytes | JPEG image data |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| method | str | Decode method ('FAST' or 'SLOW') |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.jpg(jpeg_data, 0, 0)
+```
+
+### `jpg_decode(jpg_filename, x=0, y=0, width=None, height=None)`
+
+- **Function**: Decode a JPEG file.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| jpg_filename | str | JPEG file name |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| width | int | Image width (optional) |
+| height | int | Image height (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.jpg_decode("image.jpg")
+```
+
+### `png(png_filename, x, y, mask=False)`
+
+- **Function**: Draw a PNG image.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| png_filename | str | PNG file name |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| mask | bool | Use a mask (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.png("image.png", 0, 0)
+```
+
+### `polygon_center(polygon)`
+
+- **Function**: Calculate the center point of a polygon.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| polygon | list | List of polygon vertices |
+
+- **Returns**: tuple - (x, y) center coordinate
+- **Example**:
+
+```python
+center = display.polygon_center([(10, 10), (20, 10), (20, 20), (10, 20)])
+```
+
+### `fill_polygon(polygon, x, y, color, angle=0, center_x=0, center_y=0)`
+
+- **Function**: Draw a filled polygon.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| polygon | list | List of polygon vertices |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| color | int | Fill color (RGB565 format) |
+| angle | int | Rotation angle (optional) |
+| center_x | int | Center X coordinate (optional) |
+| center_y | int | Center Y coordinate (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.fill_polygon([(10, 10), (20, 10), (20, 20), (10, 20)], 0, 0, LCD.GREEN)
+```
+
+### `polygon(polygon, x, y, color, angle=0, center_x=0, center_y=0)`
+
+- **Function**: Draw a polygon.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| polygon | list | List of polygon vertices |
+| x | int | Starting X coordinate |
+| y | int | Starting Y coordinate |
+| color | int | Outline color (RGB565 format) |
+| angle | int | Rotation angle (optional) |
+| center_x | int | Center X coordinate (optional) |
+| center_y | int | Center Y coordinate (optional) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.polygon([(10, 10), (20, 10), (20, 20), (10, 20)], 0, 0, LCD.RED)
+```
+
+### `bounding(status=None, as_rect=False)`
+
+- **Function**: Set or get the drawing area boundary.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| status | bool | Set the boundary (optional) |
+| as_rect | bool | Whether to return the boundary as a rectangle (optional) |
+
+- **Returns**: tuple - (tfa, height, bfa) boundary parameters (if getting)
+- **Example**:
+
+```python
+boundaries = display.bounding()
+```
+
+### `vscrdef(tfa, height, bfa)`
+
+- **Function**: Set vertical scroll parameters.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| tfa | int | Top boundary |
+| height | int | Total height |
+| bfa | int | Bottom boundary |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.vscrdef(0, 240, 0)
+```
+
+### `vscsad(vssa)`
+
+- **Function**: Set the vertical scroll start address.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| vssa | int | Vertical scroll start address |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.vscsad(0)
+```
+
+### `color565(r, g, b)`
+
+- **Function**: Convert RGB color to a 16-bit color.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| r | int | Red component |
+| g | int | Green component |
+| b | int | Blue component |
+
+- **Returns**: int - 16-bit color value
+- **Example**:
+
+```python
+color = display.color565(255, 0, 0)  # red
+```
+
+### `map_bitarray_to_rgb565(bitarray, buffer, width, color=WHITE, bg_color=BLACK)`
+
+- **Function**: Convert a bitarray to an RGB565 color buffer.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| bitarray | bytes | Bitarray |
+| buffer | bytes | Color buffer |
+| width | int | Image width |
+| color | int | Color (RGB565 format) |
+| bg_color | int | Background color (RGB565 format) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.map_bitarray_to_rgb565(bitarray_data, buffer, 135)
+```
+
+### `width()`
+
+- **Function**: Get the display width.
+- **Arguments**: none
+- **Returns**: int - display width
+- **Example**:
+
+```python
+screen_width = display.width()
+```
+
+### `height()`
+
+- **Function**: Get the display height.
+- **Arguments**: none
+- **Returns**: int - display height
+- **Example**:
+
+```python
+screen_height = display.height()
+```
+
+### `rotation(r)`
+
+- **Function**: Set the display rotation.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| r | int | Rotation angle (0, 90, 180, 270) |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.rotation(90)
+```
+
+### `offset(x_start, y_start)`
+
+- **Function**: Set the display offset.
+- **Arguments**:
+
+| Argument | Type | Description |
+|----------|------|-------------|
+| x_start | int | X coordinate offset |
+| y_start | int | Y coordinate offset |
+
+- **Returns**: None
+- **Example**:
+
+```python
+display.offset(10, 20)
+```

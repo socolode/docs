@@ -3,7 +3,7 @@
   "position": 1,
   "key": "beetle-s1-product-intro",
   "link": {
-    "type": "generated-index",
-    "description": "这是什么、能做什么——独角仙S1 产品介绍"
+    "type": "doc",
+    "id": "light-painting-controller/beetle-s1/product-intro/what-is-this"
   }
 }

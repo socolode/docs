@@ -32,7 +32,7 @@ keywords: ["萤火虫T1", "Firefly T1", "拓展接口", "5P-PIN", "GPIO", "WS281
 
 **注意：**
 
-- VCC 在使用电池供电时，需要通过电源管理(pm)主动的打开“VCC输出”，才有5V输出
+- VCC 在使用电池供电时，需要通过[电源管理(pm)](./power-management.mdx)主动的打开“VCC输出”，才有5V输出
 - 显示屏面为“正面”，5P-PIN 的顺序为正面“从左往右”
 
 ![萤火虫T1 5P-PIN 拓展接口示意图](./assets/extension-5pin.png)
@@ -54,7 +54,7 @@ keywords: ["萤火虫T1", "Firefly T1", "拓展接口", "5P-PIN", "GPIO", "WS281
 
 **注意：**
 
-- VCC 在使用电池供电时，需要通过电源管理(pm)主动的打开“VCC输出”，才有5V输出
+- VCC 在使用电池供电时，需要通过[电源管理(pm)](./power-management.mdx)主动的打开“VCC输出”，才有5V输出
 - 显示屏面为“正面”，5P-PIN 的顺序为正面“从上往下”
 
 ## 用法介绍
@@ -71,4 +71,4 @@ keywords: ["萤火虫T1", "Firefly T1", "拓展接口", "5P-PIN", "GPIO", "WS281
 
 ### 炫彩灯（neopixel）
 
-结合 neopixel 库，通过上方 5PIN 接口连接 WS2812 类炫彩灯，即可轻松实现灯光控制。
+结合 neopixel 库，通过上方 5PIN 接口连接 WS2812 类炫彩灯，即可轻松实现灯光控制。详细用法见[炫彩灯(neopixel)控制](./ws2812-neopixel-control.mdx)。

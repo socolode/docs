@@ -1,0 +1,766 @@
+---
+sidebar_position: 1
+sidebar_label: 显示屏(LCD)
+title: "萤火虫T1 显示屏(LCD) API - Socolode 光绘开发"
+description: "萤火虫T1 显示屏(LCD)模块 API 参考，基于 ST7789 驱动，提供图形绘制、文本渲染、图像显示与背光控制等丰富功能。"
+keywords: ["萤火虫T1", "Firefly T1", "显示屏", "LCD", "ST7789", "TFT", "绘图"]
+---
+
+# 显示屏(LCD)
+
+## 简介
+
+`LCD` 模块用于管理和控制 ST7789 显示屏。它提供了丰富的绘图功能，如绘制文本、图形和图片，以及显示控制功能，如调节背光和旋转屏幕。
+
+:::info
+本文档的 API 接口还没完全测试过，如果遇到什么奇怪的问题，可以联系我，我会第一时间修正！
+
+本模块是基于 MicroPython ST7789 模块制作的，有什么应用上的例子都可以通过在网上搜索 micropython st7789 基本都会有相应的参考（或者直接 GPT）。
+:::
+
+## 应用示例
+
+以下示例展示了如何使用 `LCD` 类来创建实例并执行一些基本操作：
+
+```python
+from lcd import LCD
+import time
+import vga2_8x16 as font
+
+# 创建 LCD 实例
+display = LCD(backlight=200)
+
+# 清除屏幕为黑色
+display.fill(LCD.BLACK)
+
+# 显示文本
+display.text(font, "Hello World", 0, 0, LCD.WHITE, LCD.BLACK)
+
+# 绘制矩形
+display.draw_rect(10, 10, 100, 50, LCD.RED)
+
+# 绘制圆圈
+display.draw_circle(60, 60, 30, LCD.BLUE)
+
+# 主循环
+while True:
+    time.sleep(1)  # 让主循环一直运行
+```
+
+**说明：**
+
+- `vga2_8x16` 是字符串的位图库。
+
+# LCD类
+
+## 功能
+
+`LCD` 类提供了一个全面的接口用于控制 ST7789 驱动的 TFT 显示屏，支持图形绘制、文本渲染、图像显示和背光调节。
+
+## 构造函数
+
+### `LCD(rotation, buffer_size, options, backlight)`
+
+- **功能**：创建并初始化 LCD 实例。
+- **参数**：
+
+| 参数名称 | 类型 | 默认值 | 说明 |
+|----------|------|--------|------|
+| `rotation` | `int` | `0` | 屏幕旋转角度（0, 90, 180, 270）。 |
+| `buffer_size` | `int` | `0` | 显示缓冲区大小。 |
+| `options` | `int` | `0` | 显示选项（初始化时的配置选项）。 |
+| `backlight` | `int` | `200` | 背光亮度（0-255）。 |
+
+- **返回**：`LCD` 实例。
+- **示例**：
+
+```python
+from lcd import LCD
+
+# 初始化 LCD 屏幕，设置旋转角度和背光亮度
+display = LCD(rotation=90, backlight=255)
+
+# 使用 fill 方法清空屏幕
+display.fill(LCD.RED)
+```
+
+## 方法
+
+为了便于理解和使用 `LCD` 类中的方法，我们根据其功能将这些方法分类。以下是对每个方法的分类和简要描述的表格：
+
+| 类别 | 方法名称 | 描述 |
+|------|----------|------|
+| **电源控制** | `on` | 开启显示屏背光。 |
+|  | `off` | 关闭显示屏背光。 |
+|  | `sleep` | 让显示屏进入睡眠模式。 |
+|  | `wake` | 从睡眠模式唤醒显示屏。 |
+| **显示控制** | `fill` | 用指定的颜色填充整个屏幕。 |
+|  | `set_rotation` | 设置屏幕的旋转角度（0、90、180或270度）。 |
+|  | `width` | 返回显示屏的宽度。 |
+|  | `height` | 返回显示屏的高度。 |
+|  | `rotation` | 获取或设置显示屏的当前旋转角度。 |
+|  | `offset` | 设置显示窗口渲染的偏移。 |
+|  | `vscrdef` | 设置垂直滚动定义参数。 |
+|  | `vscsad` | 设置垂直滚动起始地址。 |
+| **绘图** | `draw_pixel` | 在指定坐标处绘制一个单独的像素，使用给定颜色。 |
+|  | `draw_line` | 在两点（x0, y0）和（x1, y1）之间绘制一条直线，使用指定颜色。 |
+|  | `draw_rect` | 绘制一个矩形轮廓，左上角在（x, y），具有指定宽度、高度和颜色。 |
+|  | `fill_rect` | 填充一个矩形，左上角在（x, y），具有指定的宽度、高度和颜色。 |
+|  | `draw_circle` | 绘制一个圆圈，圆心在（x, y），半径为`r`，使用指定颜色。 |
+|  | `fill_circle` | 填充一个圆圈，圆心在（x, y），半径为`r`，使用指定颜色。 |
+|  | `hline` | 绘制一条水平线，起始于（x, y），具有指定长度和颜色。 |
+|  | `vline` | 绘制一条垂直线，起始于（x, y），具有指定长度和颜色。 |
+| **图像处理** | `blit` | 将一个缓冲区复制到显示屏上，具有指定坐标、宽度和高度。 |
+|  | `bitmap` | 在指定坐标处绘制位图，可选择使用索引进行颜色映射。 |
+|  | `jpg` | 在指定坐标处绘制JPEG图像，使用快速或慢速渲染方法。 |
+|  | `jpg_decode` | 解码JPEG文件并可选地调整其尺寸以适应指定的大小。 |
+|  | `png` | 在指定坐标处绘制PNG图像，可选择使用蒙版实现透明效果。 |
+| **文本处理** | `text` | 在指定坐标处显示文本，使用字体、颜色和背景颜色。 |
+|  | `write` | 使用位图字体在指定坐标处绘制文本，具有前景色和背景色。 |
+|  | `write_len` | 返回用位图字体渲染字符串的宽度。 |
+|  | `draw` | 使用矢量字体在指定坐标处绘制文本，具有给定的缩放比例。 |
+|  | `draw_len` | 返回使用矢量字体渲染字符串的宽度，考虑缩放比例。 |
+| **多边形** | `polygon_center` | 计算给定多边形的中心点。 |
+|  | `fill_polygon` | 在指定坐标处绘制并填充多边形，具有给定颜色、角度和中心偏移。 |
+|  | `polygon` | 在指定坐标处绘制多边形轮廓，具有给定颜色、角度和中心偏移。 |
+| **颜色处理** | `color565` | 将RGB颜色值转换为16位RGB565格式。 |
+|  | `map_bitarray_to_rgb565` | 使用指定的前景色和背景色将位图数组映射为RGB565颜色缓冲区。 |
+| **边界控制** | `bounding` | 设置或获取绘制区域的边界框，可选择以矩形形式返回。 |
+
+### `text(font, text, x, y, color, background)`
+
+- **功能**：在屏幕上显示文本。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| font | Font | 文本字体（如 Monospace, Sans） |
+| text | str | 要显示的文本内容 |
+| x | int | 文本起始 X 坐标 |
+| y | int | 文本起始 Y 坐标 |
+| color | int | 文本颜色（RGB565 格式） |
+| background | int | 背景颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+from lcd import LCD
+import vga2_8x16 as font
+
+# 初始化 LCD
+display = LCD()
+
+# 在屏幕上显示文本
+display.text(font, "Hello, World!", 10, 20, LCD.WHITE, LCD.BLACK)
+```
+
+### `fill(color)`
+
+- **功能**：填充屏幕颜色。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| color | int | 填充颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.fill(LCD.BLUE)
+```
+
+### `on()`
+
+- **功能**：开启背光。
+- **参数**：无
+- **返回**：None
+- **示例**：
+
+```python
+display.on()
+```
+
+### `off()`
+
+- **功能**：关闭背光。
+- **参数**：无
+- **返回**：None
+- **示例**：
+
+```python
+display.off()
+```
+
+### `sleep()`
+
+- **功能**：进入睡眠模式。
+- **参数**：无
+- **返回**：None
+- **示例**：
+
+```python
+display.sleep()
+```
+
+### `wake()`
+
+- **功能**：退出睡眠模式。
+- **参数**：无
+- **返回**：None
+- **示例**：
+
+```python
+display.wake()
+```
+
+### `set_rotation(rotation)`
+
+- **功能**：设置屏幕旋转。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| rotation | int | 旋转角度（0, 90, 180, 270） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.set_rotation(90)
+```
+
+### `draw_pixel(x, y, color)`
+
+- **功能**：绘制单个像素。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 像素的 X 坐标 |
+| y | int | 像素的 Y 坐标 |
+| color | int | 像素颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.draw_pixel(15, 10, LCD.RED)
+```
+
+### `draw_line(x0, y0, x1, y1, color)`
+
+- **功能**：绘制直线。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x0 | int | 起点 X 坐标 |
+| y0 | int | 起点 Y 坐标 |
+| x1 | int | 终点 X 坐标 |
+| y1 | int | 终点 Y 坐标 |
+| color | int | 线条颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.draw_line(10, 20, 100, 200, LCD.GREEN)
+```
+
+### `draw_rect(x, y, width, height, color)`
+
+- **功能**：绘制矩形。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 矩形起始 X 坐标 |
+| y | int | 矩形起始 Y 坐标 |
+| width | int | 矩形宽度 |
+| height | int | 矩形高度 |
+| color | int | 矩形边框颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.draw_rect(10, 20, 50, 30, LCD.YELLOW)
+```
+
+### `fill_rect(x, y, width, height, color)`
+
+- **功能**：填充矩形。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 矩形起始 X 坐标 |
+| y | int | 矩形起始 Y 坐标 |
+| width | int | 矩形宽度 |
+| height | int | 矩形高度 |
+| color | int | 填充颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.fill_rect(10, 20, 50, 30, LCD.RED)
+```
+
+### `draw_circle(x, y, r, color)`
+
+- **功能**：绘制圆圈。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 圆心 X 坐标 |
+| y | int | 圆心 Y 坐标 |
+| r | int | 圆半径 |
+| color | int | 圆圈颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.draw_circle(50, 50, 20, LCD.CYAN)
+```
+
+### `fill_circle(x, y, r, color)`
+
+- **功能**：填充圆圈。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 圆心 X 坐标 |
+| y | int | 圆心 Y 坐标 |
+| r | int | 圆半径 |
+| color | int | 填充颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.fill_circle(50, 50, 20, LCD.MAGENTA)
+```
+
+### `blit(buffer, x, y, width, height)`
+
+- **功能**：将缓冲区内容复制到屏幕。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| buffer | bytes | 图像数据缓冲区 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| width | int | 图像宽度 |
+| height | int | 图像高度 |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.blit(image_data, 0, 0, 135, 240)
+```
+
+### `hline(x, y, length, color)`
+
+- **功能**：绘制水平线。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | 起点 X 坐标 |
+| y | int | Y 坐标 |
+| length | int | 线条长度 |
+| color | int | 线条颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.hline(10, 20, 100, LCD.YELLOW)
+```
+
+### `vline(x, y, length, color)`
+
+- **功能**：绘制垂直线。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | int | X 坐标 |
+| y | int | 起点 Y 坐标 |
+| length | int | 线条长度 |
+| color | int | 线条颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.vline(20, 10, 100, LCD.GREEN)
+```
+
+### `bitmap(bitmap, x, y, index=None)`
+
+- **功能**：绘制位图。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| bitmap | bytes | 位图数据 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| index | int | 位图索引（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.bitmap(bitmap_data, 0, 0)
+```
+
+### `write(bitmap_font, s, x, y, fg=WHITE, bg=BLACK, background_tuple=None, fill_flag=False)`
+
+- **功能**：使用位图字体绘制文本。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| bitmap_font | Font | 位图字体 |
+| s | str | 要显示的文本内容 |
+| x | int | 文本起始 X 坐标 |
+| y | int | 文本起始 Y 坐标 |
+| fg | int | 前景颜色（RGB565 格式） |
+| bg | int | 背景颜色（RGB565 格式） |
+| background_tuple | tuple | 背景参数（可选） |
+| fill_flag | bool | 填充标志（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.write(bitmap_font, "Hello", 10, 20, LCD.WHITE, LCD.BLACK)
+```
+
+### `write_len(bitmap_font, s)`
+
+- **功能**：获取文本的宽度。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| bitmap_font | Font | 位图字体 |
+| s | str | 要显示的文本内容 |
+
+- **返回**：int - 文本宽度
+- **示例**：
+
+```python
+width = display.write_len(bitmap_font, "Hello")
+```
+
+### `draw(vector_font, s, x, y, fg=WHITE, scale=1.0)`
+
+- **功能**：使用矢量字体绘制文本。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| vector_font | Font | 矢量字体 |
+| s | str | 要显示的文本内容 |
+| x | int | 文本起始 X 坐标 |
+| y | int | 文本起始 Y 坐标 |
+| fg | int | 前景颜色（RGB565 格式） |
+| scale | float | 字体缩放比例 |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.draw(vector_font, "Hello", 10, 20, LCD.WHITE, scale=1.5)
+```
+
+### `draw_len(vector_font, s, scale=1.0)`
+
+- **功能**：获取矢量字体文本的宽度。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| vector_font | Font | 矢量字体 |
+| s | str | 要显示的文本内容 |
+| scale | float | 字体缩放比例 |
+
+- **返回**：int - 文本宽度
+- **示例**：
+
+```python
+width = display.draw_len(vector_font, "Hello", scale=1.5)
+```
+
+### `jpg(jpg, x, y, method='FAST')`
+
+- **功能**：绘制 JPEG 图片。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| jpg | bytes | JPEG 图像数据 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| method | str | 解码方法（'FAST' 或 'SLOW'） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.jpg(jpeg_data, 0, 0)
+```
+
+### `jpg_decode(jpg_filename, x=0, y=0, width=None, height=None)`
+
+- **功能**：解码 JPEG 文件。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| jpg_filename | str | JPEG 文件名 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| width | int | 图像宽度（可选） |
+| height | int | 图像高度（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.jpg_decode("image.jpg")
+```
+
+### `png(png_filename, x, y, mask=False)`
+
+- **功能**：绘制 PNG 图片。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| png_filename | str | PNG 文件名 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| mask | bool | 使用掩模（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.png("image.png", 0, 0)
+```
+
+### `polygon_center(polygon)`
+
+- **功能**：计算多边形的中心点。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| polygon | list | 多边形顶点列表 |
+
+- **返回**：tuple - (x, y) 中心点坐标
+- **示例**：
+
+```python
+center = display.polygon_center([(10, 10), (20, 10), (20, 20), (10, 20)])
+```
+
+### `fill_polygon(polygon, x, y, color, angle=0, center_x=0, center_y=0)`
+
+- **功能**：绘制填充多边形。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| polygon | list | 多边形顶点列表 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| color | int | 填充颜色（RGB565 格式） |
+| angle | int | 旋转角度（可选） |
+| center_x | int | 中心 X 坐标（可选） |
+| center_y | int | 中心 Y 坐标（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.fill_polygon([(10, 10), (20, 10), (20, 20), (10, 20)], 0, 0, LCD.GREEN)
+```
+
+### `polygon(polygon, x, y, color, angle=0, center_x=0, center_y=0)`
+
+- **功能**：绘制多边形。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| polygon | list | 多边形顶点列表 |
+| x | int | 起始 X 坐标 |
+| y | int | 起始 Y 坐标 |
+| color | int | 边框颜色（RGB565 格式） |
+| angle | int | 旋转角度（可选） |
+| center_x | int | 中心 X 坐标（可选） |
+| center_y | int | 中心 Y 坐标（可选） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.polygon([(10, 10), (20, 10), (20, 20), (10, 20)], 0, 0, LCD.RED)
+```
+
+### `bounding(status=None, as_rect=False)`
+
+- **功能**：设置或获取绘制区域边界。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| status | bool | 设置边界（可选） |
+| as_rect | bool | 是否以矩形形式返回边界（可选） |
+
+- **返回**：tuple - (tfa, height, bfa) 边界参数（如果获取）
+- **示例**：
+
+```python
+boundaries = display.bounding()
+```
+
+### `vscrdef(tfa, height, bfa)`
+
+- **功能**：设置垂直滚动参数。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| tfa | int | 上边界 |
+| height | int | 总高度 |
+| bfa | int | 下边界 |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.vscrdef(0, 240, 0)
+```
+
+### `vscsad(vssa)`
+
+- **功能**：设置垂直滚动起始地址。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| vssa | int | 垂直滚动起始地址 |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.vscsad(0)
+```
+
+### `color565(r, g, b)`
+
+- **功能**：将 RGB 颜色转换为 16 位颜色。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| r | int | 红色分量 |
+| g | int | 绿色分量 |
+| b | int | 蓝色分量 |
+
+- **返回**：int - 16 位颜色值
+- **示例**：
+
+```python
+color = display.color565(255, 0, 0)  # 红色
+```
+
+### `map_bitarray_to_rgb565(bitarray, buffer, width, color=WHITE, bg_color=BLACK)`
+
+- **功能**：将位图数组转换为 RGB565 颜色缓冲区。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| bitarray | bytes | 位图数组 |
+| buffer | bytes | 颜色缓冲区 |
+| width | int | 图像宽度 |
+| color | int | 颜色（RGB565 格式） |
+| bg_color | int | 背景颜色（RGB565 格式） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.map_bitarray_to_rgb565(bitarray_data, buffer, 135)
+```
+
+### `width()`
+
+- **功能**：获取显示屏宽度。
+- **参数**：无
+- **返回**：int - 显示屏宽度
+- **示例**：
+
+```python
+screen_width = display.width()
+```
+
+### `height()`
+
+- **功能**：获取显示屏高度。
+- **参数**：无
+- **返回**：int - 显示屏高度
+- **示例**：
+
+```python
+screen_height = display.height()
+```
+
+### `rotation(r)`
+
+- **功能**：设置显示屏旋转。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| r | int | 旋转角度（0、90、180、270） |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.rotation(90)
+```
+
+### `offset(x_start, y_start)`
+
+- **功能**：设置显示屏偏移。
+- **参数**：
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x_start | int | X 坐标偏移 |
+| y_start | int | Y 坐标偏移 |
+
+- **返回**：None
+- **示例**：
+
+```python
+display.offset(10, 20)
+```

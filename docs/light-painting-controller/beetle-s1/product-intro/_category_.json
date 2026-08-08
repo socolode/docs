@@ -3,7 +3,7 @@
   "position": 1,
   "key": "beetle-s1-product-intro",
   "link": {
-    "type": "generated-index",
-    "description": "What is it and what can it do - Beetle S1 product introduction"
+    "type": "doc",
+    "id": "light-painting-controller/beetle-s1/product-intro/what-is-this"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "label": "Display",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "description": "Firefly T1 display (LCD) module reference, based on the ST7789 driver. Supports graphics drawing, text rendering, image display and backlight control"
+  },
+  "key": "display"
+}

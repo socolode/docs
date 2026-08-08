@@ -1,0 +1,148 @@
+---
+sidebar_position: 2
+sidebar_label: 图片显示(含GIF)
+title: "萤火虫T1 显示屏图片显示(含GIF)教程 - Socolode 光绘开发"
+description: "学习萤火火T1显示屏显示JPG、PNG图片以及使用多种方式播放GIF动画的方法，配合LCD模块的jpg、png、bitmap等接口实现图片显示。"
+keywords: ["萤火虫T1", "Firefly T1", "图片显示", "JPG", "PNG", "GIF动画", "LCD", "ST7789"]
+---
+
+# 图片显示（包括GIF）
+
+## 显示JPG图片
+
+示例代码：
+
+```python
+from lcd import LCD
+
+# 创建 LCD 实例
+display = LCD(backlight=200)
+
+# 清除屏幕为黑色
+display.fill(LCD.BLACK)
+
+# 显示jpg图片
+display.jpg('/sd/apps/recorder/start.jpg', 0, 0, LCD.FAST)
+```
+
+:::info
+说明：
+
++ 语句 `display.jpg('/sd/start.jpg', 0, 0, LCD.FAST)` 表示在 `0，0` 位置显示图片 `start.jpg`。
++ 注意：模式有 `FAST` 和 `SLOW`，但是在 `FAST` 模式下，图片尺寸加上偏移量不能超过画面分辨率，不然就显示失败。
+:::
+
+## 显示PNG图片
+
+与显示 JPG 图片类似：
+
+```python
+from lcd import LCD
+import time
+import vga2_8x16 as font
+
+# 创建 LCD 实例
+display = LCD(backlight=200)
+
+# 清除屏幕为黑色
+display.fill(LCD.BLACK)
+
+# 显示png图片
+display.png('/sd/start.png', 0, 0)
+```
+
+## 显示GIF动画
+
+有多种方式实现 GIF：
+
+### 方式一
+
+使用 `jpg(jpg, x, y [, method])` API，用 fast 模式，直接快速打开 jpg 图片，实现 gif 动画显示
+
+- 优点：无需转换，直接使用
+- 缺点：显示慢
+- **使用场景：帧数多，像素少的 GIF 图**
+
+**示例：**
+
+```python
+from lcd import LCD
+import os
+import time
+
+# 创建 LCD 实例
+display = LCD(backlight=200)
+
+# 清除屏幕为黑色
+display.fill(LCD.BLACK)
+
+# 定义图像所在的目录
+image_directory = '/sd/apps/recorder/animation_frames/'
+
+# 获取图像帧数
+image_files = sorted(os.listdir(image_directory))
+num_frames = len(image_files)
+
+# 定义播放速度（每帧之间的延迟时间，单位：秒）
+frame_delay = 0.1  # 100毫秒
+
+# 初始化循环计数器
+loop_counter = 0
+
+try:
+    while True:
+        if loop_counter < num_frames:
+            # 获取当前帧的文件路径
+            frame = os.path.join(image_directory, f"frame-{loop_counter}.jpg")
+
+            # 显示当前帧
+            display.jpg(frame, (display.width() - 65) // 2, (display.height() - 65) // 2, LCD.FAST)
+
+            # 增加计数器
+            loop_counter += 1
+
+            # 等待下一帧
+            time.sleep(frame_delay)
+        else:
+            # 重置循环计数器
+            loop_counter = 0
+
+except KeyboardInterrupt:
+    # 捕获 Ctrl+C 以停止动画
+    print("动画已停止")
+
+finally:
+    # 在退出程序时清除屏幕
+    display.fill(LCD.BLACK)
+```
+
+:::info
+说明：
+
++ `display.jpg(jpg, x, y [, method])`，要用 `LCD.FAST` 模式才更加自然
+:::
+
+### 方式二
+
+使用 `jpg_decode(jpg_filename [, x, y, width, height])`，先解码图片成数组，然后使用 `blit_buffer(buffer, x, y, width, height)` 把数组显示到显示屏上
+
+- 优点：显示速度快
+- 缺点：需要大内存，解码过程慢。
+- 使用场景：
+
+例子：待更新
+
+### 方式三
+
+先把图片转换位图文件，直接加载位图文件到内存，再用 `bitmap(bitmap, x , y [, index])` API 显示到显示屏上。
+
+- 优点：速度快
+- 缺点：需要转换，需要大内存
+
+例子：待更新
+
+## 显示文字并且带背景图片
+
+用 `write(bitmap_font, s, x, y[, fg, bg, background_tuple, fill_flag])`，
+
+示例：待更新

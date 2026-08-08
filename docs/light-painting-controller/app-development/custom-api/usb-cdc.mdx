@@ -52,6 +52,14 @@ while True:
 
 **API:**
 
+```python
+import sys
+
+sys.stdout.write("data content\n")
+# or more simply
+print("data content")
+```
+
 **Explanation:**
 
 - The ESP32-S3 sends data to the computer via `sys.stdout.write()` or `print()`.
@@ -59,9 +67,14 @@ while True:
 
 **Example:**
 
-:::note
-Use `print()` or `sys.stdout.write()` to send data to the host, and the serial assistant will display whatever it receives in real time.
-:::
+```python
+import sys
+import time
+
+for i in range(5):
+    sys.stdout.write("upload data: {}\n".format(i))
+    time.sleep(1)
+```
 
 ## AI Programming
 
@@ -69,13 +82,15 @@ Because USB-CDC is a standard feature, you don't need to learn it specially. Jus
 
 ### Generic Prompt Template
 
-> Help me write a MicroPython code that runs on the ESP32-S3 and implements the following via USB-CDC serial communication:
->
-> - **Function requirements:**
->   - The computer sends commands through serial (e.g. LED ON, LED OFF)
->   - The device receives the commands and controls the GPIO (e.g. GPIO2 controls the LED)
->   - The device periodically (every second) uploads simulated sensor data to the computer
-> - **Extra requirements (optional):**
->   - The code should handle exceptions to prevent crashes when the serial connection is interrupted
->   - The logic should be clear and easy to extend
->   - Provide complete code, not pseudocode
+:::info
+Help me write a MicroPython code that runs on the ESP32-S3 and implements the following via USB-CDC serial communication:
+
+- **Function requirements:**
+  - The computer sends commands through serial (e.g. LED ON, LED OFF)
+  - The device receives the commands and controls the GPIO (e.g. GPIO2 controls the LED)
+  - The device periodically (every second) uploads simulated sensor data to the computer
+- **Extra requirements (optional):**
+  - The code should handle exceptions to prevent crashes when the serial connection is interrupted
+  - The logic should be clear and easy to extend
+  - Provide complete code, not pseudocode
+:::

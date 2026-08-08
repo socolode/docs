@@ -1,0 +1,148 @@
+---
+sidebar_position: 2
+sidebar_label: Image Display (incl. GIF)
+title: "Firefly T1 Display Image Display (incl. GIF) Tutorial - Socolode Light Development"
+description: "Learn how to display JPG and PNG images and play GIF animations on the Firefly T1 display using the LCD module's jpg, png, bitmap and other APIs."
+keywords: ["Firefly T1", "Image Display", "JPG", "PNG", "GIF Animation", "LCD", "ST7789"]
+---
+
+# Image Display (including GIF)
+
+## Displaying JPG Images
+
+Example code:
+
+```python
+from lcd import LCD
+
+# Create an LCD instance
+display = LCD(backlight=200)
+
+# Clear the screen to black
+display.fill(LCD.BLACK)
+
+# Display a jpg image
+display.jpg('/sd/apps/recorder/start.jpg', 0, 0, LCD.FAST)
+```
+
+:::info
+Notes:
+
++ The statement `display.jpg('/sd/start.jpg', 0, 0, LCD.FAST)` displays the image `start.jpg` at position `0, 0`.
++ Note: there are `FAST` and `SLOW` modes, but in `FAST` mode the image size plus the offset must not exceed the screen resolution, otherwise display will fail.
+:::
+
+## Displaying PNG Images
+
+Similar to displaying JPG images:
+
+```python
+from lcd import LCD
+import time
+import vga2_8x16 as font
+
+# Create an LCD instance
+display = LCD(backlight=200)
+
+# Clear the screen to black
+display.fill(LCD.BLACK)
+
+# Display a png image
+display.png('/sd/start.png', 0, 0)
+```
+
+## Displaying GIF Animations
+
+There are multiple ways to implement GIF:
+
+### Method 1
+
+Use the `jpg(jpg, x, y [, method])` API in fast mode to quickly open jpg images and implement GIF animation playback.
+
+- Advantages: no conversion needed, use directly
+- Disadvantages: slow display
+- **Use case: GIFs with many frames and few pixels**
+
+**Example:**
+
+```python
+from lcd import LCD
+import os
+import time
+
+# Create an LCD instance
+display = LCD(backlight=200)
+
+# Clear the screen to black
+display.fill(LCD.BLACK)
+
+# Define the directory containing the images
+image_directory = '/sd/apps/recorder/animation_frames/'
+
+# Get the number of image frames
+image_files = sorted(os.listdir(image_directory))
+num_frames = len(image_files)
+
+# Define the playback speed (delay between frames, in seconds)
+frame_delay = 0.1  # 100 milliseconds
+
+# Initialize the loop counter
+loop_counter = 0
+
+try:
+    while True:
+        if loop_counter < num_frames:
+            # Get the current frame's file path
+            frame = os.path.join(image_directory, f"frame-{loop_counter}.jpg")
+
+            # Display the current frame
+            display.jpg(frame, (display.width() - 65) // 2, (display.height() - 65) // 2, LCD.FAST)
+
+            # Increment the counter
+            loop_counter += 1
+
+            # Wait for the next frame
+            time.sleep(frame_delay)
+        else:
+            # Reset the loop counter
+            loop_counter = 0
+
+except KeyboardInterrupt:
+    # Catch Ctrl+C to stop the animation
+    print("Animation stopped")
+
+finally:
+    # Clear the screen when exiting the program
+    display.fill(LCD.BLACK)
+```
+
+:::info
+Notes:
+
++ For `display.jpg(jpg, x, y [, method])`, use `LCD.FAST` mode for a more natural result.
+:::
+
+### Method 2
+
+Use `jpg_decode(jpg_filename [, x, y, width, height])` to first decode the image into an array, then use `blit_buffer(buffer, x, y, width, height)` to display the array on the screen.
+
+- Advantages: fast display
+- Disadvantages: requires a lot of memory, slow decoding
+- Use case:
+
+Example: to be updated
+
+### Method 3
+
+First convert the image to a bitmap file, load the bitmap file directly into memory, then use the `bitmap(bitmap, x , y [, index])` API to display it on the screen.
+
+- Advantages: fast
+- Disadvantages: requires conversion, requires a lot of memory
+
+Example: to be updated
+
+## Displaying Text with a Background Image
+
+Use `write(bitmap_font, s, x, y[, fg, bg, background_tuple, fill_flag])`,
+
+Example: to be updated

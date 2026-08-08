@@ -1,0 +1,206 @@
+---
+sidebar_position: 3
+sidebar_label: Font Library Usage & Creation
+title: "Firefly T1 Display Font Library Usage & Creation Tutorial - Socolode Light Development"
+description: "Learn how to use and create font libraries for the Firefly T1 display, including built-in bitmap string fonts, vector string fonts, and creating custom Chinese font libraries."
+keywords: ["Firefly T1", "Font Library", "Font", "Bitmap Font", "Vector Font", "Chinese Font", "font2bitmap", "LCD", "ST7789"]
+---
+
+# Font Library Usage & Creation
+
+## Built-in Bitmap String Fonts
+
+### 128-Character Bitmap Fonts
+
+128-character bitmap fonts are suitable for displaying the basic ASCII character set. These fonts come in different sizes and styles to suit a variety of display needs.
+
+<table>
+  <thead>
+    <tr><th>Font File</th><th>Example Image</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vga1_8x8.py</td>
+      <td rowSpan="4"><img src={require('./assets/font-vga1-8x8.png').default} width="360" /></td>
+    </tr>
+    <tr><td>vga1_8x16.py</td></tr>
+    <tr><td>vga1_16x16.py</td></tr>
+    <tr><td>vga1_16x32.py</td></tr>
+    <tr>
+      <td>vga1_bold_16x16.py</td>
+      <td rowSpan="2"><img src={require('./assets/font-vga1-bold-16x16.png').default} width="360" /></td>
+    </tr>
+    <tr><td>vga1_bold_16x32.py</td></tr>
+  </tbody>
+</table>
+
+### 256-Character Bitmap Fonts
+
+256-character bitmap fonts include a wider character set, including some international characters and symbols. These fonts are usually used in more complex application scenarios.
+
+<table>
+  <thead>
+    <tr><th>Font File</th><th>Example Image</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vga2_8x8.py</td>
+      <td rowSpan="4"><img src={require('./assets/font-vga2-16x16.png').default} width="360" /></td>
+    </tr>
+    <tr><td>vga2_8x16.py</td></tr>
+    <tr><td>vga2_16x16.py</td></tr>
+    <tr><td>vga2_16x32.py</td></tr>
+    <tr>
+      <td>vga2_bold_16x16.py</td>
+      <td rowSpan="2"><img src={require('./assets/font-vga2-bold-16x16.png').default} width="360" /></td>
+    </tr>
+    <tr><td>vga2_bold_16x32.py</td></tr>
+  </tbody>
+</table>
+
+### Usage Example
+
+```python
+from lcd import LCD
+import vga1_16x32 as font
+
+# Initialize the LCD
+lcd = LCD()
+
+# Clear the screen
+lcd.fill(LCD.BLACK)
+lcd.text(font, "hello", 0, 0, LCD.WHITE, LCD.BLACK)
+```
+
+:::info
+**Displaying bitmap text:**
+
++ Call the `lcd.text()` method to display the text "hello" at position (0, 0) on the screen.
++ Set the font color to white (`LCD.WHITE`) and the background color to black (`LCD.BLACK`).
+:::
+
+## Built-in Vector String Fonts
+
+### Vector Character Fonts
+
+| Font File | Example Image |
+| --- | --- |
+| astrol.py | ![astrol font](./assets/font-astrol.svg) |
+| cyrilc.py | ![cyrilc font](./assets/font-cyrilc.svg) |
+| gotheng.py | ![gotheng font](./assets/font-gotheng.svg) |
+| gothger.py | ![gothger font](./assets/font-gothger.svg) |
+| gothita.py | ![gothita font](./assets/font-gothita.svg) |
+| greekc.py | ![greekc font](./assets/font-greekc.svg) |
+| greekcs.py | ![greekcs font](./assets/font-greekcs.svg) |
+| greekp.py | ![greekp font](./assets/font-greekp.svg) |
+| greeks.py | ![greeks font](./assets/font-greeks.svg) |
+| italicc.py | ![italicc font](./assets/font-italicc.svg) |
+| italiccs.py | ![italiccs font](./assets/font-italiccs.svg) |
+| italict.py | ![italict font](./assets/font-italict.svg) |
+| lowmat.py | ![lowmat font](./assets/font-lowmat.svg) |
+| marker.py | ![marker font](./assets/font-marker.svg) |
+| meteo.py | ![meteo font](./assets/font-meteo.svg) |
+| music.py | ![music font](./assets/font-music.svg) |
+| romanc.py | ![romanc font](./assets/font-romanc.svg) |
+| romancs.py | ![romancs font](./assets/font-romancs.svg) |
+| romand.py | ![romand font](./assets/font-romand.svg) |
+| romanp.py | ![romanp font](./assets/font-romanp.svg) |
+| romans.py | ![romans font](./assets/font-romans.svg) |
+| romant.py | ![romant font](./assets/font-romant.svg) |
+| scriptc.py | ![scriptc font](./assets/font-scriptc.svg) |
+| scripts.py | ![scripts font](./assets/font-scripts.svg) |
+| symbol.py | ![symbol font](./assets/font-symbol.svg) |
+| uppmat.py | ![uppmat font](./assets/font-uppmat.svg) |
+
+### Usage Example
+
+```python
+from lcd import LCD
+import astrol as font
+
+# Initialize the LCD
+lcd = LCD()
+
+# Clear the screen
+lcd.fill(LCD.BLACK)
+lcd.draw(font, "Hello", 0, 0, LCD.WHITE, scale=1.5)
+```
+
+:::info
+**Displaying vector text:**
+
++ Call the `lcd.draw()` method to display the vector font `astrol` text "hello" at position (0, 0) on the screen.
++ Set the font color to white (`LCD.WHITE`) and a 1.5x magnification.
+:::
+
+## External Chinese Font Library (User-made)
+
+### Schematic
+
+![External Chinese font library schematic](./assets/font-schematic.jpeg)
+
+By running the `font2bitmap.py` program, convert `specified text` into a `bitmap file` of `specified font`, then store the `bitmap file` on the Firefly T1's SD card. You can then use the font library to display Chinese text!
+
+### Creation Steps
+
+1. Download the font-to-bitmap conversion program: [font2bitmap.py](./assets/font2bitmap.py)
+2. Download the font file: [NotoSansSC-Regular.zip](./assets/NotoSansSC-Regular.zip) (needs to be unzipped before use)
+   - You can use any other font; this is just used as an example.
+3. Open a CMD terminal and run `font2bitmap.py`!
+
+Execution process:
+
+1. For example, download the files to `D:\font`
+
+![Putting the files in the D:\font directory](./assets/font-step-1.png)
+
+2. Open CMD: press `Win + R`, type `cmd`, then press Enter.
+
+![Opening CMD](./assets/font-step-2.png)
+
+3. Type the command `D:` to enter the D drive (enter whichever drive the files are on).
+
+![Entering the D drive](./assets/font-step-3.png)
+
+4. Type the command `cd d:\font` to enter the folder.
+
+![Entering the font folder](./assets/font-step-4.png)
+
+5. Type the conversion command: `python font2bitmap.py -s "你好" NotoSansSC-Regular.otf 16 > font.py`, then you will get a bitmap library file `font.py` containing the Chinese text "你好".
+
+![Running the conversion command](./assets/font-step-5.png)
+
+![Generating the font.py file](./assets/font-step-6.png)
+
+:::warning Note
+Before running the command `python font2bitmap.py -s "你好" NotoSansSC-Regular.otf 16 > font.py`, you need to install `python3` and other required tools.
+:::
+
+### Usage Example
+
+1. Copy the bitmap file `font.py` to the Firefly T1's `\SD\sys\font` directory
+2. Then import the `font` module (note that you must add the environment variable path first)
+
+```python
+import sys
+sys.path.append('/sd/sys/font')
+
+import font as font
+```
+
+3. Use the `write(bitmap_font, s, x, y[, fg, bg, background_tuple, fill_flag])` method to display the text.
+
+```python
+import sys
+sys.path.append('/sd/sys/font')
+import font as font
+
+from lcd import LCD
+# Create an LCD instance
+display = LCD()
+
+# Clear the screen to black
+display.fill(LCD.BLACK)
+
+display.write(font,"你好",0,0,LCD.WHITE)
+```

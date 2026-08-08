@@ -57,6 +57,19 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 | press_type | str | Event type: `'short'` (short press), `'long'` (long press) |
 | callback | function | Callback function (no arguments) |
 
+**Example:**
+
+```python
+def on_center_short():
+    print("center short pressed")
+
+def on_left_long():
+    print("left long pressed")
+
+buttons.register_callback('center', 'short', on_center_short)
+buttons.register_callback('left', 'long', on_left_long)
+```
+
 ### 3. `get_button_state(button_name) -> bool`
 
 **Function:** Query whether the specified button is currently pressed.
@@ -67,9 +80,22 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 - `False`: not pressed
 - `None`: invalid button name
 
+**Example:**
+
+```python
+if buttons.get_button_state('center'):
+    print("center is pressed")
+```
+
 ### 4. `deinit()`
 
 **Function:** Release all resources and close interrupts and timers. Call it when button control is no longer needed.
+
+**Example:**
+
+```python
+buttons.deinit()
+```
 
 ## Workflow
 
@@ -80,30 +106,36 @@ buttons = Button(long_press_threshold=800, debounce_time=30)
 
 ## Complete Usage Example
 
-The following example demonstrates how to register callbacks for a specified button:
-
 ```python
 from button import Button
+import time
 
+# Initialize the button manager
 buttons = Button()
 
-def on_up_short():
-    print("up short pressed")
+# Register short press events
+buttons.register_callback('center', 'short', lambda: print("center short"))
+buttons.register_callback('up', 'short', lambda: print("up short"))
 
-def on_up_long():
-    print("up long pressed")
+# Register long press events
+buttons.register_callback('center', 'long', lambda: print("center long"))
+buttons.register_callback('down', 'long', lambda: print("down long"))
 
-buttons.register_callback('up', 'short', on_up_short)
-buttons.register_callback('up', 'long', on_up_long)
+# Main loop (can run alongside other tasks)
+try:
+    while True:
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    buttons.deinit()
 ```
 
-:::warning Notes
+## ⚠ Notes
+
 - This module suits embedded real-time control and avoids frequent polling.
-- You can register callbacks with lambda or custom functions.
+- You can register callbacks with `lambda` or custom functions.
 - It is recommended to call `deinit()` to release hardware resources when the system exits.
-:::
 
 ## Hardware Limitations
 
-- The button logic level is active-low (internal pull-up).
+- The button logic level is **active-low** (internal pull-up).
 - The number of buttons is fixed at 5, and the GPIOs cannot be customized (unless you change the code).

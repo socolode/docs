@@ -49,28 +49,47 @@ beep.tone(1000, 500)  # emit a 1000Hz sound for 500ms
 
 **Function:** Immediately stop the buzzer (manual stop, regardless of whether the timer is still counting down).
 
+**Example:**
+
+```python
+beep.stop()
+```
+
 ### 4. `beep.deinit()`
 
 **Function:** Release buzzer resources, stop PWM, and delete the timer. You must re-initialize before using it again.
 
-## Simple Usage Example
+**Example:**
 
-After initialization, call `tone()` to emit sound, which stops automatically after the duration:
+```python
+beep.deinit()
+```
+
+## Simple Usage Example
 
 ```python
 import beep
 
+# Initialize the buzzer
 beep.init()
-beep.tone(1000, 500)  # emit a 1000Hz sound for 500ms
+
+# Emit a 2kHz sound for 300ms
+beep.tone(2000, 300)
+
+# Manually stop early
+beep.stop()
+
+# Release resources
+beep.deinit()
 ```
 
-:::warning Notes
-- The buzzer pin is fixed to GPIO12.
+## ⚠ Notes
+
+- The buzzer pin is fixed to **GPIO12**.
 - Each sound call updates the frequency and timer.
 - If `init()` is not called before `tone()`, the module initializes itself automatically.
 - Not reentrant: wait for the previous `tone()` to finish before emitting a new tone, otherwise it may be overwritten.
 - Uses hardware PWM for high precision and a wide frequency range.
-:::
 
 ## Module Hardware Parameters
 
